@@ -39,3 +39,7 @@ app.get('/api/photos/:user_id', dataCrtl.getPhotoData)
 app.post('/api/photos', dataCrtl.insertPhotoData)
 app.delete('/api/photos/:id', dataCrtl.deletePhotoData)
 app.put('/api/photos', dataCrtl.updatePhotoData)
+
+app.post('/api/users', dataCrtl.insertUserData)
+app.get('/api/users/:user_id', dataCrtl.getUserData)
+app.put('/api/users', dataCrtl.updateUserData)
