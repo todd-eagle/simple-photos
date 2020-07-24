@@ -9,6 +9,7 @@ const Register = (props) => {
     const [password, setPassword] = useState('')
 
     const handleSubmit = async e =>{
+        console.log(`CLICKED! email is: ${email} password is ${password}` )
         const register = await axios.post('/api/auth', {email, password})
     }
 

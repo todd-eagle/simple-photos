@@ -25,23 +25,24 @@ module.exports = {
     login: async(req, res) => {
         const db = req.app.get('db')
         const {email, password} = req.body
+        console.log("req.body ", req.body)
 
         const userFound = await db.p_users.find({email})
-
-        if(!userFound){
+        console.log("userFound ", userFound)
+        userFound.length===0 ? console.log("Not found") : console.log("found");
+        if(userFound.length===0){
+            console.log('Email not found')
             return res.status(404).send('Email not found')
         }
-
         const authenticated = bcryptjs.compareSync(password, userFound[0].password)
-        
         if(authenticated){
             req.session.user = {
                 id: userFound[0].id,
-                email: userFound[0].email,
+                email: userFound[0].email
             }
             return res.status(200).send(req.session.user)
         }
-        res.status(403).send('Email or password is incorrect')
+        return res.status(404).send('Email or password is incorrect')
     },
     logout: (req, res) => {
         req.session.destroy();

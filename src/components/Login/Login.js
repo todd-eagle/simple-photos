@@ -1,18 +1,24 @@
 import React, {useState} from 'react' 
 import axios from 'axios';
-import AuthForm from '../Form/Form'
+import AuthForm from '../Form/Form';
+import  Button  from '../Button/Button'
 
-const Login = () => {
+const Login = (props) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const loginHandle = async e =>{
-        const login = await axios.get('/api/auth', {email, password})
+    const handleSubmit = async e =>{
+        try {
+            await axios.post('/api/auth/user', {email, password})
+            props.history.push('/dashboard')
+            
+        }catch(err){
+            console.log(err)
+        }           
     }
-
     return (
         <>
-        <AuthForm 
+            <AuthForm 
                 inputData={
                     [{type: 'text', property: 'email', setState: setEmail}, 
                     {type: 'password', property: 'password', setState: setPassword}]
@@ -20,6 +26,9 @@ const Login = () => {
                 formStyle= "auth-box" 
                 heading="Login"  
             />
+             <Button  onClick={handleSubmit}>
+                Login
+            </Button>
         </>
     )
 }

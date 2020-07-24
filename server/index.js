@@ -31,7 +31,7 @@ massive({
     app.listen( SERVER_PORT, () => console.log(`Connected to port ${SERVER_PORT}`))
 }).catch(err=>console.log(err))
 
-app.get('/api/auth', authCrtl.login)
+app.post('/api/auth/user', authCrtl.login)
 app.get('/api/auth', authCrtl.logout)
 app.post('/api/auth', authCrtl.register)
 
