@@ -1,27 +1,32 @@
 import React, {useState} from 'react' 
 import axios from 'axios';
-import AuthForm from '../AuthForm/AuthForm'
+import AuthForm from '../Form/Form'
+import Button from '../Button/Button'
 
 
 const Register = (props) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const loginHandle = async e =>{
-        const register = await axios.post('/api/auth/register', {email, password})
+    const handleSubmit = async e =>{
+        const register = await axios.post('/api/auth', {email, password})
     }
 
-    return <>
+    return (
+        <>
             <AuthForm 
                 inputData={
                     [{type: 'text', property: 'email', setState: setEmail}, 
                      {type: 'password', property: 'password', setState: setPassword}]
                 }
-                outerCss="auth-page"
-                innerCss= "auth-box" 
+                formStyle= "auth-box" 
                 heading="Register"  
             />
-            </>
+            <Button  onClick={handleSubmit}>
+                Register
+            </Button>
+        </>
+    )
 }
 
 export default Register
