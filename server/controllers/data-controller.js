@@ -1,65 +1,44 @@
 module.exports = {
     insertPhotoData: async(req, res) => {
         const db = req.app.get('db')
-        try{
-            await db.photos.insert(req.body)
-            res.status(200).send('Data inserted')
-        }catch(err){
-            res.status(500).send(err)
-        }   
+        const dataInserted = await db.photos.insert(req.body)
+        dataInserted ? res.status(200).send('Data inserted') :
+        res.status(500).send(err)
     },
     getPhotoData: async(req, res) => {
         const db = req.app.get('db')
-        try{
-            const data = await db.photos.find(req.params)
-            res.status(200).send(data)
-        }catch(err){
-            res.status(500).send(err)
-        }
+        const data = await db.photos.find(req.params)
+        data ? res.status(200).send(data) :
+        res.status(500).send(err)
     },
     deletePhotoData: async(req, res) => {
         const db = req.app.get('db')
-        try{
-            await db.photos.destroy(req.params)
-            res.status(200).send('Data deleted')
-        }catch(err){
-            res.status(500).send(err)
-        }
+        const deletedData = await db.photos.destroy(req.params)
+        deletedData ? res.status(200).send('Data deleted') :
+        res.status(500).send(err)
     },
     updatePhotoData: async(req, res) => {
         const db = req.app.get('db')
-        try{
-            await db.photos.save(req.body)
-            res.status(200).send('Data updated')
-        }catch(err){
-            res.status(500).send(err)
-        }
+        const updatedPhotoData = await db.photos.save(req.body)
+        updatedPhotoData ? res.status(200).send('Data updated') :
+        res.status(500).send(err)
     },
     getUserData: async(req, res) => {
         const db = req.app.get('db')
-        try {
-            const userData = await db.profiles.find(req.params)
-            res.status(200).send(userData)
-        }catch(err){
-            res.status(500).send(err)
-        }
+        const userData = await db.profiles.find(req.params)
+        userData ? res.status(200).send(userData) :
+        res.status(500).send(err)
     },
     insertUserData: async(req, res) => {
         const db = req.app.get('db')
-        try{
-            await db.profiles.insert(req.body)
-            res.status(200).send('User data inserted')
-        }catch(err){
-            res.status(500).send(err)
-        }
+        const insertedData =  await db.profiles.insert(req.body)
+        insertedData ? res.status(200).send('User data inserted') :
+        res.status(500).send(err)
     },
     updateUserData: async(req, res) => {
         const db = req.app.get('db')
-        try{
-            await db.profiles.save(req.body)
-            res.status(200).send('User data updated')
-        }catch(err){
-            res.status(500).send(err)
-        }
+        const updatedUserData =  await db.profiles.save(req.body)
+        updatedUserData ? res.status(200).send('User data updated') :
+        res.status(500).send(err)
     }
 }
