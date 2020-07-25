@@ -12,8 +12,9 @@ export default (
         <Route exact path="/" component={Landing}/>
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
+        {/* <Route path="/register" component={Register} /> */}
         <Route path="/profile" component={Profile} />
         <Route path="/photos" component={Uploadphotos} />
+        <Route path={["/login", "/register"]} component={Login}/>
     </Switch>
 )

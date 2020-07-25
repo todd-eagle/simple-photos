@@ -1,11 +1,9 @@
 import React from 'react'
-import {getRandomKey} from '../Utilities/Utilities'
-
 
 const Form = (props) => {
     const {inputData, formStyle='form-style default', heading="Haeding Goes Here"} = props
-    const inputs = inputData.map( el => {
-        return <input  type={el.type} id={el.property}
+    const inputs = inputData.map( (el, index) => {
+        return <input key={el.property + index} type={el.type} id={el.property}
             name={el.property} placeholder={el.property} 
             onChange={e => el.setState(e.target.value)} />
     })
