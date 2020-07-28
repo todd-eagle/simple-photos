@@ -6,7 +6,7 @@ import {capitalize} from '../Utilities/Helpers'
 
 const Login = (props) => {
      
-    // a useState that accepts object - will turn into a form hook later
+    // a useState that accepts objects - will turn into a form hook later
      const [values, setValues] = useState({})
 
     const {pathname} = props.location

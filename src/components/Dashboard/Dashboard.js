@@ -1,9 +1,16 @@
 import React, {Component} from 'react' 
+import UploadForm from './UploadForm/UploadForm'
 
 class Dashboard extends Component {
   
     render(){
-        return <div>This is the dashboard</div>
+        return (
+                <div>
+                    This is the dashboard
+                    <UploadForm />
+                </div>
+            )
+
     }
 }
 
