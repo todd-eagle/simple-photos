@@ -5,6 +5,7 @@ import Landing from './components/Landing/Landing'
 import Login from './components/Login/Login'
 import Profile from './components/Profile/Profile'
 import Uploadphotos from './components/Uploadphotos/Uploadphotos'
+import TestForm from './components/TestForm/TestForm'
 
 export default (
     <Switch>
@@ -13,6 +14,7 @@ export default (
         <Route path="/login" component={Login} />
         <Route path="/profile" component={Profile} />
         <Route path="/photos" component={Uploadphotos} />
+        <Route path="/testform" component={TestForm} />
         <Route path={["/login", "/register"]} component={Login}/>
     </Switch>
 )

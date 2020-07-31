@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
     insertPhotoData: async(req, res) => {
         const db = req.app.get('db')
@@ -40,5 +42,20 @@ module.exports = {
         const updatedUserData =  await db.profiles.save(req.body)
         updatedUserData ? res.status(200).send('User data updated') :
         res.status(500).send(err)
+    },
+    uploadFile: (req, res) => {
+        console.log("req.files: ", req.files)
+        if(!req.files) {
+            return res.status(400).send('Image not uploaded')
+        }
+
+        let image = req.files.image
+        let uploadPath = path.join(__dirname, '../../', 'src')
+        console.log(uploadPath)
+
+       
+
+
+        
     }
 }

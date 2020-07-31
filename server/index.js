@@ -1,4 +1,6 @@
 require('dotenv').config();
+const cors = require('cors')
+const fileUpload = require('express-fileupload');
 const express = require('express');
 const session = require('express-session');
 const massive = require('massive');
@@ -9,7 +11,10 @@ const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
 const app = express();
 
+app.use(cors())
 app.use(express.json());
+app.use(fileUpload());
+
 app.use(
     session({
         resave: false,
@@ -43,3 +48,5 @@ app.put('/api/photos', dataCrtl.updatePhotoData)
 app.post('/api/users', dataCrtl.insertUserData)
 app.get('/api/users/:user_id', dataCrtl.getUserData)
 app.put('/api/users', dataCrtl.updateUserData)
+
+app.post('/api/upload', dataCrtl.uploadFile)
