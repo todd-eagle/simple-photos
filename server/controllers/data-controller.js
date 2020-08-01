@@ -50,10 +50,14 @@ module.exports = {
         }
 
         let image = req.files.image
-        let uploadPath = path.join(__dirname, '../../', 'src')
+        let imageFolder = path.join(__dirname, '../../', 'src/assets/images')
+        let uploadPath = `${imageFolder}/${image.name}` 
+        
         console.log(uploadPath)
 
-       
+        image.mv(uploadPath, err=> {
+            err ? res.status(500).send(err) : res.status(200).send('Image uploaded')
+        })
 
 
         
