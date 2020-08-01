@@ -1,7 +1,7 @@
 import React from 'react'
 import {useDropzone} from 'react-dropzone'
 
-const DragNDropArea = ({onDrop, accept, maxSize, multiple, preview}) => {
+const DragNDropArea = ({onDrop, accept, maxSize, multiple, preview=null, handleDeleteFn}) => {
     const { getRootProps, getInputProps, isDragActive, isDragReject, 
             fileRejections} = useDropzone({
         onDrop,
@@ -25,7 +25,8 @@ const DragNDropArea = ({onDrop, accept, maxSize, multiple, preview}) => {
        <div {...getRootProps()}>
            <input {...getInputProps()} />
            <div className="text-center">
-             {!preview ? <p>{fileStatus()}</p> :  <img src={preview} alt="Preview"/>   }
+                {!preview ? <p>{fileStatus()}</p> :  
+                <img src={preview} alt="Preview"/>}
             </div>
        </div>
     )
