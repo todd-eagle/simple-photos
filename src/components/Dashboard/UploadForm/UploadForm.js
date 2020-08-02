@@ -1,4 +1,5 @@
 import React, {useState, useCallback} from 'react'
+import {connect} from 'react-redux'
 import axios from 'axios'
 import InfoForm from '../../Form/Form'
 import Button from '../../Button/Button'

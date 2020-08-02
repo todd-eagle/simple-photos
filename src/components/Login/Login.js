@@ -1,6 +1,8 @@
 import React, {useState} from 'react' 
 import axios from 'axios';
-import AuthForm from '../Form/Form';
+import AuthForm from '../Form/Form'
+import {connect} from 'react-redux'
+import {login} from '../../redux/reducers/AuthReducer'
 import Button from '../Button/Button'
 import {capitalize} from '../Utilities/Helpers'
 
@@ -46,4 +48,5 @@ const Login = (props) => {
     )
 }
 
-export default Login
+const mapStateToProps =  reduxState => reduxState
+export default connect(mapStateToProps)(Login)

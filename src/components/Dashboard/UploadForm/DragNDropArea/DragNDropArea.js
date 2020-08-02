@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import {useDropzone} from 'react-dropzone'
 
 const DragNDropArea = ({onDrop, accept, maxSize, multiple, preview=null, handleDeleteFn}) => {
@@ -41,5 +42,6 @@ const DragNDropArea = ({onDrop, accept, maxSize, multiple, preview=null, handleD
     )
 }
 
-export default DragNDropArea
+const mapStateToProps =  reduxState => reduxState
+export default connect(mapStateToProps)(DragNDropArea)
 
