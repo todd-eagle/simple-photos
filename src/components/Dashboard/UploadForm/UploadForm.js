@@ -5,7 +5,7 @@ import InfoForm from '../../Form/Form'
 import Button from '../../Button/Button'
 import DragNDropArea from './DragNDropArea/DragNDropArea'
 
-const UploadForm = () => {
+const UploadForm = (props) => {
 
     const MAX_SIZE = 10485760
     const ACCEPTED_FILES = "image/jpeg, image/jpg, image/png"
@@ -24,14 +24,17 @@ const UploadForm = () => {
 
     const handleSubmit = async(e) => {
         e.preventDefault()
-
-        const {title, tags} = values
         const config = { headers: { 'Content-Type': 'multipart/form-data' } }
 
         try{
-        const data = await axios.post('/api/upload', formData, config)
-        console.log("data is ", data)
+            const data = await axios.post(`/api/photos/${props.user.id}`, values)
+            console.log("data is ", data)
         }catch(err){console.log(err)}
+
+        // try{
+        //     const data = await axios.post(`/api/upload/${user_id}`, formData, config)
+        //     console.log("data is ", data)
+        // }catch(err){console.log(err)}
     }
 
     const onDrop = useCallback(async(acceptedFiles) => {

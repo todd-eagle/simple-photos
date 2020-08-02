@@ -25,10 +25,10 @@ module.exports = {
     login: async(req, res) => {
         const db = req.app.get('db')
         const {email, password} = req.body
-        console.log("req.body ", req.body)
+        // console.log("req.body ", req.body)
 
         const userFound = await db.p_users.find({email})
-        console.log("userFound ", userFound)
+       // console.log("userFound ", userFound)
         userFound.length===0 ? console.log("Not found") : console.log("found");
         if(userFound.length===0){
             console.log('Email not found')

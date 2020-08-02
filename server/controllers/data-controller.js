@@ -2,8 +2,10 @@ const path = require('path')
 
 module.exports = {
     insertPhotoData: async(req, res) => {
+        const {title, tags} = req.body
+        const {user_id} = req.params
         const db = req.app.get('db')
-        const dataInserted = await db.photos.insert(req.body)
+        const dataInserted = await db.photos.insert({user_id, title, tags})
         dataInserted ? res.status(200).send('Data inserted') :
         res.status(500).send(err)
     },
@@ -44,7 +46,7 @@ module.exports = {
         res.status(500).send(err)
     },
     uploadFile: (req, res) => {
-        console.log("req.files: ", req.files)
+        const {user_id} = req.params
         if(!req.files) {
             return res.status(400).send('Image not uploaded')
         }
@@ -57,9 +59,6 @@ module.exports = {
 
         image.mv(uploadPath, err=> {
             err ? res.status(500).send(err) : res.status(200).send('Image uploaded')
-        })
-
-
-        
+        })        
     }
 }
