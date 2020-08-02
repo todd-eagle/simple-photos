@@ -13,9 +13,10 @@ const UploadForm = (props) => {
   
     const [values, setValues] = useState({})
     const [files, setFiles] = useState('')
+    const [formValue, setForm] = useState()
     const previewImage = files.preview
-    const formData = new FormData()
-
+    
+   
     const handleChange = (e) => {
         e.persist();
         setValues(values => ({ ...values, [e.target.name]: e.target.value }))
@@ -25,28 +26,29 @@ const UploadForm = (props) => {
     const handleSubmit = async(e) => {
         e.preventDefault()
         const config = { headers: { 'Content-Type': 'multipart/form-data' } }
-
         try{
-            const data = await axios.post(`/api/photos/${props.user.id}`, values)
-            console.log("data is ", data)
+            const imageInfo = await axios.post(`/api/photos/${props.user.id}`, values)
+            try{
+               await axios.post(`/api/upload/${imageInfo.data.id}`, formValue, config)
+            }catch(err){console.log(err)}
         }catch(err){console.log(err)}
-
-        // try{
-        //     const data = await axios.post(`/api/upload/${user_id}`, formData, config)
-        //     console.log("data is ", data)
-        // }catch(err){console.log(err)}
     }
 
     const onDrop = useCallback(async(acceptedFiles) => {
         const selectedFile = acceptedFiles[0]       
-
+        const formData = new FormData()
+        
         formData.append('image', selectedFile)
+
+        setForm(formData)
+
+        // console.log("formdata at onDrop: ", formData.get('image'));
 
         setFiles(Object.assign(selectedFile, {
             preview: URL.createObjectURL(selectedFile)
           })
         )
-    }, [formData])
+    }, [])
 
     const handleDelete = () => {
         setFiles(delete files.preview)

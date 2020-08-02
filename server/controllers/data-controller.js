@@ -6,7 +6,8 @@ module.exports = {
         const {user_id} = req.params
         const db = req.app.get('db')
         const dataInserted = await db.photos.insert({user_id, title, tags})
-        dataInserted ? res.status(200).send('Data inserted') :
+        //console.log('dataInserted ', dataInserted)
+        dataInserted ? res.status(200).send(dataInserted) :
         res.status(500).send(err)
     },
     getPhotoData: async(req, res) => {
@@ -45,8 +46,12 @@ module.exports = {
         updatedUserData ? res.status(200).send('User data updated') :
         res.status(500).send(err)
     },
-    uploadFile: (req, res) => {
-        const {user_id} = req.params
+    uploadFile: async(req, res) => {
+        const db = req.app.get('db')
+        const {id} = req.params
+
+        console.log(req)
+
         if(!req.files) {
             return res.status(400).send('Image not uploaded')
         }
@@ -56,6 +61,8 @@ module.exports = {
         let uploadPath = `${imageFolder}/${image.name}` 
         
         console.log(uploadPath)
+
+        const updatedImageLink = await db.photos.save({id: id, link: uploadPath})
 
         image.mv(uploadPath, err=> {
             err ? res.status(500).send(err) : res.status(200).send('Image uploaded')
