@@ -70,4 +70,5 @@ const UploadForm = () => {
     )
 }
 
-export default UploadForm
+const mapStateToProps =  reduxState => reduxState
+export default connect(mapStateToProps)(UploadForm)

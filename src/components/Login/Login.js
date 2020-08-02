@@ -20,7 +20,9 @@ const Login = (props) => {
         let path ='Initial value'
         pathname.includes('register') ? path='/api/auth' : path='/api/auth/user'      
         try {
-            await axios.post(path, {email, password})
+            const loginInfo = await axios.post(path, {email, password})
+            console.log(loginInfo.data)
+            props.login(loginInfo.data)
             props.history.push('/dashboard')   
         } catch(err) { console.log(err) }           
     }
@@ -49,4 +51,4 @@ const Login = (props) => {
 }
 
 const mapStateToProps =  reduxState => reduxState
-export default connect(mapStateToProps)(Login)
+export default connect(mapStateToProps, {login})(Login)
