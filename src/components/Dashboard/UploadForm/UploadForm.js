@@ -11,27 +11,30 @@ const UploadForm = () => {
     const MULTIPLE_FILES = false
   
     const [values, setValues] = useState({})
-
     const [files, setFiles] = useState('')
-
     const previewImage = files.preview
+    const formData = new FormData()
 
     const handleChange = (e) => {
-        e.preventDefault()
-    }
-
-    const handleSubmit = (e) => {
         e.persist();
         setValues(values => ({ ...values, [e.target.name]: e.target.value }))
+
     }
 
-    const onDrop = useCallback(async(acceptedFiles, fileRejections) => {
-       
-        const selectedFile = acceptedFiles[0]
-        
+    const handleSubmit = async(e) => {
+        e.preventDefault()
+
+        const {title, tags} = values
         const config = { headers: { 'Content-Type': 'multipart/form-data' } }
 
-        let formData = new FormData()
+        try{
+        const data = await axios.post('/api/upload', formData, config)
+        console.log("data is ", data)
+        }catch(err){console.log(err)}
+    }
+
+    const onDrop = useCallback(async(acceptedFiles) => {
+        const selectedFile = acceptedFiles[0]       
 
         formData.append('image', selectedFile)
 
@@ -39,18 +42,11 @@ const UploadForm = () => {
             preview: URL.createObjectURL(selectedFile)
           })
         )
-        
-        // try{
-        // const data = await axios.post('/api/upload', formData, config)
-        // console.log("data is ", data)
-        // }catch(err){console.log(err)}
-
-    }, [])
+    }, [formData])
 
     const handleDelete = () => {
-        delete files.preview
+        setFiles(delete files.preview)
     }
-    
 
     return (
         <>
@@ -60,8 +56,7 @@ const UploadForm = () => {
             <InfoForm 
                 inputData={
                     [{type: 'text', property: 'title', value: values.title}, 
-                    {type: 'text', property: 'tags',  value: values.tags},
-                    {type: 'text', property: 'link',  value: values.link}]
+                    {type: 'text', property: 'tags',  value: values.tags}]
                 }
                 onChange={handleChange}
                 formStyle= "upload-box"

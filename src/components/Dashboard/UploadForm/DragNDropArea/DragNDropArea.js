@@ -22,13 +22,22 @@ const DragNDropArea = ({onDrop, accept, maxSize, multiple, preview=null, handleD
     }
     
     return (
-       <div {...getRootProps()}>
-           <input {...getInputProps()} />
-           <div className="text-center">
-                {!preview ? <p>{fileStatus()}</p> :  
-                <img src={preview} alt="Preview"/>}
+        <>
+        { 
+            !preview ?
+            <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    <div className="text-center">
+                        <p>{fileStatus()}</p> 
+                    </div>
             </div>
-       </div>
+            :
+            <div className="image-wrapper">
+                <div onClick={e => handleDeleteFn()} className="close">X</div>
+                <img src={preview} alt="Preview"/>
+            </div>
+        }            
+        </>
     )
 }
 
