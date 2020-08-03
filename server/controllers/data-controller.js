@@ -59,10 +59,11 @@ module.exports = {
         let image = req.files.image
         let imageFolder = path.join(__dirname, '../../', 'src/assets/images')
         let uploadPath = `${imageFolder}/${image.name}` 
+        let linkPath = `/assets/images${image.name}`
         
         console.log(uploadPath)
 
-        const updatedImageLink = await db.photos.save({id: id, link: uploadPath})
+        const updatedImageLink = await db.photos.save({id: id, link: linkPath})
 
         image.mv(uploadPath, err=> {
             err ? res.status(500).send(err) : res.status(200).send('Image uploaded')

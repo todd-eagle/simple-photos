@@ -71,6 +71,7 @@ const UploadForm = (props) => {
             <Button  onClick={handleSubmit}>
                 submit
             </Button>
+            {/* <img src={require('../../../assets/images/city.png')} /> */}
         </>
     )
 }

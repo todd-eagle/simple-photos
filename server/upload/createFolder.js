@@ -1,6 +1,6 @@
 const axios = require("axios")
 
-const uploadFile = () => {
+const createFolder = () => {
     const {user_id} = req.params
     if(!req.files) {
         return res.status(400).send('Image not uploaded')
@@ -17,4 +17,4 @@ const uploadFile = () => {
     })        
 
 }
-exports.uploadFile=uploadFile
+exports.createFolder=createFolder
