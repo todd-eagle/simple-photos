@@ -13,6 +13,7 @@ module.exports = {
         }
 
         const createdFolder = await createFolder.createFolder(email)
+        console.log(createdFolder)
 
         const hash = bcryptjs.hashSync(password, bcryptjs.genSaltSync(10))
 
@@ -29,7 +30,7 @@ module.exports = {
         const db = req.app.get('db')
         const {email, password} = req.body
         // console.log("req.body ", req.body)
-
+        
         const userFound = await db.p_users.find({email})
        // console.log("userFound ", userFound)
         userFound.length===0 ? console.log("Not found") : console.log("found");

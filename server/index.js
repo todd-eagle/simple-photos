@@ -50,4 +50,4 @@ app.get('/api/users/:user_id', dataCrtl.getUserData)
 app.put('/api/users', dataCrtl.updateUserData)
 
 // app.post('/api/upload', dataCrtl.uploadFile)
-app.post('/api/upload/:id', dataCrtl.uploadFile)
+app.post('/api/upload/:id/:email', dataCrtl.uploadFile)

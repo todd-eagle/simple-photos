@@ -48,9 +48,9 @@ module.exports = {
     },
     uploadFile: async(req, res) => {
         const db = req.app.get('db')
-        const {id} = req.params
+        const {id, email} = req.params
 
-        console.log(req)
+        // console.log(req)
 
         if(!req.files) {
             return res.status(400).send('Image not uploaded')
@@ -58,10 +58,10 @@ module.exports = {
 
         let image = req.files.image
         let imageFolder = path.join(__dirname, '../../', 'src/assets/images')
-        let uploadPath = `${imageFolder}/${image.name}` 
-        let linkPath = `/assets/images${image.name}`
+        let uploadPath = `${imageFolder}/${email}/${image.name}` 
+        let linkPath = `/assets/images/${email}/${image.name}`
         
-        console.log(uploadPath)
+        // console.log(uploadPath)
 
         const updatedImageLink = await db.photos.save({id: id, link: linkPath})
 

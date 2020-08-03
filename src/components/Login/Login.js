@@ -29,7 +29,7 @@ const Login = (props) => {
 
     const handleChange = (e) => {
         e.persist();
-        setValues(values => ({ ...values, [e.target.name]: e.target.value }));
+        setValues(values => ({ ...values, [e.target.name]: e.target.value.trim()}));
     }
     
     return (

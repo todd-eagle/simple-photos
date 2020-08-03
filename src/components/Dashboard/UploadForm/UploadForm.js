@@ -29,7 +29,7 @@ const UploadForm = (props) => {
         try{
             const imageInfo = await axios.post(`/api/photos/${props.user.id}`, values)
             try{
-               await axios.post(`/api/upload/${imageInfo.data.id}`, formValue, config)
+               await axios.post(`/api/upload/${imageInfo.data.id}/${props.user.email}`, formValue, config)
             }catch(err){console.log(err)}
         }catch(err){console.log(err)}
     }
