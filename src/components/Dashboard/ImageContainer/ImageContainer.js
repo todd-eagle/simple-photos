@@ -22,7 +22,7 @@ const ImageContainer = (props) => {
         }
     }
 
-    const editImage = () => {
+    const editImage = (id) => {
         try {
             axios.put(`/api/photos/${id}`) 
         } catch (error) {
