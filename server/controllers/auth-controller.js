@@ -1,5 +1,5 @@
 const bcryptjs = require('bcryptjs')
-const createFolder = require('./../upload/createFolder')
+const createFolder = require('../Upload/createFolder')
 
 module.exports = {
     register: async(req, res) => {
@@ -13,7 +13,7 @@ module.exports = {
         }
 
         const createdFolder = await createFolder.createFolder(email)
-        console.log(createdFolder)
+        // console.log(createdFolder)
 
         const hash = bcryptjs.hashSync(password, bcryptjs.genSaltSync(10))
 

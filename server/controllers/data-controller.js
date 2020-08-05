@@ -1,4 +1,5 @@
 const path = require('path')
+const deleteFile = require('./../Upload/deleteFile')
 
 module.exports = {
     insertPhotoData: async(req, res) => {
@@ -15,6 +16,11 @@ module.exports = {
         const data = await db.photos.find(req.params)
         data ? res.status(200).send(data) :
         res.status(500).send(err)
+    },
+    deleteImageFile: async(req, res) => {
+       const {link} = req.body
+    //    console.log("req.body ", req.body)
+       const fileDeleted = await deleteFile.deleteFile(link)
     },
     deletePhotoData: async(req, res) => {
         const db = req.app.get('db')

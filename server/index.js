@@ -46,6 +46,7 @@ app.get('/api/photos/:user_id', dataCrtl.getPhotoData)
 app.post('/api/photos/:user_id', dataCrtl.insertPhotoData)
 app.delete('/api/photos/:id', dataCrtl.deletePhotoData)
 app.put('/api/photos', dataCrtl.updatePhotoData)
+app.post('/api/files', dataCrtl.deleteImageFile)
 
 app.post('/api/users', dataCrtl.insertUserData)
 app.get('/api/users/:user_id', dataCrtl.getUserData)

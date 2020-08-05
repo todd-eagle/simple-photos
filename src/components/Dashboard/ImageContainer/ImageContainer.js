@@ -8,13 +8,20 @@ const ImageContainer = (props) => {
     const [dataValues, setValues] = useState([])
     
     useEffect(() => {
-        const {imgData} = props
         setValues(props.imgData)
     },[props.imgData])
 
-    const deleteImage = (id) => {
+    const deleteImage = async(id, link) => {
         try {
-            axios.delete(`/api/photos/${id}`)
+            await axios.delete(`/api/photos/${id}`)
+            console.log('file data deleted')
+            try {
+                console.log('link', link)
+               await axios.post('/api/files', {link})
+               console.log('link', link)
+            } catch (error) {
+                console.log(error)
+            }
         } catch (error) {
             console.log(error)
         }
@@ -30,7 +37,7 @@ const ImageContainer = (props) => {
 
     return (
         <>
-            <ImageList dataValues={dataValues} editImageFn={editImage} deleteImagefn={deleteImage} />
+            <ImageList dataValues={dataValues} editImageFn={editImage} deleteImageFn={deleteImage} />
         </>
     )
 }

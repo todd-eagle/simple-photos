@@ -17,9 +17,7 @@ const UploadForm = (props) => {
     const previewImage = files.preview
 
     const {getImagesFn} = props
-
-    const [imageInfo, setInfo] = useState({})
-    
+        
     const handleChange = (e) => {
         e.persist();
         setValues(values => ({ ...values, [e.target.name]: e.target.value }))
