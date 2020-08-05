@@ -11,6 +11,8 @@ const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
 const app = express();
 
+app.use(express.static("src"))
+
 app.use(cors())
 app.use(express.json());
 app.use(fileUpload());

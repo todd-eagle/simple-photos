@@ -1,15 +1,14 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 
 const ImageList = (props) => {
-    const {imageDatafn, deleteImageFn, editImageFn} = props
-
-    const images = imageDatafn.map((el, index) =>{
-        return (
-            <div className="image-container">
-                <img src={require(`../../../${el.link}`)} alt={el.title}/>
-            </div>
-        )
+    const {dataValues, deleteImageFn, editImageFn} = props
+   
+    let images = dataValues.map((el, index) =>{
+        return <div key={el.title} className="image-container">
+                    <img src={el.link} alt={el.title}/>
+                    <div><div>{el.title}</div><div>{el.tags}</div></div>
+                </div>           
     })
 
     return (

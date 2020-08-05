@@ -1,18 +1,16 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios'
 import ImageList from './ImageList/ImageList'
 
-
 const ImageContainer = (props) => {
 
-    const imageData = () => {
-        try {
-            return axios.get(`/api/photos/${props.user.id}`)
-        }catch(error){
-            console.log(error)
-        }
-    }
+    const [dataValues, setValues] = useState([])
+    
+    useEffect(() => {
+        const {imgData} = props
+        setValues(props.imgData)
+    },[props.imgData])
 
     const deleteImage = (id) => {
         try {
@@ -30,10 +28,9 @@ const ImageContainer = (props) => {
         }
     }
 
-
     return (
         <>
-            <ImageList imageDataFn={imageData} deleteImageFn={deleteImage} editImage={editImage} />
+            <ImageList dataValues={dataValues} editImageFn={editImage} deleteImagefn={deleteImage} />
         </>
     )
 }

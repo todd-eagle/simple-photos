@@ -15,12 +15,12 @@ const UploadForm = (props) => {
     const [files, setFiles] = useState('')
     const [formValue, setForm] = useState()
     const previewImage = files.preview
+
+    const {getImagesFn} = props
     
-   
     const handleChange = (e) => {
         e.persist();
         setValues(values => ({ ...values, [e.target.name]: e.target.value }))
-
     }
 
     const handleSubmit = async(e) => {
@@ -32,6 +32,8 @@ const UploadForm = (props) => {
                await axios.post(`/api/upload/${imageInfo.data.id}/${props.user.email}`, formValue, config)
             }catch(err){console.log(err)}
         }catch(err){console.log(err)}
+        await props.getImagesFn(props.user.id)
+
     }
 
     const onDrop = useCallback(async(acceptedFiles) => {
@@ -39,11 +41,7 @@ const UploadForm = (props) => {
         const formData = new FormData()
         
         formData.append('image', selectedFile)
-
         setForm(formData)
-
-        // console.log("formdata at onDrop: ", formData.get('image'));
-
         setFiles(Object.assign(selectedFile, {
             preview: URL.createObjectURL(selectedFile)
           })

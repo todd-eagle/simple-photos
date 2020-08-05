@@ -1,22 +1,37 @@
-import React, {Component} from 'react' 
+import React, {useState, useEffect} from 'react'
 import UploadForm from './UploadForm/UploadForm'
 import ImageContainer from './ImageContainer/ImageContainer'
 
-class Dashboard extends Component {
-  
-    render(){
+import axios from 'axios'
+import {connect} from 'react-redux'
+
+
+const Dashboard = (props) => {
+    
+    const [imgData, setData] = useState([])
+    useEffect(() => {
+        getImages(props.user.id)
+    },[])
+
+    const getImages = (id) => {
+        axios.get(`/api/photos/${id}`) 
+        .then(res=>{
+           console.log(res.data)
+           setData(res.data)
+        }).catch(error =>{console.log(error)})
+    }
+
+   
+        console.log("state=", imgData)
         return (
             <>
-                <div>
-                    This is the dashboard
-                    <UploadForm />
-                </div>
-                <div>
-                    <ImageContainer />
-                </div>
-                </>
+                <p>This is the dashboard</p>
+                <UploadForm getImagesFn={getImages} />
+                <ImageContainer imgData={imgData}/>
+            </>
             )
-    }
+    
 }
 
-export default Dashboard
+const mapStateToProps =  reduxState => reduxState
+export default connect(mapStateToProps)(Dashboard)
