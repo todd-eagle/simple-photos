@@ -33,7 +33,7 @@ module.exports = {
         
         const userFound = await db.p_users.find({email})
        // console.log("userFound ", userFound)
-        userFound.length===0 ? console.log("Not found") : console.log("found");
+        // userFound.length===0 ? console.log("Not found") : console.log("found");
         if(userFound.length===0){
             console.log('Email not found')
             return res.status(404).send('Email not found')
