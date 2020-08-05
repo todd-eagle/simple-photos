@@ -17,6 +17,8 @@ const UploadForm = (props) => {
     const previewImage = files.preview
 
     const {getImagesFn} = props
+
+    const [imageInfo, setInfo] = useState({})
     
     const handleChange = (e) => {
         e.persist();
@@ -55,7 +57,7 @@ const UploadForm = (props) => {
     return (
         <>
             <DragNDropArea onDrop={onDrop} multiple={MULTIPLE_FILES} maxSize={MAX_SIZE} 
-                           accept={ACCEPTED_FILES} preview={previewImage} 
+                           accept={ACCEPTED_FILES} preview={previewImage}
                            handleDeleteFn={handleDelete} />
             <InfoForm 
                 inputData={
@@ -69,7 +71,6 @@ const UploadForm = (props) => {
             <Button  onClick={handleSubmit}>
                 submit
             </Button>
-            {/* <img src={require('../../../assets/images/city.png')} /> */}
         </>
     )
 }
