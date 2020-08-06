@@ -13,7 +13,8 @@ module.exports = {
     },
     getPhotoData: async(req, res) => {
         const db = req.app.get('db')
-        const data = await db.photos.find(req.params)
+
+        const data = await db.photos.find(req.params, {order:[{field: 'id',direction: 'desc'}]})
         data ? res.status(200).send(data) :
         res.status(500).send(err)
     },
