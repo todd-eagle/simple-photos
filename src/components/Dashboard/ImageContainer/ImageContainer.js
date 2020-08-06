@@ -16,8 +16,7 @@ const ImageContainer = (props) => {
             await axios.delete(`/api/photos/${id}`)
             console.log('file data deleted')
             try {
-               await axios.post('/api/files', {link})
-              
+               await axios.post('/api/files', {link})   
                try {
                     await props.getImagesFn(props.user.id)
                } catch (error) {
