@@ -1,5 +1,5 @@
 const path = require('path')
-const deleteFile = require('./../Upload/deleteFile')
+const deleteFile = require('./../upload/deleteFile')
 
 module.exports = {
     insertPhotoData: async(req, res) => {
@@ -21,6 +21,7 @@ module.exports = {
        const {link} = req.body
     //    console.log("req.body ", req.body)
        const fileDeleted = await deleteFile.deleteFile(link)
+       fileDeleted ? res.status(200).send('Image deleted') : res.status(500).send('Server error: file not deleted')
     },
     deletePhotoData: async(req, res) => {
         const db = req.app.get('db')

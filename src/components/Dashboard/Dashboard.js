@@ -13,6 +13,7 @@ const Dashboard = (props) => {
     },[])
 
     const getImages = (id) => {
+        // console.log("getImages called!")
         axios.get(`/api/photos/${id}`) 
         .then(res=>{
         //    console.log(res.data)
@@ -24,7 +25,7 @@ const Dashboard = (props) => {
     <>
         <p>This is the dashboard</p>
         <UploadForm getImagesFn={getImages} />
-        <ImageContainer imgData={imgData}/>
+        <ImageContainer imgData={imgData} getImagesFn={getImages} />
     </>
     )
 }
