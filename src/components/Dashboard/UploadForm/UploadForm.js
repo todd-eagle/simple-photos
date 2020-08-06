@@ -33,7 +33,8 @@ const UploadForm = (props) => {
             }catch(err){console.log(err)}
         }catch(err){console.log(err)}
         await props.getImagesFn(props.user.id)
-
+        handleDelete()
+        setValues(values => ({}))
     }
 
     const onDrop = useCallback(async(acceptedFiles) => {
