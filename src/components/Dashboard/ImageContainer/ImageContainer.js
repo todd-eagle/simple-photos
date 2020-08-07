@@ -2,10 +2,13 @@ import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios'
 import ImageList from './ImageList/ImageList'
+import ConfirmWindow from '../../ConfirmWindow/ConfirmWindow'
 
 const ImageContainer = (props) => {
 
     const [dataValues, setValues] = useState([])
+    const [idLinkValues, setIdLink] = useState([])
+    const [isOpen, setIsOpen] = useState(false)
     
     useEffect(() => {
         setValues(props.imgData)
@@ -19,15 +22,9 @@ const ImageContainer = (props) => {
                await axios.post('/api/files', {link})   
                try {
                     await props.getImagesFn(props.user.id)
-               } catch (error) {
-                    console.log(error)
-               }
-            } catch (error) {
-                console.log(error)
-            }
-        } catch (error) {
-            console.log(error)
-        }
+               } catch (error) {console.log(error)}
+            } catch (error) {console.log(error)}
+        } catch (error) {console.log(error)}
     }
 
     const editImage = (id) => {
@@ -38,9 +35,24 @@ const ImageContainer = (props) => {
         }
     }
 
+    const toggle = () => {
+        setIsOpen(!isOpen)
+    }
+    
+    const idLinkData = async(id, link) => {
+        console.log('ddd', id, link)
+        await setIdLink([id, link])
+    }
+
     return (
         <>
-            <ImageList dataValues={dataValues} editImageFn={editImage} deleteImageFn={deleteImage} />
+            <ImageList dataValues={dataValues} editImageFn={editImage} 
+                       deleteImageFn={deleteImage} toggleFn={toggle}
+                       idLinkDataFn = {idLinkData}/>
+            {isOpen ?
+            <ConfirmWindow deleteImageFn={deleteImage}  toggleFn={toggle} 
+                           idLinkValues={idLinkValues} /> 
+            : null}    
         </>
     )
 }
