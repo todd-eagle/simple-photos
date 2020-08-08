@@ -15,8 +15,6 @@ const UploadForm = (props) => {
     const [files, setFiles] = useState('')
     const [formValue, setForm] = useState()
     const previewImage = files.preview
-
-    const {getImagesFn} = props
         
     const handleChange = (e) => {
         e.persist();
@@ -29,7 +27,7 @@ const UploadForm = (props) => {
         try{
             const imageInfo = await axios.post(`/api/photos/${props.user.id}`, values)
             try{
-               await axios.post(`/api/upload/${imageInfo.data.id}/${props.user.email}`, formValue, config)
+               await axios.post(`/api/upload/${imageInfo.data.id}/${props.user.folder_id}`, formValue, config)
             }catch(err){console.log(err)}
         }catch(err){console.log(err)}
         await props.getImagesFn(props.user.id)

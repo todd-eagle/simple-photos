@@ -3,10 +3,10 @@ const deleteFile = require('./../upload/deleteFile')
 
 module.exports = {
     insertPhotoData: async(req, res) => {
-        const {title, tags} = req.body
+        const {title, tags, folder_id} = req.body
         const {user_id} = req.params
         const db = req.app.get('db')
-        const dataInserted = await db.photos.insert({user_id, title, tags})
+        const dataInserted = await db.photos.insert({user_id, title, tags, folder_id})
         //console.log('dataInserted ', dataInserted)
         dataInserted ? res.status(200).send(dataInserted) :
         res.status(500).send(err)
@@ -56,7 +56,7 @@ module.exports = {
     },
     uploadFile: async(req, res) => {
         const db = req.app.get('db')
-        const {id, email} = req.params
+        const {id, folder_id} = req.params
 
         // console.log(req)
 
@@ -66,8 +66,8 @@ module.exports = {
 
         let image = req.files.image
         let imageFolder = path.join(__dirname, '../../', 'src/assets/images')
-        let uploadPath = `${imageFolder}/${email}/${image.name}` 
-        let linkPath = `/assets/images/${email}/${image.name}`
+        let uploadPath = `${imageFolder}/${folder_id}/${image.name}` 
+        let linkPath = `/assets/images/${folder_id}/${image.name}`
         
         // console.log(uploadPath)
 

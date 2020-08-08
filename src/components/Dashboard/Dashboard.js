@@ -10,7 +10,7 @@ const Dashboard = (props) => {
     const [imgData, setData] = useState([])
     useEffect(() => {
         getImages(props.user.id)
-    },[])
+    },[props.user.id])
 
     const getImages = (id) => {
         // console.log("getImages called!")

@@ -1,7 +1,7 @@
 const fs = require('fs')
 
-const createFolder = (email) => {
-    const dirPath = `/src/assets/images/${email}`
+const createFolder = (folder) => {
+    const dirPath = `/src/assets/images/${folder}`
 
     fs.mkdirSync(process.cwd() + dirPath, {recursive: true}, (error)=>{
         error ? console.log("error is ", error) : 'success'
