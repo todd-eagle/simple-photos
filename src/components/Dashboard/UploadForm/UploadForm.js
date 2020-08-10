@@ -30,6 +30,7 @@ const UploadForm = (props) => {
                await axios.post(`/api/upload/${imageInfo.data.id}/${props.user.folder_id}`, formValue, config)
             }catch(err){console.log(err)}
         }catch(err){console.log(err)}
+       
         await props.getImagesFn(props.user.id)
         handleDelete()
         setValues(values => ({}))

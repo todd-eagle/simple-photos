@@ -1,12 +1,13 @@
 import React  from 'react'
+import {StyledButton} from '../../styles/Components/Buttons'
 
 const Button = (props) => {
     const {children='', onClick, type='button', buttonStyle='btn default'} = props
 
     return (
-        <button onClick={onClick} type={type} className={buttonStyle}>
+        <StyledButton onClick={onClick} type={type} className={buttonStyle}>
             {children}
-        </button>
+        </StyledButton>
     )
 }
 

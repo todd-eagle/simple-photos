@@ -34,7 +34,7 @@ module.exports = {
         // console.log("req.body ", req.body)
         
         const userFound = await db.p_users.find({email})
-        console.log("userFound ", userFound)
+        //console.log("userFound ", userFound)
         // userFound.length===0 ? console.log("Not found") : console.log("found");
         if(userFound.length===0){
             console.log('Email not found')
