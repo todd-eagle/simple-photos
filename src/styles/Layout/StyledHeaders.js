@@ -12,6 +12,8 @@ export const StyledHeader = style.div`
     color: #fff;
     display: flex;
     align-items: center;
+    z-index: 100;
+
 `
 export const HeaderMenu = style.nav`
     display: flex;
