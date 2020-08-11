@@ -1,9 +1,10 @@
 import React from 'react'
+import {Link} from 'react-router-dom';
 import logo from '../../assets/images/simplephoto.png'
 import {StyledHeader, HeaderMenu, HeaderTitle,
         HeaderLinks, HeaderLogo, BrandingArea} from '../../styles/Layout/StyledHeaders'
 
-const Header = () => {
+const Header = (props) => {
 
     return (
         <StyledHeader>
@@ -14,9 +15,9 @@ const Header = () => {
             </HeaderTitle>
         </BrandingArea>
         <HeaderMenu>
-            <HeaderLinks href="dashbord">Account</HeaderLinks>
-            <HeaderLinks href="dashbord">Profile</HeaderLinks>
-            <HeaderLinks href="dashbord">Logout</HeaderLinks>
+            <HeaderLinks><Link to="/account">Account</Link></HeaderLinks>
+            <HeaderLinks><Link to="/profile">Profile</Link></HeaderLinks>
+            <HeaderLinks><Link to="/landing">Sign out</Link></HeaderLinks>
         </HeaderMenu>
     </StyledHeader>
     )

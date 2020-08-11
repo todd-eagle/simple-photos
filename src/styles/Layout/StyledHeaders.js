@@ -15,17 +15,18 @@ export const StyledHeader = style.div`
 `
 export const HeaderMenu = style.nav`
     display: flex;
-    
     font-size: 1.5rem;
     margin-right: 3rem;
 `
-export const HeaderLinks = style.a`
-    color: ${Colors.color.menuPrimary};
-    padding: 1rem;
-    text-decoration: none;
-
-    &:hover {
-        color: ${Colors.color.hoverLinkPrimary}
+export const HeaderLinks = style.div`
+    a {
+        color: ${Colors.color.menuPrimary};
+        padding: 1rem;
+        text-decoration: none;
+        
+        &:hover {
+            color: ${Colors.color.hoverLinkPrimary}
+        }
     }
 `
 
