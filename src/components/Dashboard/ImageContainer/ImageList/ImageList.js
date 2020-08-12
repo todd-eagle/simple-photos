@@ -9,7 +9,6 @@ const ImageList = (props) => {
         return <ImageCard key={el.title}>
                     <CloseBox onClick={()=> {toggleFn();  idLinkDataFn(el.id, el.link)}}></CloseBox>
                     {/* <EditBox></EditBox> */}
-                    {/* <div className="options"><span onClick={()=> {toggleFn();  idLinkDataFn(el.id, el.link)}}>Remove</span></div> */}
                         <img src={el.link} alt={el.title}/>
                     {/* <div><div>{el.title}</div><div>{el.tags}</div></div> */}
                 </ImageCard>           

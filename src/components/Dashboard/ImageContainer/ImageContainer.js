@@ -9,6 +9,7 @@ const ImageContainer = (props) => {
     const [dataValues, setValues] = useState([])
     const [idLinkValues, setIdLink] = useState([])
     const [isOpen, setIsOpen] = useState(false)
+    const [isEditorOpen, setEditor] = useState(false)
     
     useEffect(() => {
         setValues(props.imgData)
@@ -38,9 +39,12 @@ const ImageContainer = (props) => {
     const toggle = () => {
         setIsOpen(!isOpen)
     }
+
+    const toggleEdit = () => {
+
+    }
     
     const idLinkData = async(id, link) => {
-        console.log('ddd', id, link)
         await setIdLink([id, link])
     }
 

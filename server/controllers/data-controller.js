@@ -58,7 +58,7 @@ module.exports = {
         const db = req.app.get('db')
         const {id, folder_id} = req.params
 
-        // console.log(req)
+        console.log( req.files.image)
 
         if(!req.files) {
             return res.status(400).send('Image not uploaded')
