@@ -63,7 +63,6 @@ const UploadForm = (props) => {
                     {type: 'text', property: 'tags',  value: values.tags}]
                 }
                 onChange={handleChange}
-                formStyle= "upload-box"
                 heading=''
             />
             <Button  onClick={handleSubmit}>

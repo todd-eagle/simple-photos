@@ -1,6 +1,6 @@
-import style from 'styled-components'
+import styled from 'styled-components'
 
-export const Container = style.div`
+export const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,14 +15,7 @@ export const Container = style.div`
         padding:2rem;
     }
 `
-export const ButtonContainer = style.div`
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 2rem;
-    width: 85%;
-`
-
-export const ConfirmImage = style.img`
+export const ConfirmImage = styled.img`
     width: 16vw;
     padding-top: 1rem;
 `

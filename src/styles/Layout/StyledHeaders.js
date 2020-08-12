@@ -1,7 +1,7 @@
-import style from 'styled-components'
+import styled from 'styled-components'
 import {Colors} from '../Base/Colors'
 
-export const StyledHeader = style.div`
+export const StyledHeader = styled.div`
     top: 0;
     position: sticky;
     display: flex;
@@ -15,12 +15,12 @@ export const StyledHeader = style.div`
     z-index: 100;
 
 `
-export const HeaderMenu = style.nav`
+export const HeaderMenu = styled.nav`
     display: flex;
     font-size: 1.5rem;
     margin-right: 3rem;
 `
-export const HeaderLinks = style.div`
+export const HeaderLinks = styled.div`
     a {
         color: ${Colors.color.menuPrimary};
         padding: 1rem;
@@ -31,17 +31,16 @@ export const HeaderLinks = style.div`
         }
     }
 `
-
-    export const BrandingArea = style.div`
+    export const BrandingArea = styled.div`
     display: flex;
     align-items: center;
     margin-left: 3rem;
 `
 
-export const HeaderLogo = style.img`
+export const HeaderLogo = styled.img`
     height: 2.3rem;
 `
-export const HeaderTitle = style.div`
+export const HeaderTitle = styled.div`
     font-size: 1.8rem;
     margin-left: 1rem;
     font-weight: 600;

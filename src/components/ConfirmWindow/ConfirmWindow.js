@@ -1,11 +1,12 @@
 import React from 'react'
 import {Modal} from '../../styles/Components/Modals'
-import {Container, ButtonContainer, ConfirmImage} from '../../styles/Pages/ConfirmBox'
-import {StyledButton} from '../../styles/Components/Buttons'
+import {Container, ConfirmImage} from '../../styles/Pages/ConfirmBox'
+import {StyledButton, ButtonContainer} from '../../styles/Components/Buttons'
 
 const ConfirmWindow = (props) => {
-    const {toggleFn, idLinkValues, deleteImageFn} = props
-    const [id, link] = idLinkValues
+    const {toggleFn, imageValues, deleteImageFn} = props
+    console.log("imageValues ", imageValues)
+    const [id, link] = imageValues
     return (
         <Modal>
             <Container>

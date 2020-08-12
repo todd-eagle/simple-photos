@@ -16,3 +16,10 @@ export const StyledButton = styled.button`
         background-color: rgb(87, 87, 87);
     }
 `
+
+export const ButtonContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 2rem;
+    width: 85%;
+`
