@@ -6,16 +6,16 @@ import {StyledButton, ButtonContainer} from '../../../../styles/Components/Butto
 
 const EditImageInfo = (props) => {
     const {editImageFn, toggleEditFn, imageValues, 
-           formvalues, handleChangeFn} = props
-    const [id, link, title, tags] = imageValues
+           values, handleChangeFn} = props
+    const {id, link} = values
+    console.log("Values: ", values);
     return(
         <Modal>
-            {console.log("title: ", title)}
             <EditContainer>
                 <EditImage src={link} alt="Edit image information" /> 
                 <EditForm   inputData={
-                    [{type: 'text', property: 'title', value: formvalues.title=title}, 
-                    {type: 'text', property: 'tags',  value: formvalues.tags=tags}]
+                    [{type: 'text', property: 'title', value: values.title}, 
+                    {type: 'text', property: 'tags',  value: values.tags}]
                     }
                     onChange={handleChangeFn}
                     heading=''/>     

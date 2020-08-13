@@ -31,8 +31,10 @@ module.exports = {
         res.status(500).send(err)
     },
     updatePhotoData: async(req, res) => {
+        const {id} = req.params
+       // console.log("req.params: ", req.params);
         const db = req.app.get('db')
-        const updatedPhotoData = await db.photos.save(req.body)
+        const updatedPhotoData = await db.photos.update(req.params, req.body)
         updatedPhotoData ? res.status(200).send('Data updated') :
         res.status(500).send(err)
     },
@@ -58,7 +60,7 @@ module.exports = {
         const db = req.app.get('db')
         const {id, folder_id} = req.params
 
-        console.log( req.files.image)
+        // console.log( req.files.image)
 
         if(!req.files) {
             return res.status(400).send('Image not uploaded')

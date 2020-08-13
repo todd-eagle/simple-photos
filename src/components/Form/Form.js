@@ -5,7 +5,7 @@ const Form = (props) => {
     const {inputData, onChange, heading="Heading Goes Here"} = props
     const inputs = inputData.map( (el, index) => {
         return <StyledInput key={el.property + index} type={el.type} id={el.property}
-            defaultValue={el.value || ''} name={el.property} placeholder={el.property} 
+            value={el.value || ''} name={el.property} placeholder={el.property} 
             onChange={onChange} />
     })
     return (

@@ -7,19 +7,29 @@ import EditImageInfo from './EditImageInfo/EditImageInfo'
 
 const ImageContainer = (props) => {
 
-    const [formvalues, setFormValues] = useState({})
-    const [dataValues, setValues] = useState([])
+    const [values, setValues] = useState({})
+    const [dataValues, setDataValues] = useState([])
     const [imageValues, setImageValues] = useState([])
     const [isOpen, setIsOpen] = useState(false)
     const [isEditorOpen, setEditor] = useState(false)
     
     useEffect(() => {
-        setValues(props.imgData)
+        setDataValues(props.imgData)
     },[props.imgData])
 
     const handleChange = (e) => {
         e.persist();
-        setFormValues(formvalues => ({ ...formvalues, [e.target.name]: e.target.value }))
+        setValues(values => ({ ...values, [e.target.name]: e.target.value }))
+    }
+
+    const editImage = async(id) => {
+        console.log("values:", values)
+        try {
+            await axios.put(`/api/photos/${id}`, values) 
+            setValues(values => ({}))
+        } catch (error) {
+            console.log(error)            
+        }
     }
 
     const deleteImage = async(id, link) => {
@@ -35,14 +45,6 @@ const ImageContainer = (props) => {
         } catch (error) {console.log(error)}
     }
 
-    const editImage = (id) => {
-        try {
-            axios.put(`/api/photos/${id}`) 
-        } catch (error) {
-            console.log(error)            
-        }
-    }
-
     const toggle = () => {
         setIsOpen(!isOpen)
     }
@@ -52,8 +54,11 @@ const ImageContainer = (props) => {
         
     }
     
-    const setImageInfo = async(imgInfoArray) => {
-        await setImageValues(imgInfoArray)
+    const setImageInfo = (imgInfoArray) => {
+        const [id, link, title, tags] = imgInfoArray
+        setImageValues(imgInfoArray)
+        setValues({id, link, title, tags})
+
     }
 
     return (
@@ -68,7 +73,7 @@ const ImageContainer = (props) => {
             {isEditorOpen ?
                 <EditImageInfo editImageFn={editImage} toggleEditFn={toggleEdit}
                                handleChangeFn={handleChange} imageValues={imageValues} 
-                               formvalues={formvalues} />
+                               values={values} />
             : null}   
         </>
     )
