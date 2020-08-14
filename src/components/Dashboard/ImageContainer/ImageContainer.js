@@ -9,7 +9,6 @@ const ImageContainer = (props) => {
 
     const [values, setValues] = useState({})
     const [dataValues, setDataValues] = useState([])
-    const [imageValues, setImageValues] = useState([])
     const [isOpen, setIsOpen] = useState(false)
     const [isEditorOpen, setEditor] = useState(false)
     
@@ -56,7 +55,6 @@ const ImageContainer = (props) => {
     
     const setImageInfo = (imgInfoArray) => {
         const [id, link, title, tags] = imgInfoArray
-        setImageValues(imgInfoArray)
         setValues({id, link, title, tags})
 
     }
@@ -68,12 +66,11 @@ const ImageContainer = (props) => {
                        toggleEditFn={toggleEdit} setImageInfoFn={setImageInfo} />
             {isOpen ?
                 <ConfirmWindow deleteImageFn={deleteImage} toggleFn={toggle} 
-                               imageValues={imageValues} /> 
+                               values={values} /> 
             : null}
             {isEditorOpen ?
                 <EditImageInfo editImageFn={editImage} toggleEditFn={toggleEdit}
-                               handleChangeFn={handleChange} imageValues={imageValues} 
-                               values={values} />
+                               handleChangeFn={handleChange} values={values} />
             : null}   
         </>
     )

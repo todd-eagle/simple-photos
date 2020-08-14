@@ -4,9 +4,8 @@ import {Container, ConfirmImage} from '../../styles/Pages/ConfirmBox'
 import {StyledButton, ButtonContainer} from '../../styles/Components/Buttons'
 
 const ConfirmWindow = (props) => {
-    const {toggleFn, imageValues, deleteImageFn} = props
-    console.log("imageValues ", imageValues)
-    const [id, link] = imageValues
+    const {toggleFn, values, deleteImageFn} = props
+    const {id, link} = values
     return (
         <Modal>
             <Container>

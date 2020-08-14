@@ -5,7 +5,7 @@ import EditForm from '../../../Form/Form'
 import {StyledButton, ButtonContainer} from '../../../../styles/Components/Buttons'
 
 const EditImageInfo = (props) => {
-    const {editImageFn, toggleEditFn, imageValues, 
+    const {editImageFn, toggleEditFn, 
            values, handleChangeFn} = props
     const {id, link} = values
     console.log("Values: ", values);
