@@ -16,15 +16,19 @@ const ImageContainer = (props) => {
         setDataValues(props.imgData)
     },[props.imgData])
 
+    useEffect(() => {
+       
+    },[])
+
     const handleChange = (e) => {
         e.persist();
         setValues(values => ({ ...values, [e.target.name]: e.target.value }))
     }
 
     const editImage = async(id) => {
-        console.log("values:", values)
         try {
             await axios.put(`/api/photos/${id}`, values) 
+            mutateSate(id, values)
             setValues(values => ({}))
         } catch (error) {
             console.log(error)            
@@ -49,28 +53,39 @@ const ImageContainer = (props) => {
     }
 
     const toggleEdit = () => {
-        setEditor(!isEditorOpen)
-        
+        setEditor(!isEditorOpen)   
     }
     
     const setImageInfo = (imgInfoArray) => {
         const [id, link, title, tags] = imgInfoArray
+        console.log("imgInfoArray ", imgInfoArray);
         setValues({id, link, title, tags})
+    }
 
+    const getValues = () =>{
+        return values
+    }
+
+    const mutateSate = (id, newValues) => {
+        const returnedIndex = dataValues.findIndex(function(state, index) {
+            return id === state.id ? true : false
+        })  
+        dataValues[returnedIndex] = newValues
     }
 
     return (
         <>
             <ImageList dataValues={dataValues} 
                        deleteImageFn={deleteImage} toggleFn={toggle}
-                       toggleEditFn={toggleEdit} setImageInfoFn={setImageInfo} />
+                       toggleEditFn={toggleEdit} setImageInfoFn={setImageInfo} 
+                       getValuesFn={getValues} />
             {isOpen ?
                 <ConfirmWindow deleteImageFn={deleteImage} toggleFn={toggle} 
                                values={values} /> 
             : null}
             {isEditorOpen ?
                 <EditImageInfo editImageFn={editImage} toggleEditFn={toggleEdit}
-                               handleChangeFn={handleChange} values={values} />
+                               handleChangeFn={handleChange} getValuesFn={getValues} />
             : null}   
         </>
     )

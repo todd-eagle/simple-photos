@@ -5,11 +5,14 @@ import {ImageContainer, ListContainer,
 import {ImageCard} from '../../../../styles/Components/Cards'
 
 const ImageList = (props) => {
-    const {dataValues, toggleFn, toggleEditFn, setImageInfoFn} = props
+    const {dataValues, toggleFn, toggleEditFn, 
+           setImageInfoFn} = props
+        //    console.log("dataValues ", dataValues);
+
     let images = dataValues.map( el =>{
         return <ImageCard key={el.title}>
                     <CloseBox onClick={()=> {toggleFn(); setImageInfoFn([el.id, el.link,])}}></CloseBox>
-                    <EditBox onClick={()=> {toggleEditFn(); setImageInfoFn([el.id, el.link, el.title, el.tags])}}></EditBox>
+                    <EditBox onClick={()=> {toggleEditFn();setImageInfoFn([el.id, el.link, el.title, el.tags])}}></EditBox>
                         <img src={el.link} alt={el.title}/>
                     {/* <div><div>{el.title}</div><div>{el.tags}</div></div> */}
                 </ImageCard>           
