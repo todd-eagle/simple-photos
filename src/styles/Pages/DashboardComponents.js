@@ -1,23 +1,21 @@
 import styled from 'styled-components'
 import closeIcon from '../../assets/images/x-mark-128.png'
 import editIcon from '../../assets/images/edit-12-128.png'
+import {ImageCard} from '../Components/Cards'
 
 export const Photos = styled.div`
 ` 
-
 export const ImageContainer = styled.div`
     max-width: 130rem;
     column-count: 3;
     column-gap: 2rem;
 `
-
 export const ListContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 `
-
 export const CloseBox = styled.div`
     position: absolute;
     right: 0;
@@ -25,6 +23,10 @@ export const CloseBox = styled.div`
     width: 3rem;
     z-index: 5;
     cursor: pointer;
+    /* top: -3rem;
+    opacity: 0; */
+
+    top: 0;
     opacity: 1;
 
     background-image: url(${closeIcon});
@@ -32,8 +34,13 @@ export const CloseBox = styled.div`
     background-repeat: no-repeat;
     background-size: 60%;
 `
-
 export const EditBox = styled(CloseBox)`
     right: 3rem;
     background-image: url(${editIcon});
+`
+export const PhotoCard = styled(ImageCard)`
+ & :hover > ${EditBox} {
+    opacity: 1;
+    background-color: #000;
+ }
 `

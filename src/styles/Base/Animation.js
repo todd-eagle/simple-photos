@@ -1,18 +1,10 @@
-import styled, {keyframes} from 'styled-components'
+import {keyframes} from 'styled-components'
 
-export const Fadein = keyframes`
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+export const FadeIn = keyframes`
+    0% {opacity: 0;}
+    100% {opacity: 1}
 `
-export const Fadeout = keyframes`
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
+export const FadeInMoveDown = keyframes`
+    0% {}
+    100% {top:0; opacity: 1; }
 `
