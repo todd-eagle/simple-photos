@@ -1,19 +1,19 @@
 import styled from 'styled-components'
+import {Colors} from '../Base/Colors'
 
 export const StyledButton = styled.button`
     padding: 1rem 1.5rem;
     border: none;
-    background-color: #333;
+    background-color: ${Colors.color.primary};
     border-radius: 5px;
-    color: #fff;
+    color:  ${Colors.color.fontSecondary};
     font-size:1.6rem;
     font-weight: 600;
-    box-shadow: 0px 2px 5px 0px rgba(166,164,166,1);
-  
+    box-shadow: 0px 2px 5px 0px rgba(166,164,166,1);  
     cursor: pointer;
 
     &:hover {
-        background-color: rgb(87, 87, 87);
+        background-color: ${Colors.color.hoverLinkSecondary};
     }
 `
 

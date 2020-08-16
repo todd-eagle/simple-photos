@@ -1,21 +1,21 @@
 import React, {useState, useCallback} from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios'
-import InfoForm from '../../Form/Form'
-import Button from '../../Button/Button'
 import DragNDropArea from './DragNDropArea/DragNDropArea'
+import Button from '../../Button/Button'
 
 const UploadForm = (props) => {
 
-    const MAX_SIZE = 10485760
+    const MAX_FILE_SIZE = 10485760
     const ACCEPTED_FILES = "image/jpeg, image/jpg, image/png"
     const MULTIPLE_FILES = false
-  
+    
     const [values, setValues] = useState({})
     const [files, setFiles] = useState('')
     const [formValue, setForm] = useState()
-    const previewImage = files.preview
-        
+    const [isDragNDropOpen, setIsDragNDropOpen] = useState(false)
+    let previewImage = files.preview
+
     const handleChange = (e) => {
         e.persist();
         setValues(values => ({ ...values, [e.target.name]: e.target.value }))
@@ -32,8 +32,10 @@ const UploadForm = (props) => {
         }catch(err){console.log(err)}
        
         await props.getImagesFn(props.user.id)
-        handleDelete()
+        deletePreviewFile()
         setValues(values => ({}))
+        deletePreviewFile()
+        dragNDropToggle()
     }
 
     const onDrop = useCallback(async(acceptedFiles) => {
@@ -48,26 +50,25 @@ const UploadForm = (props) => {
         )
     }, [])
 
-    const handleDelete = () => {
+    const deletePreviewFile = () => {
         setFiles(delete files.preview)
+    }
+
+    const dragNDropToggle = () => {
+        setIsDragNDropOpen(!isDragNDropOpen)
+        deletePreviewFile()
     }
 
     return (
         <>
-            <DragNDropArea onDrop={onDrop} multiple={MULTIPLE_FILES} maxSize={MAX_SIZE} 
+            <Button onClick={()=>dragNDropToggle()}>Add Photo</Button>
+            {isDragNDropOpen ? 
+            <DragNDropArea onDrop={onDrop} multiple={MULTIPLE_FILES} maxSize={MAX_FILE_SIZE} 
                            accept={ACCEPTED_FILES} preview={previewImage}
-                           handleDeleteFn={handleDelete} />
-            <InfoForm 
-                inputData={
-                    [{type: 'text', property: 'title', value: values.title}, 
-                    {type: 'text', property: 'tags',  value: values.tags}]
-                }
-                onChange={handleChange}
-                heading=''
-            />
-            <Button  onClick={handleSubmit}>
-                submit
-            </Button>
+                           deletePreviewFileFn={deletePreviewFile} handleChangeFn={handleChange}
+                           handleSubmitFn={handleSubmit} values={values} 
+                           dragNDropToggleFn={dragNDropToggle} />
+            : null }               
         </>
     )
 }

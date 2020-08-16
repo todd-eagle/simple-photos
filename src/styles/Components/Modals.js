@@ -1,6 +1,6 @@
-import style from 'styled-components'
+import styled from 'styled-components'
 
-export const Modal = style.div`
+export const Modal = styled.div`
     position: fixed;
     display: flex;
     justify-content: center;

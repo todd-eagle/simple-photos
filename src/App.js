@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {getUserSession} from './redux/reducers/AuthReducer'
 import {GlobalResetStyle, Wrapper} from './styles/Base/Base'
 import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
 
 function App(props) {
 
@@ -20,6 +21,7 @@ function App(props) {
       <GlobalResetStyle />
       <Header />
       <Wrapper>{routes}</Wrapper> 
+      <Footer />
     </>
   )
 }

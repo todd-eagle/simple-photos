@@ -12,7 +12,8 @@ const EditImageInfo = (props) => {
         <Modal>
             <EditContainer>
                 <EditImage src={link} alt="Edit image information" /> 
-                <EditForm   inputData={
+                <EditForm  width="98%"  
+                    inputData={
                     [{type: 'text', property: 'title', value: values.title}, 
                     {type: 'text', property: 'tags',  value: values.tags}]
                     }

@@ -9,7 +9,7 @@ export const StyledHeader = styled.div`
     background-color: ${Colors.color.primary};
     height: 6rem;
     width: 100%;
-    color: #fff;
+    color: ${Colors.color.fontSecondary};
     display: flex;
     align-items: center;
     z-index: 100;

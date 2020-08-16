@@ -1,6 +1,6 @@
-import style from 'styled-components'
+import styled from 'styled-components'
 
-export const ImageCard = style.div`
+export const ImageCard = styled.div`
     position: relative;
     img {
         width: 100% !important;
