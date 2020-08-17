@@ -44,3 +44,25 @@ export const PhotoCard = styled(ImageCard)`
     background-color: #000;
  }
 `
+export const UploadBarWrapper = styled.div`
+    position: sticky;
+    top: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 7rem;
+    width: 100%;
+    background-color: rgb(250, 250, 250);
+    border-bottom: 1.5px solid rgb(199, 199, 199);
+    z-index: 95;
+`
+export const UploadBar = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 125rem;
+`
+export const PhotoCount = styled.div`
+    font-size: 1.5rem;
+    font-weight: 600;
+`

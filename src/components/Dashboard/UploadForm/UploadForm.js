@@ -2,6 +2,7 @@ import React, {useState, useCallback} from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios'
 import DragNDropArea from './DragNDropArea/DragNDropArea'
+import {UploadBarWrapper, UploadBar, PhotoCount} from '../../../styles/Pages/DashboardComponents'
 import Button from '../../Button/Button'
 
 const UploadForm = (props) => {
@@ -61,7 +62,12 @@ const UploadForm = (props) => {
 
     return (
         <>
-            <Button onClick={()=>dragNDropToggle()}>Add Photo</Button>
+            <UploadBarWrapper>
+                <UploadBar>
+                    <PhotoCount>Photos:{props.imgData.length}</PhotoCount>
+                    <Button onClick={()=>dragNDropToggle()}>Add Photo</Button>
+                </UploadBar>  
+            </UploadBarWrapper>      
             {isDragNDropOpen ? 
             <DragNDropArea onDrop={onDrop} multiple={MULTIPLE_FILES} maxSize={MAX_FILE_SIZE} 
                            accept={ACCEPTED_FILES} preview={previewImage}

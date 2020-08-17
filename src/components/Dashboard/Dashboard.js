@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import UploadForm from './UploadForm/UploadForm'
 import ImageContainer from './ImageContainer/ImageContainer'
+import ProfileHead from './ProfileHead/ProfileHead'
+
 
 import axios from 'axios'
 import {connect} from 'react-redux'
@@ -23,8 +25,8 @@ const Dashboard = (props) => {
 
     return (
     <>
-        <p>This is the dashboard</p>
-        <UploadForm getImagesFn={getImages} />
+         <ProfileHead />
+        <UploadForm imgData={imgData} getImagesFn={getImages} />
         <ImageContainer imgData={imgData} getImagesFn={getImages} />
     </>
     )

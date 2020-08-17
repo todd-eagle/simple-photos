@@ -16,10 +16,6 @@ const ImageContainer = (props) => {
         setDataValues(props.imgData)
     },[props.imgData])
 
-    useEffect(() => {
-       
-    },[])
-
     const handleChange = (e) => {
         e.persist();
         setValues(values => ({ ...values, [e.target.name]: e.target.value }))
