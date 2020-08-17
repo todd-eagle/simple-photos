@@ -38,6 +38,13 @@ module.exports = {
         updatedPhotoData ? res.status(200).send('Data updated') :
         res.status(500).send(err)
     },
+    searchPhotoData: async(req, res) => {
+        // console.log("req.params ", req.params);
+        const db = req.app.get('db')
+        const searchedData = await db.photos.find(req.body, req.body)
+        searchedData ? res.status(200).send('Data updated') :
+        res.status(500).send(err)
+    },
     getUserData: async(req, res) => {
         const db = req.app.get('db')
         const userData = await db.profiles.find(req.params)
