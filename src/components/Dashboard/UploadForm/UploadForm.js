@@ -64,7 +64,7 @@ const UploadForm = (props) => {
         <>
             <UploadBarWrapper>
                 <UploadBar>
-                    <PhotoCount>Photos:{props.imgData.length}</PhotoCount>
+                    <PhotoCount>Photos({props.imgData.length})</PhotoCount>
                     <Button onClick={()=>dragNDropToggle()}>Add Photo</Button>
                 </UploadBar>  
             </UploadBarWrapper>      

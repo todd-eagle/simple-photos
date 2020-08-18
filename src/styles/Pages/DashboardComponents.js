@@ -10,19 +10,21 @@ export const ImageContainer = styled.div`
     column-count: 3;
     column-gap: 2rem;
     padding: 5rem;
+    flex: 1;
 `
 export const ListContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex: 1;
 `
 export const CloseBox = styled.div`
     position: absolute;
     right: 0;
     height: 3rem;
     width: 3rem;
-    z-index: 5;
+    z-index: 95;
     cursor: pointer;
     /* top: -3rem;
     opacity: 0; */

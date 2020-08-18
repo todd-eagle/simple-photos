@@ -18,7 +18,7 @@ export const StyledHeader = styled.div`
 export const HeaderMenu = styled.nav`
     display: flex;
     font-size: 1.5rem;
-    margin-right: 3rem;
+    margin-right: 5rem;
 `
 export const HeaderLinks = styled.div`
     a {
@@ -31,12 +31,15 @@ export const HeaderLinks = styled.div`
         }
     }
 `
-    export const BrandingArea = styled.div`
-    display: flex;
-    align-items: center;
-    margin-left: 3rem;
+export const BrandingArea = styled.div`
+        a {
+            display: flex;
+            align-items: center;
+            margin-left: 5rem;
+            color: #ffffff;
+            text-decoration:none;
+        }
 `
-
 export const HeaderLogo = styled.img`
     height: 2.3rem;
 `

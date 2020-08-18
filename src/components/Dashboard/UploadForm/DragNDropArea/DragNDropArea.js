@@ -19,6 +19,8 @@ const DragNDropArea = ({onDrop, accept, maxSize, multiple, preview=null,
         multiple
     })
 
+    const constants = {formWidth: '55%'}
+
     const fileStatus = () => { 
 
        if(fileRejections.length > 0 && fileRejections[0].errors[0].message) {
@@ -43,7 +45,7 @@ const DragNDropArea = ({onDrop, accept, maxSize, multiple, preview=null,
                         <DragAndDropContentWrapper>  
                         <CloseContent onClick={() => deletePreviewFileFn()}></CloseContent>
                             <DragAndDropImage src={preview} alt="Preview"/>
-                                <DragNDropForm width="55%"
+                                <DragNDropForm width={constants.formWidth}
                                 inputData={
                                     [{type: 'text', property: 'title', value: values.title}, 
                                     {type: 'text', property: 'tags',  value: values.tags}]
