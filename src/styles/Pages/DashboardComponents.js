@@ -9,6 +9,7 @@ export const ImageContainer = styled.div`
     max-width: 130rem;
     column-count: 3;
     column-gap: 2rem;
+    padding: 5rem;
 `
 export const ListContainer = styled.div`
     display: flex;
