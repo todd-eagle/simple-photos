@@ -12,7 +12,7 @@ process.env.NODE_ENV === 'development' ? HashRouter : BrowserRouter;
 ReactDOM.render(
   <React.StrictMode>
    <Provider store={Store}>
-    <Router>
+      <Router>
         <App />
       </Router>
     </Provider>

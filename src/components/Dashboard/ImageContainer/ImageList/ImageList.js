@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {ImageContainer, ListContainer, 
         CloseBox, EditBox, PhotoCard} from '../../../../styles/Pages/DashboardComponents'
-// import {ImageCard} from '../../../../styles/Components/Cards'
+import {CardImages} from '../../../../styles/Components/Cards'
 
 const ImageList = (props) => {
     const {dataValues, toggleFn, toggleEditFn, 
@@ -13,7 +13,7 @@ const ImageList = (props) => {
         return <PhotoCard key={el.title}>
                     <CloseBox onClick={()=> {toggleFn(); setImageInfoFn([el.id, el.link,])}}></CloseBox>
                     <EditBox onClick={()=> {toggleEditFn();setImageInfoFn([el.id, el.link, el.title, el.tags])}}></EditBox>
-                        <img loading="lazy"  src={el.link} alt={el.title}/>
+                        <CardImages loading="lazy"  src={el.link} alt={el.title}/>
                     {/* <div><div>{el.title}</div><div>{el.tags}</div></div> */}
                 </PhotoCard>           
     })

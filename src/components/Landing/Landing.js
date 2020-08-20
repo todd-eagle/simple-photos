@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import LandingPage from './LandingPage/LandingPage.js'
+import {connect} from 'react-redux'
 
-const Landing = () => {
+
+const Landing = (props) => {
     const [imageData, setImageData] = useState([])
 
     useEffect(() => {
@@ -17,4 +19,5 @@ const Landing = () => {
     }
     return <LandingPage imageData={imageData}  />
 }
-export  default Landing
+const mapStateToProps =  reduxState => reduxState
+export default connect(mapStateToProps)(Landing)

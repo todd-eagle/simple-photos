@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {login} from '../../redux/reducers/AuthReducer'
 import Button from '../Button/Button'
 import {capitalize} from '../Utilities/Helpers'
+import auth from '../Auth/auth'
 
 const Login = (props) => {
      
@@ -13,7 +14,6 @@ const Login = (props) => {
 
     const {pathname} = props.location
     const name = capitalize(pathname.substr(1));
-    
     const handleSubmit = async e => {
         const {email, password} = values
         e.preventDefault()
@@ -21,8 +21,8 @@ const Login = (props) => {
         pathname.includes('register') ? path='/api/auth' : path='/api/auth/user'      
         try {
             const loginInfo = await axios.post(path, {email, password})
-            console.log(loginInfo.data)
             props.login(loginInfo.data)
+            auth.isLoggedIn(true)
             props.history.push('/dashboard')   
         } catch(err) { console.log(err) }           
     }

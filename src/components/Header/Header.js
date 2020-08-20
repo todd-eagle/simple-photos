@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux'
 import logo from '../../assets/images/simplephoto.png'
 import {logout} from '../../redux/reducers/AuthReducer';
+import auth from '../Auth/auth'
 
 import {StyledHeader, HeaderMenu, HeaderTitle,
         HeaderLinks, HeaderLogo, BrandingArea} from '../../styles/Layout/StyledHeaders'
@@ -21,7 +22,7 @@ const Header = (props) => {
          links = [
             {link1: '/login', name1: 'Sign in'},
             {link2: '/register', name2: 'Register'},
-            {link3: '/account', name3: 'Account'}
+            {link3: '/account', name3: 'Account', signOut: ()=>logout()}
         ]
     }
 
@@ -40,7 +41,7 @@ const Header = (props) => {
         <HeaderMenu>
             <HeaderLinks><Link to={linkTo1.link1}>{linkTo1.name1}</Link></HeaderLinks>
             <HeaderLinks><Link to={linkTo2.link2}>{linkTo2.name2}</Link></HeaderLinks>
-            <HeaderLinks><Link to={linkTo3.link3}>{linkTo3.name3}</Link></HeaderLinks>
+            <HeaderLinks><Link onClick={() => {props.logout(); auth.isLoggedIn(false)}} to={linkTo3.link3}>{linkTo3.name3}</Link></HeaderLinks>
         </HeaderMenu>
     </StyledHeader>
     )

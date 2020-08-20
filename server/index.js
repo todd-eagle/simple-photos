@@ -40,7 +40,7 @@ massive({
 
 app.post('/api/auth/user', authCrtl.login)
 app.get('/api/auth/user', authCrtl.grabUserSession)
-app.get('/api/auth', authCrtl.logout)
+app.delete('/api/auth', authCrtl.logout)
 app.post('/api/auth', authCrtl.register)
 
 app.get('/api/photos/:user_id', dataCrtl.getPhotoData)
