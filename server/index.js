@@ -3,6 +3,7 @@ const cors = require('cors')
 const fileUpload = require('express-fileupload');
 const express = require('express');
 const session = require('express-session');
+const helmet = require('helmet')
 const massive = require('massive');
 const authCrtl = require('./controllers/auth-controller')
 const dataCrtl = require('./controllers/data-controller')
@@ -12,7 +13,7 @@ const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 const app = express();
 
 app.use(express.static("src"))
-
+app.use(helmet())
 app.use(cors())
 app.use(express.json());
 app.use(fileUpload());
@@ -22,8 +23,7 @@ app.use(
         resave: false,
         saveUninitialized: true,
         cookie: { maxAge: 1000 * 60 * 60 * 24 * 14 },
-        secret: SESSION_SECRET
-        
+        secret: SESSION_SECRET        
     })
 )
 

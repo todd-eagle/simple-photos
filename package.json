@@ -18,6 +18,8 @@
     "express-fileupload": "^1.1.8",
     "express-session": "^1.17.1",
     "form-data": "^3.0.0",
+    "helmet": "^4.1.0",
+    "lodash": "^4.17.20",
     "massive": "^6.6.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

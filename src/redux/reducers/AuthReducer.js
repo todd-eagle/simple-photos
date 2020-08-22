@@ -19,7 +19,7 @@ export const login = (user) => {
 
 export const logout = () => {
     const destroySession = axios.delete('/api/auth')
-    console.log('Destroyed session = ',destroySession)
+    console.log('Destroyed session = ', destroySession)
     return {
         type: LOGOUT_USER,
         payload: initialState
@@ -28,6 +28,7 @@ export const logout = () => {
 
 export const getUserSession = () => {
     const user = axios.get('/api/auth/user')
+    console.log("user session: ", user)
     return {
         type: GET_SESS_USER,
         payload: user
