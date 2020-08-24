@@ -47,7 +47,7 @@ const Header = (props) => {
                     <HeaderLinks><Link to={linkTo3.link3}>{linkTo3.name3}</Link></HeaderLinks>
                     <HeaderLinks>
                         <Link onClick={(e)=>{props.logout(); auth.isLoggedIn(false)}} 
-                            to={linkTo4.link4}>{linkTo3.name4}
+                            to={linkTo4.link4}>{linkTo4.name4}
                         </Link>
                     </HeaderLinks>
                     </>

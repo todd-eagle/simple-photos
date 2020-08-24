@@ -54,7 +54,7 @@ const ImageContainer = (props) => {
     
     const setImageInfo = (imgInfoArray) => {
         const [id, link, title, tags] = imgInfoArray
-        console.log("imgInfoArray ", imgInfoArray);
+        // console.log("imgInfoArray ", imgInfoArray);
         setValues({id, link, title, tags})
     }
 

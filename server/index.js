@@ -52,7 +52,7 @@ app.post('/api/files', dataCrtl.deleteImageFile)
 
 app.post('/api/users', dataCrtl.insertUserData)
 app.get('/api/users/:user_id', dataCrtl.getUserData)
-app.put('/api/users', dataCrtl.updateUserData)
+app.put('/api/users/:user_id', dataCrtl.updateUserData)
 
 // app.post('/api/upload', dataCrtl.uploadFile)
 app.post('/api/upload/:id/:folder_id', dataCrtl.uploadFile)

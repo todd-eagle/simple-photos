@@ -14,6 +14,7 @@ const Login = (props) => {
 
     const {pathname} = props.location
     const name = capitalize(pathname.substr(1));
+    
     const handleSubmit = async e => {
         const {email, password} = values
         e.preventDefault()

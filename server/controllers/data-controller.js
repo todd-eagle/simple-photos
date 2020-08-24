@@ -53,19 +53,20 @@ module.exports = {
     },
     getUserData: async(req, res) => {
         const db = req.app.get('db')
-        const userData = await db.profiles.find(req.params)
+        const userData = await db.account.find(req.params)
         userData ? res.status(200).send(userData) :
         res.status(500).send(err)
     },
     insertUserData: async(req, res) => {
         const db = req.app.get('db')
-        const insertedData =  await db.profiles.insert(req.body)
+        const insertedData =  await db.account.insert(req.body)
         insertedData ? res.status(200).send('User data inserted') :
         res.status(500).send(err)
     },
     updateUserData: async(req, res) => {
         const db = req.app.get('db')
-        const updatedUserData =  await db.profiles.save(req.body)
+        // console.log (req.params, req.body)
+        const updatedUserData =  await db.account.update(req.params, req.body)
         updatedUserData ? res.status(200).send('User data updated') :
         res.status(500).send(err)
     },
@@ -73,7 +74,7 @@ module.exports = {
         const db = req.app.get('db')
         const {id, folder_id} = req.params
 
-        console.log( req.files.image)
+        // console.log( req.files.image)
 
         if(!req.files) {
             return res.status(400).send('Image not uploaded')
