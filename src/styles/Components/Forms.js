@@ -8,10 +8,16 @@ export const StyledForm = styled.form`
     width: ${(props) => props.width};
 
 `
-
 export const StyledInput = styled.input`
     width: 100%;
     margin-bottom: .5rem;
     padding: 1rem;
-    font-size: 1.6rem
+    font-size: 1.6rem;
+`
+export const ValidationText = styled.div`
+    margin-left: 2rem;
+    font-size: 1.5rem;
+    color: red;
+    font-weight: 600;
+    
 `
