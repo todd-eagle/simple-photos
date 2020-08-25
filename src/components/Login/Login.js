@@ -9,7 +9,6 @@ import auth from '../Auth/auth'
 
 const Login = (props) => {
      
-    // a useState that accepts objects - will turn into a form hook later
     const [values, setValues] = useState({})
     const [errors, setErrors] = useState({})
 
@@ -19,7 +18,7 @@ const Login = (props) => {
     const handleSubmit = async e => {
         const {email, password} = values
         e.preventDefault()
-        let path ='Initial value'
+        let path ='No path value'
         pathname.includes('register') ? path='/api/auth' : path='/api/auth/user'      
         try {
             const loginInfo = await axios.post(path, {email, password})
@@ -29,14 +28,12 @@ const Login = (props) => {
         } catch(err) { console.log(err) }           
     }
 
-    useEffect(() => {
-       
-        console.log("values inside useEffect",  validate(values))
+    useEffect(() => {  
+       validate(values)
     }, [values])
 
     const handleChange = (e) => {
         e.persist()
-        // console.log("handleChange values ", e.target.value) 
         setValues(values => ({ ...values, [e.target.name]: e.target.value}))
         console.log("values inside setvalues", values)
         
@@ -48,22 +45,39 @@ const Login = (props) => {
             errors.email = 'Email address is invalid';
         }
 
-        if ( values.password && values.password.length < 8) {
-            errors.password = 'Password must be 8 or more characters';
+        if(values.password) {
+            if (values.password.length < 8) {
+                errors.password = 'Password must be 8 or more characters'
+            }else if(!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(values.password)){
+                errors.password = 'Password must contain at least one uppercase letter, ' + 
+                                  'one lowercase letter one number and one special character ' +
+                                  '(!@#$%)'
+            }
         }
-
-         console.log("errors ", errors)
+        
+        if(values.confirm_password) {
+            if (values.password !== values.confirm_password){
+                errors.confirm_password = 'Passwords do not match'
+            }
+        }
+        
+        console.log("errors ", errors)
         setErrors(errors)
-        return errors;
     }
+
+    let  inputData=[
+            {type: 'text', property: 'email', value: values.email}, 
+            {type: 'password', property: 'password',  value: values.password}
+        ]
+
+   if (pathname.includes('register')) {
+         inputData.push( {type: 'password', property: 'confirm_password', value: values.confirm_password})   
+   }
     
     return (
         <>
             <AuthForm 
-               inputData={
-                [{type: 'text', property: 'email', value: values.email}, 
-                {type: 'password', property: 'password',  value: values.password}]
-                }
+               inputData={inputData}
                 errors={errors}
                 onChange={handleChange}
                 formStyle= "auth-box" 
