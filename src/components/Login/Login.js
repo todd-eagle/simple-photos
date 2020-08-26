@@ -39,7 +39,7 @@ const Login = (props) => {
     const handleChange = (e) => {
         e.persist()
         setValues(values => ({ ...values, [e.target.name]: e.target.value}))
-        console.log("values inside setvalues", values)
+        // console.log("values inside setvalues", values)
         
     }
 
@@ -89,11 +89,9 @@ const Login = (props) => {
                inputData={inputData}
                 errors={errors}
                 onChange={handleChange}
-                formStyle= "auth-box" 
                 heading={name}
             />
-           
-             <Button  onClick={formValid ? handleSubmit: null}>
+             <Button formValid={formValid} onClick={formValid ? handleSubmit: null}>
                 {name}
             </Button>
         </>

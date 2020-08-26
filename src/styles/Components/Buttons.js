@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import {Colors} from '../Base/Colors'
 
 export const StyledButton = styled.button`
@@ -15,6 +15,19 @@ export const StyledButton = styled.button`
     &:hover {
         background-color: ${Colors.color.hoverLinkSecondary};
     }
+
+    ${(props) => !props.formValid ?
+
+       (props) => props.invalidButton && css`   
+            opacity: .2;
+            &:hover {
+            cursor:auto;
+            background-color: ${Colors.color.primary};
+            opacity: .2;
+            }
+            `
+        : null
+    }    
 `
 
 export const ButtonContainer = styled.div`
