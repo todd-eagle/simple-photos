@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react' 
+import React, {useState, useEffect, useCallback} from 'react' 
 import axios from 'axios';
 import AuthForm from '../Form/Form'
 import {connect} from 'react-redux'
@@ -29,21 +29,14 @@ const Login = (props) => {
         } catch(err) { console.log(err) }           
     }
 
-    useEffect(() => {  
-        if(pathname.includes('register')){
-            validate(values)
-        }
-
-    }, [values, pathname])
-
+   
     const handleChange = (e) => {
         e.persist()
         setValues(values => ({ ...values, [e.target.name]: e.target.value}))
-        // console.log("values inside setvalues", values)
+        console.log("values inside setvalues", values)
         
     }
-
-    const validate = (values) =>{
+    const validate = useCallback((values) => {
         let errors = {}
         let valid = {}
 
@@ -71,8 +64,15 @@ const Login = (props) => {
         
         setErrors(errors)
         const {email, password, confirm_password} = valid
-        email && password && confirm_password ? setFormValid(true) : setFormValid(false)
-    }
+        if( pathname.includes('register')){email && password && confirm_password ? setFormValid(true) : setFormValid(false)}
+        if(!pathname.includes('register')){setErrors({}); email && password ? setFormValid(true) : setFormValid(false)}
+
+    },[pathname])
+
+    useEffect(() => {  
+        validate(values)
+    }, [validate, values])
+
 
     let  inputData=[
             {type: 'text', property: 'email', value: values.email}, 
@@ -89,6 +89,7 @@ const Login = (props) => {
                inputData={inputData}
                 errors={errors}
                 onChange={handleChange}
+                formStyle= "auth-box" 
                 heading={name}
             />
              <Button formValid={formValid} onClick={formValid ? handleSubmit: null}>

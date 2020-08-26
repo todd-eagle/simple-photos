@@ -16,7 +16,7 @@ export const StyledButton = styled.button`
         background-color: ${Colors.color.hoverLinkSecondary};
     }
 
-    ${(props) => !props.formValid ?
+    ${(props) => !props.formValid && typeof props.formValid !== 'undefined' ?
 
        (props) => props.invalidButton && css`   
             opacity: .2;
