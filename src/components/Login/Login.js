@@ -92,10 +92,10 @@ const Login = (props) => {
                 formStyle= "auth-box" 
                 heading={name}
             />
-            {formValid ?
-             <Button  onClick={handleSubmit}>
+           
+             <Button  onClick={formValid ? handleSubmit: null}>
                 {name}
-            </Button>: null}
+            </Button>
         </>
     )
 }
