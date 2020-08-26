@@ -11,6 +11,7 @@ const Login = (props) => {
      
     const [values, setValues] = useState({})
     const [errors, setErrors] = useState({})
+    const [formValid, setFormValid] = useState(false)
 
     const {pathname} = props.location
     const name = capitalize(pathname.substr(1));
@@ -29,8 +30,11 @@ const Login = (props) => {
     }
 
     useEffect(() => {  
-       validate(values)
-    }, [values])
+        if(pathname.includes('register')){
+            validate(values)
+        }
+
+    }, [values, pathname])
 
     const handleChange = (e) => {
         e.persist()
@@ -41,8 +45,12 @@ const Login = (props) => {
 
     const validate = (values) =>{
         let errors = {}
-        if (values.email && !/\S+@\S+\.\S+/.test(values.email)) {
-            errors.email = 'Email address is invalid';
+        let valid = {}
+
+        if(values.email) {
+            if (!/\S+@\S+\.\S+/.test(values.email)) {
+                errors.email = 'Email address is invalid'
+            }else {valid.email=true}
         }
 
         if(values.password) {
@@ -52,17 +60,18 @@ const Login = (props) => {
                 errors.password = 'Password must contain at least one uppercase letter, ' + 
                                   'one lowercase letter one number and one special character ' +
                                   '(!@#$%)'
-            }
+            }else{valid.password=true}
         }
         
         if(values.confirm_password) {
             if (values.password !== values.confirm_password){
                 errors.confirm_password = 'Passwords do not match'
-            }
+            }else{valid.confirm_password=true}
         }
         
-        console.log("errors ", errors)
         setErrors(errors)
+        const {email, password, confirm_password} = valid
+        email && password && confirm_password ? setFormValid(true) : setFormValid(false)
     }
 
     let  inputData=[
@@ -70,9 +79,9 @@ const Login = (props) => {
             {type: 'password', property: 'password',  value: values.password}
         ]
 
-   if (pathname.includes('register')) {
-         inputData.push( {type: 'password', property: 'confirm_password', value: values.confirm_password})   
-   }
+    if (pathname.includes('register')) {
+            inputData.push( {type: 'password', property: 'confirm_password', value: values.confirm_password})   
+    }
     
     return (
         <>
@@ -83,9 +92,10 @@ const Login = (props) => {
                 formStyle= "auth-box" 
                 heading={name}
             />
+            {formValid ?
              <Button  onClick={handleSubmit}>
                 {name}
-            </Button>
+            </Button>: null}
         </>
     )
 }

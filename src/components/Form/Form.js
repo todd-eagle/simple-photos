@@ -5,7 +5,8 @@ const Form = (props) => {
     const {inputData, onChange, heading="Heading Goes Here", width, errors } = props
     const inputs = inputData.map( (el, index) => {
         return <>
-            <ValidationText>{errors[el.property]}</ValidationText>
+            {errors ?
+            <ValidationText>{errors[el.property]}</ValidationText> : null}
             <StyledInput key={el.property + index} type={el.type} id={el.property}
             value={el.value || ''} name={el.property} placeholder={el.property} 
             onChange={onChange} />
