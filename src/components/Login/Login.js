@@ -26,14 +26,22 @@ const Login = (props) => {
             props.login(loginInfo.data)
             auth.isLoggedIn(true)
             props.history.push('/dashboard')   
-        } catch(err) { console.log(err) }           
+        } catch(err) {
+            const errorMsg = err.message.includes('409') ?
+            'Account already exists. Please try logging in.' :
+            'Email and password are incorrect.'
+            errors.form = errorMsg;
+            setErrors(errors)
+            setFormValid(false)
+            console.log(err) 
+        }           
     }
 
    
     const handleChange = (e) => {
         e.persist()
         setValues(values => ({ ...values, [e.target.name]: e.target.value}))
-        console.log("values inside setvalues", values)
+        // console.log("values inside setvalues", values)
         
     }
     const validate = useCallback((values) => {
@@ -49,7 +57,7 @@ const Login = (props) => {
         if(values.password) {
             if (values.password.length < 8) {
                 errors.password = 'Password must be 8 or more characters'
-            }else if(!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(values.password)){
+            }else if(!/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/.test(values.password)){
                 errors.password = 'Password must contain at least one uppercase letter, ' + 
                                   'one lowercase letter one number and one special character ' +
                                   '(!@#$%)'
@@ -63,6 +71,7 @@ const Login = (props) => {
         }
         
         setErrors(errors)
+        // console.log("errors:", errors)
         const {email, password, confirm_password} = valid
         if( pathname.includes('register')){email && password && confirm_password ? setFormValid(true) : setFormValid(false)}
         if(!pathname.includes('register')){setErrors({}); email && password ? setFormValid(true) : setFormValid(false)}
@@ -89,7 +98,6 @@ const Login = (props) => {
                inputData={inputData}
                 errors={errors}
                 onChange={handleChange}
-                formStyle= "auth-box" 
                 heading={name}
             />
              <Button formValid={formValid} onClick={formValid ? handleSubmit: null}>

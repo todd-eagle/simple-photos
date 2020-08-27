@@ -16,6 +16,8 @@ const Form = (props) => {
         <StyledForm width={width}>
                 <h2>{heading}</h2>
                 {inputs}
+                {errors ?
+            <ValidationText>{errors.form}</ValidationText> : null}
         </StyledForm>        
     )
 }
