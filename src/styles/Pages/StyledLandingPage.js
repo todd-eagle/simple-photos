@@ -10,7 +10,7 @@ export const Hero =styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 70vh;
+    height: 80vh;
     margin-top: -6rem;
     background-position: center;
     background-size: cover;

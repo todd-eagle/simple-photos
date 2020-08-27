@@ -13,10 +13,8 @@ const Dashboard = (props) => {
     },[props.user.id])
 
     const getImages = (id) => {
-        // console.log("getImages called!")
         axios.get(`/api/photos/${id}`) 
         .then(res=>{
-        //    console.log(res.data)
            setData(res.data)
         }).catch(error =>{console.log(error)})
     }

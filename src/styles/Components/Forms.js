@@ -1,4 +1,7 @@
 import styled from 'styled-components'
+import {EditContainer} from '../Pages/EditorBox'
+import {CloseBox} from '../Pages/DashboardComponents'
+import closeIcon from '../../assets/images/close.png'
 
 export const StyledForm = styled.form`
     display: flex;
@@ -20,4 +23,26 @@ export const ValidationText = styled.div`
     color: red;
     font-weight: 600;
     
+`
+export const StyledLoginForm = styled(StyledForm)`
+  
+`
+export const LoginContainer = styled(EditContainer)`
+    position: relative;
+    width: 35rem;
+    padding: 3rem 1rem;
+    border: none;
+
+`
+export const LoginClose = styled(CloseBox)`
+    top: .5rem;
+    right: .5rem;
+    background-image: url(${closeIcon});
+`
+export const Heading2 = styled.h2`
+    padding: 1rem;
+    font-size: 1.7rem;
+    align-self: center;
+    color: #707070;
+
 `

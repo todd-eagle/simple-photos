@@ -1,5 +1,5 @@
 import React from 'react'
-import {StyledForm, StyledInput, ValidationText} from '../../styles/Components/Forms'
+import {StyledForm, StyledInput, ValidationText, Heading2} from '../../styles/Components/Forms'
 
 const Form = (props) => {
     const {inputData, onChange, heading="Heading Goes Here", width, errors } = props
@@ -14,7 +14,7 @@ const Form = (props) => {
     })
     return (
         <StyledForm width={width}>
-                <h2>{heading}</h2>
+                <Heading2>{heading}</Heading2>
                 {inputs}
                 {errors ?
             <ValidationText>{errors.form}</ValidationText> : null}

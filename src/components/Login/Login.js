@@ -6,6 +6,10 @@ import {login} from '../../redux/reducers/AuthReducer'
 import Button from '../Button/Button'
 import {capitalize} from '../Utilities/Helpers'
 import auth from '../Auth/auth'
+import {Modal} from '../../styles/Components/Modals'
+import {LoginContainer, LoginClose} from '../../styles/Components/Forms'
+
+
 
 const Login = (props) => {
      
@@ -13,8 +17,8 @@ const Login = (props) => {
     const [errors, setErrors] = useState({})
     const [formValid, setFormValid] = useState(false)
 
-    const {pathname} = props.location
-    const name = capitalize(pathname.substr(1));
+    const pathname = props.pathName
+    const name = capitalize(pathname.substr(0));
     
     const handleSubmit = async e => {
         const {email, password} = values
@@ -37,7 +41,6 @@ const Login = (props) => {
         }           
     }
 
-   
     const handleChange = (e) => {
         e.persist()
         setValues(values => ({ ...values, [e.target.name]: e.target.value}))
@@ -82,7 +85,6 @@ const Login = (props) => {
         validate(values)
     }, [validate, values])
 
-
     let  inputData=[
             {type: 'text', property: 'email', value: values.email}, 
             {type: 'password', property: 'password',  value: values.password}
@@ -93,17 +95,21 @@ const Login = (props) => {
     }
     
     return (
-        <>
-            <AuthForm 
-               inputData={inputData}
-                errors={errors}
-                onChange={handleChange}
-                heading={name}
-            />
-             <Button formValid={formValid} onClick={formValid ? handleSubmit: null}>
-                {name}
-            </Button>
-        </>
+        <Modal>
+            <LoginContainer>
+                <LoginClose onClick={()=>props.logginToggleFn()}></LoginClose>
+                <AuthForm
+                    width="95%"
+                    inputData={inputData}
+                    errors={errors}
+                    onChange={handleChange}
+                    heading={name}
+                />
+                <Button formValid={formValid} onClick={formValid ? handleSubmit: null}>
+                    {name}
+                </Button>
+                </LoginContainer>    
+        </Modal>
     )
 }
 
