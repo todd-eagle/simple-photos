@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios'
+import ProfileHead from '../Dashboard/ProfileHead/ProfileHead'
 import AccountForm from './AccountForm/AccountForm'
 import Button from '../Button/Button'
 
@@ -24,7 +25,6 @@ const Account = (props) =>  {
 
     const handleSubmit = async e => {
         const apiPath = dbInfo ? `/api/users/${props.user.id}` : '/api/users'
-        // values = values.concat({user_id: props.user.id})
         const user_id = {user_id: props.user.id}
         const updatedInfo = Object.assign(values, user_id) 
         // console.log("dbInfo: " , dbInfo )
@@ -40,6 +40,7 @@ const Account = (props) =>  {
     
     return (
         <>
+        <ProfileHead />
         <div>Account Section</div>
             <AccountForm handleChangeFn={handleChange} values={values}/>
             <Button  onClick={handleSubmit}>

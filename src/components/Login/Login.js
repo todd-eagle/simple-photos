@@ -45,9 +45,7 @@ const Login = (props) => {
 
     const handleChange = (e) => {
         e.persist()
-        setValues(values => ({ ...values, [e.target.name]: e.target.value}))
-        // console.log("values inside setvalues", values)
-        
+        setValues(values => ({ ...values, [e.target.name]: e.target.value.trim()}))        
     }
     const validate = useCallback((values) => {
         let errors = {}

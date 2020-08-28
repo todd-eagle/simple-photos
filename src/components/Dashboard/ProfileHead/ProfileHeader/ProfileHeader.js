@@ -12,7 +12,6 @@ const ProfileHeader = (props) => {
                 {getProfileTextFn()}
             </ProfileHeaderText>
         </StyledProfileHeader>
-
         </>
     )
 }

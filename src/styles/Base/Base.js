@@ -1,4 +1,4 @@
-import style, {createGlobalStyle} from 'styled-components'
+import styled, {createGlobalStyle} from 'styled-components'
 import {Colors} from '../Base/Colors'
 
 
@@ -21,9 +21,9 @@ body {
     font-family:  'Open Sans', sans-serif;
     font-weight: 400;
     line-height: 1.3;
-    color: ${Colors.color.primary};;
+    color: ${Colors.color.primary};
     background-color: ${Colors.color.pageBackground};
 }
 `
-export const Wrapper = style.div`
+export const Wrapper = styled.div`
 `
