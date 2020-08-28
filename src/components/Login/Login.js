@@ -7,9 +7,10 @@ import Button from '../Button/Button'
 import {capitalize} from '../Utilities/Helpers'
 import auth from '../Auth/auth'
 import {Modal} from '../../styles/Components/Modals'
-import {LoginContainer, LoginClose} from '../../styles/Components/Forms'
-
-
+import {LoginContainer, LoginClose, LogoImage,
+        LogoContainer, LogoText} from '../../styles/Components/Forms'
+import loginLogo from '../../assets/images/logo-dark.png'
+import { withRouter } from 'react-router-dom'
 
 const Login = (props) => {
      
@@ -29,6 +30,7 @@ const Login = (props) => {
             const loginInfo = await axios.post(path, {email, password})
             props.login(loginInfo.data)
             auth.isLoggedIn(true)
+            props.logginToggleFn()
             props.history.push('/dashboard')   
         } catch(err) {
             const errorMsg = err.message.includes('409') ?
@@ -98,6 +100,10 @@ const Login = (props) => {
         <Modal>
             <LoginContainer>
                 <LoginClose onClick={()=>props.logginToggleFn()}></LoginClose>
+                <LogoContainer>
+                    <LogoImage src={loginLogo} alt="Simple Photo Logo"/>
+                    <LogoText>SimplePhoto</LogoText>
+                </LogoContainer>    
                 <AuthForm
                     width="95%"
                     inputData={inputData}
@@ -114,4 +120,4 @@ const Login = (props) => {
 }
 
 const mapStateToProps =  reduxState => reduxState
-export default connect(mapStateToProps, {login})(Login)
+export default connect(mapStateToProps, {login})(withRouter(Login))

@@ -44,5 +44,17 @@ export const Heading2 = styled.h2`
     font-size: 1.7rem;
     align-self: center;
     color: #707070;
+`
 
+export const LogoContainer = styled.div`
+    display: flex;
+`
+export const LogoImage = styled.img`
+    width: 3rem;
+    height: 2.5rem;
+`
+export const LogoText = styled.div`
+    font-size: 2rem;
+    font-weight: 600;
+    padding-left: 1rem;
 `

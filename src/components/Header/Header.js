@@ -31,8 +31,8 @@ const Header = (props) => {
         ]
     }else {
          links = [
-            {link1: '', name1: 'Sign in', signIn: (val) =>{logginToggle(); setPathName(val)}},
-            {link2: '', name2: 'Register', register: (val) =>{logginToggle()}}
+            {link1: props.location, name1: 'Sign in', signIn: (val) =>{logginToggle(); setPathName(val)}},
+            {link2: props.location, name2: 'Register', register: (val) =>{logginToggle()}}
         ]
     }
 
