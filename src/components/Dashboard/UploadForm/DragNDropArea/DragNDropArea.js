@@ -10,14 +10,13 @@ import {DragAndDropBox, DragAndDropTextWrapper, CloseContent,
 
 const DragNDropArea = ({onDrop, accept, maxSize, multiple, preview=null, 
                         deletePreviewFileFn, handleChangeFn,  handleSubmitFn,
-                        values, dragNDropToggleFn, noDrag=true}) => {
+                        values, dragNDropToggleFn}) => {
     const { getRootProps, getInputProps, isDragActive, isDragReject, 
             fileRejections} = useDropzone({
         onDrop,
         accept,
         maxSize,
         multiple,
-        noDrag
     })
 
     const constants = {formWidth: '55%'}
