@@ -31,7 +31,9 @@ const DragNDropArea = ({onDrop, accept, maxSize, multiple, preview=null,
                 isDragActive &&  isDragReject ? "This file type is not accepted" :
                 "Drag 'n' drop your image here, or click to select a file."
     }
+
     const inputProps = <input {...getInputProps()} />
+    
     return (
         <Modal> 
             <CloseDragAndDrop onClick={() => dragNDropToggleFn()}></CloseDragAndDrop>   

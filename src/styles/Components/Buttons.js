@@ -36,3 +36,20 @@ export const ButtonContainer = styled.div`
     padding-bottom: 2rem;
     width: 85%;
 `
+export const SaveButtonContainer = styled.div`
+    display: flex;
+    justify-content: center;
+`
+export const SaveButton = styled.button`
+    margin-top: 1.5rem;
+    font-size: 1.7rem;
+    padding: 1rem 2rem;
+    color: #ffffff;
+    background-color: #4296cf;
+    border: 2px solid #fafafa;
+    border-radius: 10px;
+    cursor: pointer;
+    &:hover {
+        background-color: #2f88c4;
+    }
+`

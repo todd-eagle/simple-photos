@@ -35,7 +35,7 @@ const Login = (props) => {
         } catch(err) {
             const errorMsg = err.message.includes('409') ?
             'Account already exists. Please try logging in.' :
-            'Email and password are incorrect.'
+            'Email or password is incorrect.'
             errors.form = errorMsg;
             setErrors(errors)
             setFormValid(false)

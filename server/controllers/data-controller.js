@@ -74,7 +74,7 @@ module.exports = {
         const db = req.app.get('db')
         const {id, folder_id} = req.params
 
-        // console.log( req.files.image)
+        console.log( req.files.image)
 
         if(!req.files) {
             return res.status(400).send('Image not uploaded')
@@ -92,5 +92,36 @@ module.exports = {
         image.mv(uploadPath, err=> {
             err ? res.status(500).send(err) : res.status(200).send('Image uploaded')
         })        
-    }
+    },
+    uploadProfileImages: async(req, res) => {
+        const db = req.app.get('db')
+        const {user_id, folder_id} = req.params
+        console.log("folder_id ", folder_id)
+     // const imageUploaded =  await db.profile.insert(req.body)
+    },
+    insertProfileData: async(req, res) => {
+        const db = req.app.get('db')
+        const {user_id} = req.body
+       // console.log("req.body ", req.body)
+
+        const profileFound = await db.profile.find({user_id})
+
+        if(profileFound.length === 0){
+            if(insertedData = await db.profile.insert(req.body)){
+                return res.status(200).send("Data inserted")
+            } else {
+                return res.status(500).send("Insert failed")
+            }
+        }else {
+            res.status(409).send('Profile exists')
+        }  
+    },
+    updateProfileData: async(req, res) => {
+        const db = req.app.get('db')
+        const {user_id} = req.body
+
+        const updatedData = await db.profile.update({user_id}, req.body)
+        updatedData ? res.status(200).send("Data updated") : 
+            res.status(500).send('Server error')
+    } 
 }
