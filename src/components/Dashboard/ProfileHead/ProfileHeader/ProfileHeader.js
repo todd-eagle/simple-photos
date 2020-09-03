@@ -3,11 +3,12 @@ import {StyledProfileHeader, ProfileHeaderImage,
         ProfileHeaderText} from '../../../../styles/Layout/StyledProfileHeader'
 
 const ProfileHeader = (props) => {
-    const {getProfileImageFn, getProfileTextFn } = props
+    const {getProfileTextFn, avatar} = props
+    
     return (
         <>
         <StyledProfileHeader>
-            <ProfileHeaderImage src={getProfileImageFn()} />
+            <ProfileHeaderImage src={avatar} />
             <ProfileHeaderText>
                 {getProfileTextFn()}
             </ProfileHeaderText>

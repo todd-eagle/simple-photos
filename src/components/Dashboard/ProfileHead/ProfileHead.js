@@ -1,15 +1,36 @@
-import React from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
+import axios from 'axios'
+import {connect} from 'react-redux'
+
 import ProfileHeader from './ProfileHeader/ProfileHeader'
 import profileBackground from '../../../assets/images/cityscape.jpg'
-import profileImage from '../../../assets/images/SHARNEE-CONSTANCE-VICTORIA-EDIT-1web.jpg'
+import profileImage from '../../../assets/images/default-profiles/alexandru-rotariu-o_QTeyGVWjQ-unsplash.jpg'
 
-const ProfileHead = () => {
+const ProfileHead = (props) => {
+
+    const [avatar, setAvatar] = useState('')
 
     const getBackground = () => {
         return profileBackground
     }
 
-    const getProfileImage = () => profileImage
+    // const getProfileImage = async() => {
+    //     const image = await axios.get(`/api/profileData/${props.user.id}`)
+    //     const link = image.data[0].avatar_link
+    //     link ? setAvatar(link) : setAvatar(profileImage)
+    // }
+
+    const getProfileImage = useCallback (async() => {
+        const image = await axios.get(`/api/profileData/${props.user.id}`)
+        const link = image.data[0].avatar_link
+        link ? setAvatar(link) : setAvatar(profileImage)
+    },[props.user.id])
+
+    useEffect(() => {
+        getProfileImage()
+    },[getProfileImage])
+
+    
 
     const getProfileText = () => {
         return 'Good morning, Sharnie'
@@ -17,11 +38,13 @@ const ProfileHead = () => {
 
     return (
         <>
-            <ProfileHeader getBackgroundFn={getBackground} getProfileImageFn={getProfileImage}
+            <ProfileHeader getBackgroundFn={getBackground} avatar={avatar}
                            getProfileTextFn={getProfileText}
             />
 
         </>
     )
 }
-export default ProfileHead
+
+const mapStateToProps =  reduxState => reduxState
+export default connect(mapStateToProps)(ProfileHead)

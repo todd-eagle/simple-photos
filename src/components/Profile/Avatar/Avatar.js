@@ -36,7 +36,6 @@ const Avatar = (props) => {
         user_id: props.user.id,
         avatar_link: `/assets/images/${props.user.folder_id}/${fileInfo.name}`,
       }
-      const profileFolder = 'profile'
       imageData.append('link', `/assets/images/${props.user.folder_id}`)
      
       try {
