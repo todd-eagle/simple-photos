@@ -24,7 +24,6 @@ const Avatar = (props) => {
         // console.log("formData", formData)
         setImageData(formData)
         setFileInfo(selectedFile)
-        console.log("fileInfo, ", selectedFile.name)
         setFiles(Object.assign(selectedFile, {
             preview: URL.createObjectURL(selectedFile)
           })
@@ -35,14 +34,19 @@ const Avatar = (props) => {
       const config = { headers: {'Content-Type': 'multipart/form-data' }}
       const body = {
         user_id: props.user.id,
-        avatar_link: `${props.user.folder_id}/profile/${fileInfo.name}`,
+        avatar_link: `/assets/images/${props.user.folder_id}/${fileInfo.name}`,
       }
+      const profileFolder = 'profile'
+      // imageData.append('user_id', props.user.id)
+      imageData.append('link', `/assets/images/${props.user.folder_id}`)
+     
       try {
         await axios.post(`/api/profile/`, body)
+        await axios.post(`/api/profileData/${props.user.id}`, imageData, config)
       } catch (error) {
             try {
-                const update = axios.put(`/api/profile/`, body)
-                console.log("update: ", update)
+                await axios.put(`/api/profile/`, body)
+                await axios.post(`/api/profileData/${props.user.id}`, imageData, config)
             } catch (error) {console.log(error)}
       }
       

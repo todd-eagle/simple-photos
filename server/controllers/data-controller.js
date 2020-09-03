@@ -93,11 +93,22 @@ module.exports = {
             err ? res.status(500).send(err) : res.status(200).send('Image uploaded')
         })        
     },
-    uploadProfileImages: async(req, res) => {
+    uploadProfileImage: async(req, res) => {
         const db = req.app.get('db')
-        const {user_id, folder_id} = req.params
-        console.log("folder_id ", folder_id)
-     // const imageUploaded =  await db.profile.insert(req.body)
+        const {user_id} = req.params
+        const {link} = req.body
+
+        if(!req.files) {
+            return res.status(400).send('Image not uploaded')
+        }
+        let image = req.files.image
+        let imageFolder = path.join(__dirname, '../../', `src/${link}`)
+        let uploadPath = `${imageFolder}/${image.name}`
+        console.log(uploadPath)
+
+        image.mv(uploadPath, err=> {
+            err ? res.status(500).send(err) : res.status(200).send('Image uploaded')
+        })  
     },
     insertProfileData: async(req, res) => {
         const db = req.app.get('db')
@@ -123,5 +134,5 @@ module.exports = {
         const updatedData = await db.profile.update({user_id}, req.body)
         updatedData ? res.status(200).send("Data updated") : 
             res.status(500).send('Server error')
-    } 
+    }
 }

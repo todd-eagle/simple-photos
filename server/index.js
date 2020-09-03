@@ -60,4 +60,4 @@ app.post('/api/upload/:id/:folder_id', dataCrtl.uploadFile)
 app.post('/api/profile', dataCrtl.insertProfileData)
 app.put('/api/profile/', dataCrtl.updateProfileData)
 
-
+app.post('/api/profileData/:user_id', dataCrtl.uploadProfileImage)
