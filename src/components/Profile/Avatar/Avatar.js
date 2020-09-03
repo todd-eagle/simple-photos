@@ -37,22 +37,19 @@ const Avatar = (props) => {
         avatar_link: `/assets/images/${props.user.folder_id}/${fileInfo.name}`,
       }
       const profileFolder = 'profile'
-      // imageData.append('user_id', props.user.id)
       imageData.append('link', `/assets/images/${props.user.folder_id}`)
      
       try {
-        await axios.post(`/api/profile/`, body)
         await axios.post(`/api/profileData/${props.user.id}`, imageData, config)
-      } catch (error) {
-            try {
-                await axios.put(`/api/profile/`, body)
-                await axios.post(`/api/profileData/${props.user.id}`, imageData, config)
-            } catch (error) {console.log(error)}
-      }
-      
-      // const uploadedImage = await axios.post(`/api/profile/`, imageData, config)
-      // console.log("uploadedImage", uploadedImage)
-      }
+        try {
+          await axios.post(`/api/profile/`, body)
+        } catch (error) {
+              try {
+                  await axios.put(`/api/profile/`, body)
+              } catch (error) {console.log(error)}
+        }
+      } catch (error) {console.log(error)}
+    }
       
     return(
         <UploadFile onDrop={onDrop} preview={previewImage} handleSubmitFn={handleSubmit}
