@@ -28,6 +28,7 @@ const Login = (props) => {
         pathname.includes('register') ? path='/api/auth' : path='/api/auth/user'      
         try {
             const loginInfo = await axios.post(path, {email, password})
+            console.log("props ", props)
             props.login(loginInfo.data)
             auth.isLoggedIn(true)
             props.logginToggleFn()
@@ -39,6 +40,7 @@ const Login = (props) => {
             errors.form = errorMsg;
             setErrors(errors)
             setFormValid(false)
+            console.log("props after error ", props)
             console.log(err) 
         }           
     }

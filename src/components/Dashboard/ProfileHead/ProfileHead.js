@@ -15,16 +15,16 @@ const ProfileHead = (props) => {
     }
 
     // const getProfileImage = async() => {
-    //     const image = await axios.get(`/api/profileData/${props.user.id}`)
+    //     const image = await axios.get(`/api/profileData/${props.auth.user.id}`)
     //     const link = image.data[0].avatar_link
     //     link ? setAvatar(link) : setAvatar(profileImage)
     // }
 
     const getProfileImage = useCallback (async() => {
-        const image = await axios.get(`/api/profileData/${props.user.id}`)
+        const image = await axios.get(`/api/profileData/${props.auth.user.id}`)
         const link = image.data[0].avatar_link
         link ? setAvatar(link) : setAvatar(profileImage)
-    },[props.user.id])
+    },[props.auth.user.id])
 
     useEffect(() => {
         getProfileImage()

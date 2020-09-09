@@ -33,13 +33,13 @@ const Avatar = (props) => {
     const handleSubmit = async() => {
       const config = { headers: {'Content-Type': 'multipart/form-data' }}
       const body = {
-        user_id: props.user.id,
-        avatar_link: `/assets/images/${props.user.folder_id}/${fileInfo.name}`,
+        user_id: props.auth.user.id,
+        avatar_link: `/assets/images/${props.auth.user.folder_id}/${fileInfo.name}`,
       }
-      imageData.append('link', `/assets/images/${props.user.folder_id}`)
+      imageData.append('link', `/assets/images/${props.auth.user.folder_id}`)
      
       try {
-        await axios.post(`/api/profileData/${props.user.id}`, imageData, config)
+        await axios.post(`/api/profileData/${props.auth.user.id}`, imageData, config)
         try {
           await axios.post(`/api/profile/`, body)
         } catch (error) {

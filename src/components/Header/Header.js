@@ -13,7 +13,9 @@ const Header = (props) => {
     
     let links = 'menus'
     
-    console.log("isLoggedIn? ", props.isLoggedIn)
+    console.log("isLoggedIn? ", props.auth.isLoggedIn)
+
+    console.log("props? ", props)
 
     const [isLoginOpen, setIsLoginOpen] = useState(false)
     const [pathName, setPathName] = useState('register')
@@ -22,7 +24,7 @@ const Header = (props) => {
         setIsLoginOpen(!isLoginOpen)
     }
 
-    if(props.isLoggedIn ) {
+    if(props.auth.isLoggedIn ) {
          links = [
             {link1: '/dashboard', name1: 'Photos'},
             {link2: '/account', name2: 'Account'},
@@ -50,10 +52,10 @@ const Header = (props) => {
             </BrandingArea>
         
         <HeaderMenu>
-            <HeaderLinks><Link onClick={!props.isLoggedIn ? ()=> linkTo1.signIn('login'): null} to={linkTo1.link1}>{linkTo1.name1}</Link></HeaderLinks>
-            <HeaderLinks><Link onClick={!props.isLoggedIn ? ()=> linkTo1.signIn('register'): null} to={linkTo2.link2}>{linkTo2.name2}</Link></HeaderLinks>
+            <HeaderLinks><Link onClick={!props.auth.isLoggedIn ? ()=> linkTo1.signIn('login'): null} to={linkTo1.link1}>{linkTo1.name1}</Link></HeaderLinks>
+            <HeaderLinks><Link onClick={!props.auth.isLoggedIn ? ()=> linkTo1.signIn('register'): null} to={linkTo2.link2}>{linkTo2.name2}</Link></HeaderLinks>
             {
-                props.isLoggedIn ? 
+                props.auth.isLoggedIn ? 
                     <>
                     <HeaderLinks><Link to={linkTo3.link3}>{linkTo3.name3}</Link></HeaderLinks>
                     <HeaderLinks>

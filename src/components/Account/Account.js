@@ -11,8 +11,8 @@ const Account = (props) =>  {
     let [dbInfo, setDbInfo] = useState([])
 
     useEffect(() => {
-        getUserData(props.user.id)
-    },[props.user.id])
+        getUserData(props.auth.user.id)
+    },[props.auth.user.id])
 
     const getUserData = (id) => {
         axios.get(`/api/users/${id}`)
@@ -24,8 +24,8 @@ const Account = (props) =>  {
     }
 
     const handleSubmit = async e => {
-        const apiPath = dbInfo ? `/api/users/${props.user.id}` : '/api/users'
-        const user_id = {user_id: props.user.id}
+        const apiPath = dbInfo ? `/api/users/${props.auth.user.id}` : '/api/users'
+        const user_id = {user_id: props.auth.user.id}
         const updatedInfo = Object.assign(values, user_id) 
         // console.log("dbInfo: " , dbInfo )
         // console.log("dbInfo ?",  dbInfo ? 'put' : 'post' )

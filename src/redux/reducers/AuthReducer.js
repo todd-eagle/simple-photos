@@ -10,7 +10,7 @@ const LOGOUT_USER = 'LOGOUT_USER'
 const GET_SESS_USER = 'GET_SESS_USER'
 
 export const login = (user) => {
-    // console.log("user redux", user)
+    //  console.log("user redux", user)
     return {
         type: LOGIN_USER, 
         payload: user
