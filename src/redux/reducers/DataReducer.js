@@ -1,25 +1,33 @@
 const initialState = {
-    profile: {}
+    profileInfo: {}
 }
 
 const GET_PROFILE = 'GET_PROFILE'
+const REMOVE_PROFILE = 'REMOVE_PROFILE'
 
-export const getProfile = () => {
-  const gotit = {
-      avatar: 'avatar_img',
-      background: 'background_img'
-  }
+export const getProfile = (profile) => {
+ 
   return {
       type: GET_PROFILE,
-      payload: gotit
+      payload: profile
   }
 }
+
+export const deleteProfile = () => {
+    return {
+        type: 'REMOVE_PROFILE',
+        payload: initialState
+    }
+}
+
 
 export default function (state = initialState, action){
     switch(action.type) {
         case GET_PROFILE:
-            return{...state, profile: action.payload}
+            return {...state, profileInfo: action.payload}
+        case REMOVE_PROFILE:   
+            return {...state, ...action.payload} 
         default:
-            return initialState    
+            return state    
     }
 }

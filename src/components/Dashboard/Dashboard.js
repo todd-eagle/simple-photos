@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 const Dashboard = (props) => {
     
     const [imgData, setData] = useState([])
+
     useEffect(() => {
         getImages(props.auth.user.id)
     },[props.auth.user.id])
@@ -21,7 +22,7 @@ const Dashboard = (props) => {
 
     return (
     <>
-    {console.log("props on dashboard ",props)}
+       
         <ProfileHead />
         <UploadForm imgData={imgData} getImagesFn={getImages} />
         <ImageContainer imgData={imgData} getImagesFn={getImages} />

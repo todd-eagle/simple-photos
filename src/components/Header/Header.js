@@ -2,7 +2,8 @@ import React, {useState} from 'react'
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux'
 import logo from '../../assets/images/simplephoto.png'
-import {logout} from '../../redux/reducers/AuthReducer';
+import {logout} from '../../redux/reducers/AuthReducer'
+import {deleteProfile} from '../../redux/reducers/DataReducer'
 import auth from '../Auth/auth'
 import Login from '../Login/Login'
 
@@ -59,7 +60,7 @@ const Header = (props) => {
                     <>
                     <HeaderLinks><Link to={linkTo3.link3}>{linkTo3.name3}</Link></HeaderLinks>
                     <HeaderLinks>
-                        <Link onClick={(e)=>{props.logout(); auth.isLoggedIn(false)}} 
+                        <Link onClick={(e)=>{props.logout(); props.deleteProfile(); auth.isLoggedIn(false)}} 
                             to={linkTo4.link4}>{linkTo4.name4}
                         </Link>
                     </HeaderLinks>
@@ -74,5 +75,10 @@ const Header = (props) => {
     )
 }
 
+const mapDispatchToProps = {
+    logout,
+    deleteProfile
+}
+
 const mapStateToProps = reduxState => reduxState
-export default connect(mapStateToProps, {logout})(Header)
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

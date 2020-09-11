@@ -19,7 +19,7 @@ export const login = (user) => {
 
 export const logout = () => {
     const destroySession = axios.delete('/api/auth')
-    console.log('Destroyed session = ', destroySession)
+    // console.log('Destroyed session = ', destroySession)
     return {
         type: LOGOUT_USER,
         payload: initialState
@@ -40,13 +40,13 @@ export default function (state = initialState, action){
     switch (action.type) {
         case LOGIN_USER:
             return{...state, user: action.payload, isLoggedIn: true}
-        case LOGOUT_USER  + '_FULFILLED':
+        case LOGOUT_USER:
             return{...state, ...action.payload}
         case GET_SESS_USER + '_PENDING':
             return state
         case GET_SESS_USER + '_FULFILLED':
             return {...state, user: action.payload.data, isLoggedIn: true}
         default:
-            return initialState
+            return state
     }
 }

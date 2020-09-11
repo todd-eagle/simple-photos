@@ -3,6 +3,7 @@ import axios from 'axios';
 import AuthForm from '../Form/Form'
 import {connect} from 'react-redux'
 import {login} from '../../redux/reducers/AuthReducer'
+import {getProfile} from '../../redux/reducers/DataReducer'
 import Button from '../Button/Button'
 import {capitalize} from '../Utilities/Helpers'
 import auth from '../Auth/auth'
@@ -28,8 +29,12 @@ const Login = (props) => {
         pathname.includes('register') ? path='/api/auth' : path='/api/auth/user'      
         try {
             const loginInfo = await axios.post(path, {email, password})
-            console.log("props ", props)
             props.login(loginInfo.data)
+           try {
+                const profileInfo = await axios.get(`/api/profileData/${loginInfo.data.id}`)
+                // console.log("Profile Info:", profileInfo.data)
+                props.getProfile(profileInfo.data[0])
+            } catch (error) {console.log("Profile error: ", error)}
             auth.isLoggedIn(true)
             props.logginToggleFn()
             props.history.push('/dashboard')   
@@ -40,7 +45,6 @@ const Login = (props) => {
             errors.form = errorMsg;
             setErrors(errors)
             setFormValid(false)
-            console.log("props after error ", props)
             console.log(err) 
         }           
     }
@@ -119,5 +123,17 @@ const Login = (props) => {
     )
 }
 
+// const mapDispatchToProps = dispatch => ({
+//     login: (val) => dispatch(login(val)),
+//     getProfile: (val) => dispatch(getProfile(val))
+// });
+
+const mapDispatchToProps = {
+    login,
+    getProfile
+}
+
+// const mapStateToProps =  reduxState => reduxState
 const mapStateToProps =  reduxState => reduxState
-export default connect(mapStateToProps, {login})(withRouter(Login))
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login))

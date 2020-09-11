@@ -140,8 +140,8 @@ module.exports = {
         const db = req.app.get('db')
         const {user_id} = req.params
         console.log("req.params ", req.params)
-        const retrievedLink = await db.profile.find({user_id})
-        console.log("retrievedLink ", retrievedLink)
-        retrievedLink ? res.status(200).send(retrievedLink) : res.status(404).send('Could not find image')
+        const retrievedProfile = await db.profile.find({user_id})
+        console.log("retrievedProfile ", retrievedProfile)
+        retrievedProfile ? res.status(200).send(retrievedProfile) : res.status(404).send('Could not find image')
     }
 }
