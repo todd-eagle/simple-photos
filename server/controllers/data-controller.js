@@ -133,7 +133,7 @@ module.exports = {
         const {user_id} = req.body
 
         const updatedData = await db.profile.update({user_id}, req.body)
-        updatedData ? res.status(200).send("Data updated") : 
+        updatedData ? res.status(200).send(updatedData) : 
             res.status(500).send('Server error')
     },
     getProfileImage: async(req, res) => {
