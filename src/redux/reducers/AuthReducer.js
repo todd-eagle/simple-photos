@@ -18,8 +18,7 @@ export const login = (user) => {
 }
 
 export const logout = () => {
-    const destroySession = axios.delete('/api/auth')
-    // console.log('Destroyed session = ', destroySession)
+    axios.delete('/api/auth')
     return {
         type: LOGOUT_USER,
         payload: initialState

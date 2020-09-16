@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import axios from 'axios'
+import React from 'react'
 import {connect} from 'react-redux'
 
 import ProfileHeader from './ProfileHeader/ProfileHeader'
@@ -11,9 +10,9 @@ const ProfileHead = (props) => {
         return profileBackground
     }
 
-    const getProfileText = () => {
-        return 'Good morning, Sharnie'
-    }
+    // const getProfileText = () => {
+    //     return 'Good morning, Sharnie'
+    // }
 
     const{avatar_link, background_link} = props.profile.profileInfo
 
@@ -21,7 +20,6 @@ const ProfileHead = (props) => {
         <>
             <ProfileHeader getBackgroundFn={getBackground} avatar={avatar_link}
                            getBackground={background_link}
-                           getProfileTextFn={getProfileText}
             />
 
         </>

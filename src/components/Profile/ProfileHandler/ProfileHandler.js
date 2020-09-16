@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {updateProfile} from '../../../redux/reducers/DataReducer'
 import UploadFile from '../UploadFile/UploadFile'
 import {ProfileImage} from '../../../styles/Pages/Profile'
-import genericImage from '../../../assets/images/default-profiles/edgar-nKC772R_qog-unsplash.jpg'
+// import genericImage from '../../../assets/images/default-profiles/edgar-nKC772R_qog-unsplash.jpg'
 
 
 const Avatar = (props) => {
@@ -34,7 +34,7 @@ const Avatar = (props) => {
     const handleSubmit = async() => {
       const body = {}
       const path = `/assets/images/${props.auth.user.folder_id}/${fileInfo.name}`
-      props.profileImages == 'avatar' ? body.avatar_link = path : body.background_link = path
+      props.profileImages === 'avatar' ? body.avatar_link = path : body.background_link = path
       const config = { headers: {'Content-Type': 'multipart/form-data' }}
       body.user_id = props.auth.user.id
       imageData.append('link', `/assets/images/${props.auth.user.folder_id}`)

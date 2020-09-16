@@ -1,9 +1,7 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
-import axios from 'axios'
-import Avatar from './Avatar/Avatar'
 import ProfileHandler from './ProfileHandler/ProfileHandler'
-import Background from './ProfileHandler/ProfileHandler' 
+// import Background from './ProfileHandler/ProfileHandler' 
 import ProfileHead from '../Dashboard/ProfileHead/ProfileHead'
 import {PageWrapper, ProfileContainer, ProfileText} from '../../styles/Pages/Profile'
 
@@ -11,8 +9,6 @@ import {PageWrapper, ProfileContainer, ProfileText} from '../../styles/Pages/Pro
 
 const Profile = (props) => {
 
-    const [formValue, setForm] = useState()
-    const [files, setFiles] = useState('')
     const ACCEPTED_FILES = "image/jpeg, image/jpg, image/png"
  
     return(

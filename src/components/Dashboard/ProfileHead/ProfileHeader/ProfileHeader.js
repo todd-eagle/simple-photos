@@ -1,17 +1,16 @@
 import React from 'react'
-import {StyledProfileHeader, ProfileHeaderImage, 
+import {ProfileHeaderImage, 
         ProfileHeaderText} from '../../../../styles/Layout/StyledProfileHeader'
 import Theme from '../../../../styles/Theme/Theme'     
 
 const ProfileHeader = (props) => {
-    const {getProfileTextFn, avatar} = props
+    const {avatar} = props
     
     return (
         <>
         <Theme>
             <ProfileHeaderImage src={avatar} />
             <ProfileHeaderText>
-                {/* {getProfileTextFn()} */}
             </ProfileHeaderText>
         </Theme>
         </>

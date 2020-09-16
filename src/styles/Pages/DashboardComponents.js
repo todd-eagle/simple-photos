@@ -11,6 +11,13 @@ export const ImageContainer = styled.div`
     column-gap: 2rem;
     padding: 5rem;
     flex: 1;
+
+    @media only screen and (max-width: 60rem) {
+        column-count: 2;
+    }
+    @media only screen and (max-width: 40rem) {
+        column-count: 1;
+    }
 `
 export const ListContainer = styled.div`
     display: flex;
@@ -64,6 +71,7 @@ export const UploadBar = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 125rem;
+    padding: 0 2rem;
 `
 export const PhotoCount = styled.div`
     font-size: 1.5rem;

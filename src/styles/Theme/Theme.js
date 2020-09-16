@@ -10,12 +10,22 @@ const Theme = (props) => {
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        height: 30rem;
+        height: 50rem;
         background-color: #fff;
         border-bottom: #a3a3a3 solid 2px;
         background-image:  url(${props.profile.profileInfo.background_link});
         background-position: center;
         background-size: cover;
+
+    @media only screen and (max-width: 100rem) {
+        height: 45rem;
+    }
+    @media only screen and (max-width: 60rem) {
+        height: 35rem;
+    }
+    @media only screen and (max-width: 40rem) {
+        height: 25rem;
+    }
 `
     return (
         <StyledProfileHeader1>

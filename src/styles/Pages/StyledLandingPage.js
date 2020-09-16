@@ -16,12 +16,32 @@ export const Hero =styled.div`
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url(${HeroBackground});
+    
+    @media only screen and (max-width: 100rem) {
+            height: 70vh;
+    }
+    @media only screen and (max-width: 60rem) {
+            height:50vh;
+    }
+    @media only screen and (max-width: 40rem) {
+            height:30vh;
+    }
 `
 export const HeroSearchBox =styled.div`
     display: flex;
     background-color: #ffffff;
     border-radius: 8px;
     width: 40%;
+
+    @media only screen and (max-width: 100rem) {
+        width: 50%;
+    }
+    @media only screen and (max-width: 60rem) {
+        width: 60%;
+    }
+    @media only screen and (max-width: 40rem) {
+        width: 70%;
+    }
 `
 export const HeroSearchButton = styled.button`
     padding: .2rem 1rem;
