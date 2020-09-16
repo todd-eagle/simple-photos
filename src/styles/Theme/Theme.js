@@ -17,7 +17,6 @@ const Theme = (props) => {
         background-position: center;
         background-size: cover;
 `
-console.log("Theme.js ", props)
     return (
         <StyledProfileHeader1>
             {children}

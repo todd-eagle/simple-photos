@@ -14,9 +14,9 @@ const Header = (props) => {
     
     let links = 'menus'
     
-    console.log("isLoggedIn? ", props.auth.isLoggedIn)
+    // console.log("isLoggedIn? ", props.auth.isLoggedIn)
 
-    console.log("props? ", props)
+    // console.log("props? ", props)
 
     const [isLoginOpen, setIsLoginOpen] = useState(false)
     const [pathName, setPathName] = useState('register')

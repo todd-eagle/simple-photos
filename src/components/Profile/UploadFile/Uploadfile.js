@@ -1,10 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {useDropzone} from 'react-dropzone'
-import {Upload, ProfileImage} from '../../../styles/Pages/Profile'
+import {Upload, ProfileImage, UploadWrapper} from '../../../styles/Pages/Profile'
 import {SaveButton, SaveButtonContainer} from '../../../styles/Components/Buttons'
 
-const UploadFile  = ({onDrop, accept, children, preview=null, handleSubmitFn, resetDragNDropFn, toggle}) => {
+const UploadFile  = ({onDrop, accept, children, preview=null, handleSubmitFn, resetDragNDropFn, toggle, imageType}) => {
     const { getRootProps, getInputProps} = useDropzone({
     onDrop,
     accept
@@ -19,21 +19,21 @@ const UploadFile  = ({onDrop, accept, children, preview=null, handleSubmitFn, re
  
 //    console.log("preview ", preview)
     return (
-        <>
+        <UploadWrapper>
         <Upload {...getRootProps()}>
             <input {...getInputProps()} />
             {!preview ? 
                 children
              :
              <>
-             <ProfileImage src={preview} alt="My profile pic"/> 
+             <ProfileImage imageType={imageType} src={preview} alt="My profile pic"/> 
              </>
             }
            
         </Upload>
         
         {toggle ? saveButton : null}
-        </>
+        </UploadWrapper>
     )
 }
 const mapStateToProps =  reduxState => reduxState

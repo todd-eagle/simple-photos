@@ -11,7 +11,7 @@ const ProfileHeader = (props) => {
         <Theme>
             <ProfileHeaderImage src={avatar} />
             <ProfileHeaderText>
-                {getProfileTextFn()}
+                {/* {getProfileTextFn()} */}
             </ProfileHeaderText>
         </Theme>
         </>

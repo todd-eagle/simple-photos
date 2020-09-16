@@ -38,7 +38,7 @@ const ImageContainer = (props) => {
             try {
                await axios.post('/api/files', {link})   
                try {
-                    await props.getImagesFn(props.user.id)
+                    await props.getImagesFn(props.auth.user.id)
                } catch (error) {console.log(error)}
             } catch (error) {console.log(error)}
         } catch (error) {console.log(error)}
