@@ -4,6 +4,7 @@ import axios from 'axios'
 import ProfileHead from '../Dashboard/ProfileHead/ProfileHead'
 import AccountForm from './AccountForm/AccountForm'
 import Button from '../Button/Button'
+import {AccountWrapper} from '../../styles/Pages/Account'
 
 const Account = (props) =>  {
 
@@ -41,11 +42,13 @@ const Account = (props) =>  {
     return (
         <>
         <ProfileHead />
-        <div>Account Section</div>
+        <AccountWrapper>
+            <div>Account Section</div>
             <AccountForm handleChangeFn={handleChange} values={values}/>
             <Button  onClick={handleSubmit}>
                 Update
             </Button>
+        </AccountWrapper>
         </>
     )
 }

@@ -16,6 +16,7 @@ const AccountForm = (props) => {
                     ]
                 }
                 onChange={handleChangeFn}
+                width='60%'
                 heading = 'Personal Information'
             />
              <AddressForm 
@@ -28,6 +29,7 @@ const AccountForm = (props) => {
                     ]
                 }
                 onChange={handleChangeFn}
+                width='60%'
                 heading = 'Address'
             />
         </>

@@ -45,7 +45,6 @@ export const Heading2 = styled.h2`
     align-self: center;
     color: #707070;
 `
-
 export const LogoContainer = styled.div`
     display: flex;
 `
