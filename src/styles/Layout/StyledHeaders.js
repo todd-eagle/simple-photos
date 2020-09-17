@@ -19,8 +19,23 @@ export const HeaderMenu = styled.nav`
     display: flex;
     font-size: 1.5rem;
     margin-right: 5rem;
+
+    @media only screen and (max-width: 50rem) {
+        position: absolute;
+        flex-direction: column;
+        z-index: 999;
+        margin-top: 14vh;
+        width: 100vw;
+        align-items: center;
+        background-color: #333;
+        padding: 2rem 0;
+    }
 `
 export const HeaderLinks = styled.div`
+     @media only screen and (max-width: 50rem) {
+        padding: 1rem;     
+        z-index:200;   
+    }
     a {
         color: ${Colors.color.menuPrimary};
         padding: 1rem;
