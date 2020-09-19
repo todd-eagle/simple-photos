@@ -6,23 +6,24 @@ import {logout} from '../../redux/reducers/AuthReducer'
 import {deleteProfile} from '../../redux/reducers/DataReducer'
 import auth from '../Auth/auth'
 import Login from '../Login/Login'
-
-import {StyledHeader, HeaderMenu, HeaderTitle,
-        HeaderLinks, HeaderLogo, BrandingArea} from '../../styles/Layout/StyledHeaders'
+import {HeaderMenu, HeaderLinks, MenuIcon, CloseIcon} from '../../styles/Components/Menu'
+import {StyledHeader, HeaderTitle,
+        HeaderLogo, BrandingArea} from '../../styles/Layout/StyledHeaders'
 
 const Header = (props) => {
     
     let links = 'menus'
-    
-    // console.log("isLoggedIn? ", props.auth.isLoggedIn)
-
-    // console.log("props? ", props)
 
     const [isLoginOpen, setIsLoginOpen] = useState(false)
     const [pathName, setPathName] = useState('register')
+    const [isToggleMenuOpen, setToggleMenuOpen] = useState(true)
 
     const logginToggle = () => {
         setIsLoginOpen(!isLoginOpen)
+    }
+
+    const toggleMenu = () => {
+        setToggleMenuOpen(!isToggleMenuOpen)
     }
 
     if(props.auth.isLoggedIn ) {
@@ -52,6 +53,7 @@ const Header = (props) => {
             </Link>       
             </BrandingArea>
         
+        {isToggleMenuOpen ?<MenuIcon onClick={() => toggleMenu()}></MenuIcon> : <CloseIcon onClick={() => toggleMenu()}></CloseIcon>}
         <HeaderMenu>
             <HeaderLinks><Link onClick={!props.auth.isLoggedIn ? ()=> linkTo1.signIn('login'): null} to={linkTo1.link1}>{linkTo1.name1}</Link></HeaderLinks>
             <HeaderLinks><Link onClick={!props.auth.isLoggedIn ? ()=> linkTo1.signIn('register'): null} to={linkTo2.link2}>{linkTo2.name2}</Link></HeaderLinks>

@@ -14,9 +14,11 @@ export const ImageContainer = styled.div`
 
     @media only screen and (max-width: 60rem) {
         column-count: 2;
+        padding: 3rem;
     }
     @media only screen and (max-width: 40rem) {
         column-count: 1;
+        padding: 2rem;
     }
 `
 export const ListContainer = styled.div`
