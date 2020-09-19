@@ -17,6 +17,16 @@ const Header = (props) => {
     const [isLoginOpen, setIsLoginOpen] = useState(false)
     const [pathName, setPathName] = useState('register')
     const [isToggleMenuOpen, setToggleMenuOpen] = useState(true)
+    const [dropDownValue, setDropDownValue] = useState('-18rem')
+
+    const menuDropDown =  props.auth.isLoggedIn ? '30rem' : '18rem'
+
+    const setMenuDropDown = () => {
+        const minus = '-'
+        isToggleMenuOpen ? setDropDownValue(menuDropDown) : 
+        setDropDownValue(minus.concat('', menuDropDown))
+        console.log("drop down value: ", dropDownValue)
+    }
 
     const logginToggle = () => {
         setIsLoginOpen(!isLoginOpen)
@@ -40,7 +50,7 @@ const Header = (props) => {
         ]
     }
 
-    const menuDropDown =  props.auth.isLoggedIn ? '30rem' : '18rem'
+   
 
     const [linkTo1, linkTo2, linkTo3, linkTo4] = links
     return (
@@ -55,16 +65,16 @@ const Header = (props) => {
             </Link>       
             </BrandingArea>
         
-        {isToggleMenuOpen ? <MenuIcon onClick={() => toggleMenu()}></MenuIcon> : <CloseIcon onClick={() => toggleMenu()}></CloseIcon>}
-        <HeaderMenu>
-            <HeaderLinks><Link onClick={!props.auth.isLoggedIn ? ()=> linkTo1.signIn('login'): null} to={linkTo1.link1}>{linkTo1.name1}</Link></HeaderLinks>
+        {isToggleMenuOpen ? <MenuIcon onClick={() => {toggleMenu(); setMenuDropDown()}}></MenuIcon> : <CloseIcon onClick={() => {toggleMenu(); setMenuDropDown()}}></CloseIcon>}
+        <HeaderMenu menuDropDown={dropDownValue}>
+            <HeaderLinks><Link onClick={!props.auth.isLoggedIn ? ()=> {toggleMenu(); setMenuDropDown(); linkTo1.signIn('login')}: null} to={linkTo1.link1}>{linkTo1.name1}</Link></HeaderLinks>
             <HeaderLinks><Link onClick={!props.auth.isLoggedIn ? ()=> linkTo1.signIn('register'): null} to={linkTo2.link2}>{linkTo2.name2}</Link></HeaderLinks>
             {
                 props.auth.isLoggedIn ? 
                     <>
                     <HeaderLinks><Link to={linkTo3.link3}>{linkTo3.name3}</Link></HeaderLinks>
                     <HeaderLinks>
-                        <Link onClick={(e)=>{props.logout(); props.deleteProfile(); auth.isLoggedIn(false)}} 
+                        <Link onClick={(e)=>{props.logout(); toggleMenu(); setMenuDropDown(); props.deleteProfile(); auth.isLoggedIn(false)}} 
                             to={linkTo4.link4}>{linkTo4.name4}
                         </Link>
                     </HeaderLinks>

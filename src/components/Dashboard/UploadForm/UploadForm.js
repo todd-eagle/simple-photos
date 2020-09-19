@@ -7,7 +7,7 @@ import Button from '../../Button/Button'
 
 const UploadForm = (props) => {
 
-    const MAX_FILE_SIZE = 10485760
+    const MAX_FILE_SIZE = 34485760
     const ACCEPTED_FILES = "image/jpeg, image/jpg, image/png"
     const MULTIPLE_FILES = false
     

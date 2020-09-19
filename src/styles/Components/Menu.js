@@ -11,7 +11,7 @@ export const HeaderMenu = styled.nav`
         flex-direction: column;
         z-index: 999;
         margin-top: -18rem;
-        margin-top: ${(props) => !props.menuDropDown ? '-18rem' : props.menuDropDown};
+        margin-top: ${(props) => props.menuDropDown};
         width: 100vw;
         align-items: center;
         background-color: #333;
@@ -48,6 +48,10 @@ export const MenuIcon = styled.span`
 
     @media only screen and (max-width: 50rem) {       
         display: inline-block;
+    }
+
+    @media only screen and (min-width: 50rem) {
+        display: none;
     }
 
     &::before,
@@ -88,9 +92,4 @@ export const CloseIcon = styled(MenuIcon)`
     }
 
     &::after { transform: rotate(-45deg); }
-
-    @media only screen and (min-width: 50rem) {
-        display: none;
-    }
-
 `
