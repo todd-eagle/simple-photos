@@ -11,6 +11,7 @@ export const HeaderMenu = styled.nav`
         flex-direction: column;
         z-index: 999;
         margin-top: -18rem;
+        margin-top: ${(props) => !props.menuDropDown ? '-18rem' : props.menuDropDown};
         width: 100vw;
         align-items: center;
         background-color: #333;

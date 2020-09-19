@@ -40,6 +40,8 @@ const Header = (props) => {
         ]
     }
 
+    const menuDropDown =  props.auth.isLoggedIn ? '30rem' : '18rem'
+
     const [linkTo1, linkTo2, linkTo3, linkTo4] = links
     return (
         <>
@@ -53,7 +55,7 @@ const Header = (props) => {
             </Link>       
             </BrandingArea>
         
-        {isToggleMenuOpen ?<MenuIcon onClick={() => toggleMenu()}></MenuIcon> : <CloseIcon onClick={() => toggleMenu()}></CloseIcon>}
+        {isToggleMenuOpen ? <MenuIcon onClick={() => toggleMenu()}></MenuIcon> : <CloseIcon onClick={() => toggleMenu()}></CloseIcon>}
         <HeaderMenu>
             <HeaderLinks><Link onClick={!props.auth.isLoggedIn ? ()=> linkTo1.signIn('login'): null} to={linkTo1.link1}>{linkTo1.name1}</Link></HeaderLinks>
             <HeaderLinks><Link onClick={!props.auth.isLoggedIn ? ()=> linkTo1.signIn('register'): null} to={linkTo2.link2}>{linkTo2.name2}</Link></HeaderLinks>
