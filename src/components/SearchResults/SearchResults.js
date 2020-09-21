@@ -1,8 +1,8 @@
 import React from 'react'
 import {ImageContainer, ListContainer,PhotoCard} from '../../styles/Pages/DashboardComponents'
 import {CardImages} from '../../styles/Components/Cards'
-import {UploadBarWrapper, UploadBar} from '../../styles/Pages/DashboardComponents'
-import {MainSearchBox, MainSearchInput, MainSearchButton} from '../../styles/Components/SearchBox'
+import {UploadBarWrapper} from '../../styles/Pages/DashboardComponents'
+import {MainSearchBox, MainSearchInput, MainSearchButton, SearchBar} from '../../styles/Components/SearchBox'
 
 const SearchResults = (props) => {
    const {searchResults} = props.location
@@ -20,12 +20,12 @@ const SearchResults = (props) => {
     return (
         <>
         <UploadBarWrapper>
-                <UploadBar>
+                <SearchBar>
                     <MainSearchBox>
                     <MainSearchButton></MainSearchButton>
                         <MainSearchInput  placeholder="Search Images" id="search" name="search"/>
                     </MainSearchBox>
-                </UploadBar>  
+                </SearchBar>  
             </UploadBarWrapper>      
         <ListContainer>
             <ImageContainer>
