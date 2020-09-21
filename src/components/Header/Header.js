@@ -6,7 +6,7 @@ import {logout} from '../../redux/reducers/AuthReducer'
 import {deleteProfile} from '../../redux/reducers/DataReducer'
 import auth from '../Auth/auth'
 import Login from '../Login/Login'
-import {HeaderMenu, HeaderLinks, MenuIcon, CloseIcon} from '../../styles/Components/Menu'
+import {HeaderMenu, HeaderLinks, MenuIcon, MenuIconWrapper ,CloseIcon} from '../../styles/Components/Menu'
 import {StyledHeader, HeaderTitle,
         HeaderLogo, BrandingArea} from '../../styles/Layout/StyledHeaders'
 import useCurrentWidth from '../../Hooks/WindowListener'
@@ -23,25 +23,16 @@ const Header = (props) => {
 
     let menuDropDown =  props.auth.isLoggedIn ? '30rem' : '18rem'
 
-    console.log("current width: ", width)
-
-    // const setMenuDropDown = (dropDowm=null) => {
-    //     const minus = '-'
-    //     console.log("setMenuDropDown: ", dropDowm)
-    //     dropDowm ? setDropDownValue(dropDowm):
-    //     isToggleMenuOpen ? setDropDownValue(menuDropDown) : 
-    //     setDropDownValue(minus.concat('', menuDropDown))
-    //     console.log("drop down value: ", dropDownValue)
-    // }
+    //console.log("current width: ", width)
 
     const setMenuDropDown = useCallback((dropDowm=null)=> {
         const minus = '-'
-        console.log("setMenuDropDown: ", dropDowm)
+        // console.log("setMenuDropDown: ", dropDowm)
         dropDowm ? setDropDownValue(dropDowm):
         isToggleMenuOpen ? setDropDownValue(menuDropDown) : 
         setDropDownValue(minus.concat('', menuDropDown))
-        console.log("drop down value: ", dropDownValue)
-    },[dropDownValue, isToggleMenuOpen, menuDropDown])
+        // console.log("drop down value: ", dropDownValue)
+    },[isToggleMenuOpen, menuDropDown])
 
     const logginToggle = () => {
         setIsLoginOpen(!isLoginOpen)
@@ -56,13 +47,6 @@ const Header = (props) => {
         toggleMenu(); 
         setMenuDropDown(dropDowm);
     }
-
-   
-
-    // const resetMenus = useCallback(() =>{
-    //     setToggleMenuOpen(true)
-    //     setMenuDropDown('-30rem')
-    // }, [setToggleMenuOpen, setMenuDropDown])
 
     useEffect(() => {
 
@@ -107,7 +91,7 @@ const Header = (props) => {
             </Link>       
             </BrandingArea>
         
-        {isToggleMenuOpen ? <MenuIcon onClick={() => {menuManipulation()}}></MenuIcon> : <CloseIcon onClick={() => {menuManipulation()}}></CloseIcon>}
+        {isToggleMenuOpen ? <MenuIconWrapper onClick={() => menuManipulation()}><MenuIcon></MenuIcon></MenuIconWrapper> : <MenuIconWrapper onClick={() => menuManipulation()}><CloseIcon></CloseIcon></MenuIconWrapper>}
         <HeaderMenu menuDropDown={dropDownValue}>
             <HeaderLinks><Link onClick={!props.auth.isLoggedIn ? ()=> {menuManipulation('-30rem'); linkTo1.signIn('login')}: ()=> menuManipulation()} to={linkTo1.link1}>{linkTo1.name1}</Link></HeaderLinks>
             <HeaderLinks><Link onClick={!props.auth.isLoggedIn ? ()=>{ menuManipulation('-30rem'); linkTo1.signIn('register')}: ()=> menuManipulation()} to={linkTo2.link2}>{linkTo2.name2}</Link></HeaderLinks>

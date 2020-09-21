@@ -1,6 +1,7 @@
 const path = require('path')
 const deleteFile = require('./../upload/deleteFile')
 const { rest } = require('lodash')
+const { resourceUsage } = require('process')
 
 module.exports = {
     insertPhotoData: async(req, res) => {
@@ -139,9 +140,16 @@ module.exports = {
     getProfileImage: async(req, res) => {
         const db = req.app.get('db')
         const {user_id} = req.params
-        console.log("req.params ", req.params)
+        // console.log("req.params ", req.params)
         const retrievedProfile = await db.profile.find({user_id})
         console.log("retrievedProfile ", retrievedProfile)
         retrievedProfile ? res.status(200).send(retrievedProfile) : res.status(404).send('Could not find image')
+    },
+    searchImages: async(req, res) => {
+        const db = req.app.get('db')
+        const {query} = req.body
+        const textSearched = await db.photos.search({fields: ['id', 'user_id', 'title', 'tags', 'link'], term: query})
+        // console.log(textSearched)
+        textSearched ? res.status(200).send(textSearched) : res.status(404).send('query not found')
     }
 }

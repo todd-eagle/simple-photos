@@ -33,7 +33,7 @@ export const CloseBox = styled.div`
     right: 0;
     height: 3rem;
     width: 3rem;
-    z-index: 95;
+    z-index: 75;
     cursor: pointer;
     /* top: -3rem;
     opacity: 0; */
@@ -66,7 +66,7 @@ export const UploadBarWrapper = styled.div`
     width: 100%;
     background-color: rgb(250, 250, 250);
     border-bottom: 1.5px solid rgb(199, 199, 199);
-    z-index: 95;
+    z-index: 85;
 `
 export const UploadBar = styled.div`
     display: flex;

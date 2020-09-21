@@ -58,7 +58,7 @@ export const HeroSearchInput =styled.input`
     background-color: transparent;
     border: none;
     height: 5rem;
-    border-left: 1.5px solid rgb(226, 226, 226);
+    border-left: 1.5px solid #e2e2e2;
     padding-left: 1rem;
     font-size: 2rem;
     color: #8a8a8a;

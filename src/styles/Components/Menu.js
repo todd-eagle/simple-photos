@@ -93,3 +93,7 @@ export const CloseIcon = styled(MenuIcon)`
 
     &::after { transform: rotate(-45deg); }
 `
+export const MenuIconWrapper = styled.div`
+    height: 1.85rem;
+    padding-left: .5rem;
+`

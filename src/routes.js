@@ -4,12 +4,14 @@ import Dashboard from './components/Dashboard/Dashboard'
 import Landing from './components/Landing/Landing'
 import Profile from './components/Profile/Profile'
 import Account from './components/Account/Account'
+import SearchResults from './components/SearchResults/SearchResults'
 import FourZeroFour from './components/FourZeroFour/FourZeroFour'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 export default (
     <Switch>
-        <Route exact path="/" component={Landing}/>
+        <Route exact path="/" component={Landing} />
+        <Route path="/search" component={SearchResults} />
         <ProtectedRoute path="/dashboard" component={Dashboard} />
         <ProtectedRoute path="/account" component={Account} />
         <ProtectedRoute path="/profile" component={Profile} />

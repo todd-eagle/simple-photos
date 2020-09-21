@@ -62,3 +62,5 @@ app.put('/api/profile/', dataCrtl.updateProfileData)
 
 app.get('/api/profileData/:user_id', dataCrtl.getProfileImage)
 app.post('/api/profileData/:user_id', dataCrtl.uploadProfileImage)
+
+app.post('/api/search', dataCrtl.searchImages)

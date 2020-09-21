@@ -5,13 +5,13 @@ import {Hero, HeroSearchBox, HeroSearchInput,
         HeroSearchButton, LandingImageContainter,
         LandingImageCard, ImageWrapper} from '../../../styles/Pages/StyledLandingPage'
 import {CardImages} from '../../../styles/Components/Cards'
+
 const LandingPage = (props) => {
-    const {imageData} = props
+    const {imageData, setSearchFn, handleSubmitFn} = props
 
     let images = imageData.map( el =>{
         return <LandingImageCard key={el.title}>
                         <CardImages loading="lazy" src={el.link} alt={el.title}/>
-                    {/* <div><div>{el.title}</div><div>{el.tags}</div></div> */}
                 </LandingImageCard>           
     })
 
@@ -19,15 +19,15 @@ const LandingPage = (props) => {
         <>
         <Hero>
             <HeroSearchBox>
-                <HeroSearchButton></HeroSearchButton>
-                    <HeroSearchInput placeholder="Search Images"/>
+                <HeroSearchButton onClick={handleSubmitFn}></HeroSearchButton>
+                    <HeroSearchInput onChange={(e) => setSearchFn(e.target.value)} placeholder="Search Images" id="search" name="search"/>
             </HeroSearchBox>
         </Hero>
         <ImageWrapper>
             <LandingImageContainter>
                 {images}
             </LandingImageContainter>
-        </ImageWrapper>    
+        </ImageWrapper>
         </>
     )
 }
