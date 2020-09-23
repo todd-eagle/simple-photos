@@ -11,6 +11,8 @@ export const StyledForm = styled.form`
     width: ${(props) => props.width};
 
 `
+export const FormWrapper = styled.div`
+`
 export const StyledInput = styled.input`
     width: 100%;
     margin-bottom: .5rem;

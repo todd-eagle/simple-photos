@@ -10,12 +10,12 @@ const Landing = (props) => {
     const [search, setSearch] = useState('')
     const [searchResults, setSearchresults] = useState('')
     const [redirect, setRedirect] = useState(false)
-
+    console.log("search: ", search)
+   
+   
     useEffect(() => {
         getAllImages()
     },[])
-    
-    
 
     const getAllImages = async() => {
         try {
@@ -26,6 +26,7 @@ const Landing = (props) => {
 
     const handleSubmit = async() => {
         let query = search.split(' ').join(' & ')
+        console.log("search", search)
         try {
             const results = await axios.post('/api/search', {query} )
             setSearchresults(results)
@@ -35,12 +36,23 @@ const Landing = (props) => {
         }
     }
 
+    const forceState = (state) => {
+        console.log("forceState initiated!!!!!!!!!!: ", state)
+        setSearch(state)
+    }
+
     return <>
             <LandingPage imageData={imageData} handleSubmitFn={handleSubmit} 
             setSearchFn={setSearch} search={search}
             />
             {redirect ? <Redirect to={{
-            pathname: '/search',  searchResults }} /> : null}
+                pathname: '/search',  
+                searchResults, 
+                searchText: search, 
+                handleSubmitFn: handleSubmit,
+                setSearchFn: setSearch,
+                forceStateFn: forceState}
+                } /> : null}
            </> 
 }
 const mapStateToProps =  reduxState => reduxState

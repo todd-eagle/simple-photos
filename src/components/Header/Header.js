@@ -62,8 +62,6 @@ const Header = (props) => {
 
     }, [setMenuDropDown, width])
 
- 
-
     if(props.auth.isLoggedIn ) {
          links = [
             {link1: '/dashboard', name1: 'Photos'},
@@ -73,17 +71,18 @@ const Header = (props) => {
         ]
     }else {
          links = [
-            {link1: props.location, name1: 'Sign in', signIn: (val) =>{logginToggle(); setPathName(val)}},
-            {link2: props.location, name2: 'Register', register: (val) =>{logginToggle()}}
+            {link1: '/', name1: 'Sign in', signIn: (val) =>{logginToggle(); setPathName(val)}},
+            {link2: '/', name2: 'Register', register: (val) =>{logginToggle()}}
         ]
     }
 
     const [linkTo1, linkTo2, linkTo3, linkTo4] = links
+
     return (
         <>
         <StyledHeader>
             <BrandingArea>
-            <Link to="/">
+            <Link onClick={() => menuManipulation()} to="/">
                 <HeaderLogo src={logo} alt="Logo" />
                 <HeaderTitle>
                     SimplePhoto
@@ -93,8 +92,8 @@ const Header = (props) => {
         
         {isToggleMenuOpen ? <MenuIconWrapper onClick={() => menuManipulation()}><MenuIcon></MenuIcon></MenuIconWrapper> : <MenuIconWrapper onClick={() => menuManipulation()}><CloseIcon></CloseIcon></MenuIconWrapper>}
         <HeaderMenu menuDropDown={dropDownValue}>
-            <HeaderLinks><Link onClick={!props.auth.isLoggedIn ? ()=> {menuManipulation('-30rem'); linkTo1.signIn('login')}: ()=> menuManipulation()} to={linkTo1.link1}>{linkTo1.name1}</Link></HeaderLinks>
-            <HeaderLinks><Link onClick={!props.auth.isLoggedIn ? ()=>{ menuManipulation('-30rem'); linkTo1.signIn('register')}: ()=> menuManipulation()} to={linkTo2.link2}>{linkTo2.name2}</Link></HeaderLinks>
+            <HeaderLinks><Link onClick={!props.auth.isLoggedIn ? ()=> {menuManipulation('-30rem'); linkTo1.signIn('login')} : ()=> menuManipulation()} to={linkTo1.link1}>{linkTo1.name1}</Link></HeaderLinks>
+            <HeaderLinks><Link onClick={!props.auth.isLoggedIn ? ()=>{ menuManipulation('-30rem'); linkTo1.signIn('register')} : ()=> menuManipulation()} to={linkTo2.link2}>{linkTo2.name2}</Link></HeaderLinks>
             {
                 props.auth.isLoggedIn ? 
                     <>

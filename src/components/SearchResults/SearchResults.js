@@ -1,12 +1,15 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {ImageContainer, ListContainer,PhotoCard} from '../../styles/Pages/DashboardComponents'
 import {CardImages} from '../../styles/Components/Cards'
 import {UploadBarWrapper} from '../../styles/Pages/DashboardComponents'
 import {MainSearchBox, MainSearchInput, MainSearchButton, SearchBar} from '../../styles/Components/SearchBox'
 
+
 const SearchResults = (props) => {
-   const {searchResults} = props.location
-    
+   const {forceStateFn, searchResults, searchText, handleSubmitFn, setSearchFn} = props.location
+//    const [searchTextValue, setSearchTextValue] = useState(searchText)
+    // console.log("props.location: ", props.location)
+    // console.log("searchTextValue: ", searchTextValue)
     let images = null
 
     if(searchResults !== undefined){
@@ -22,8 +25,8 @@ const SearchResults = (props) => {
         <UploadBarWrapper>
                 <SearchBar>
                     <MainSearchBox>
-                    <MainSearchButton></MainSearchButton>
-                        <MainSearchInput  placeholder="Search Images" id="search" name="search"/>
+                    <MainSearchButton onClick={handleSubmitFn}></MainSearchButton>
+                        <MainSearchInput onChange={(e) => forceStateFn(e.target.value)} placeholder="Search Images" id="search" name="search"/>
                     </MainSearchBox>
                 </SearchBar>  
             </UploadBarWrapper>      

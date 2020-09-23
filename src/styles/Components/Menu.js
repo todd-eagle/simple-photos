@@ -22,14 +22,21 @@ export const HeaderLinks = styled.div`
      @media only screen and (max-width: 50rem) {
         display: flex;
         justify-content:center;
-        padding: 1rem;     
+        /* padding: 1rem;      */
         z-index:200;  
         border-top: solid white 1px;
         width: 100vw;
+
+        a{
+            color: ${Colors.color.menuPrimary};
+            padding: 2rem 0;
+            width: 125rem;
+            text-align: center;
+        }
     }
     a {
         color: ${Colors.color.menuPrimary};
-        padding: 1rem;
+        padding: 2rem 1rem;
         text-decoration: none;
         
         &:hover {
