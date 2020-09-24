@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useCallback} from 'react'
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import logo from '../../assets/images/simplephoto.png'
 import {logout} from '../../redux/reducers/AuthReducer'
 import {deleteProfile} from '../../redux/reducers/DataReducer'
@@ -10,8 +11,9 @@ import {HeaderMenu, HeaderLinks, MenuIcon, MenuIconWrapper ,CloseIcon} from '../
 import {StyledHeader, HeaderTitle,
         HeaderLogo, BrandingArea} from '../../styles/Layout/StyledHeaders'
 import useCurrentWidth from '../../Hooks/WindowListener'
-const Header = (props) => {
 
+const Header = (props) => {
+    console.log("header props: ", props)
     let width = useCurrentWidth()
     
     let links = 'menus'
@@ -71,8 +73,8 @@ const Header = (props) => {
         ]
     }else {
          links = [
-            {link1: '/', name1: 'Sign in', signIn: (val) =>{logginToggle(); setPathName(val)}},
-            {link2: '/', name2: 'Register', register: (val) =>{logginToggle()}}
+            {link1: props.location, name1: 'Sign in', signIn: (val) =>{logginToggle(); setPathName(val)}},
+            {link2: props.location, name2: 'Register', register: (val) =>{logginToggle()}}
         ]
     }
 
@@ -122,4 +124,4 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = reduxState => reduxState
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header))
