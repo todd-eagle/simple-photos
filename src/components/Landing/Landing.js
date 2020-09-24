@@ -36,11 +36,6 @@ const Landing = (props) => {
         }
     }
 
-    const forceState = (state) => {
-        console.log("forceState initiated!!!!!!!!!!: ", state)
-        setSearch(state)
-    }
-
     return <>
             <LandingPage imageData={imageData} handleSubmitFn={handleSubmit} 
             setSearchFn={setSearch} search={search}
@@ -48,10 +43,7 @@ const Landing = (props) => {
             {redirect ? <Redirect to={{
                 pathname: '/search',  
                 searchResults, 
-                searchText: search, 
-                handleSubmitFn: handleSubmit,
-                setSearchFn: setSearch,
-                forceStateFn: forceState}
+                searchText: search}
                 } /> : null}
            </> 
 }

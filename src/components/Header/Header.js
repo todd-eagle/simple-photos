@@ -82,7 +82,8 @@ const Header = (props) => {
         <>
         <StyledHeader>
             <BrandingArea>
-            <Link onClick={() => menuManipulation()} to="/">
+            <Link onClick={() => dropDownValue === '30rem' || dropDownValue === '18rem' ?
+                                 menuManipulation('-30rem'): null} to="/">
                 <HeaderLogo src={logo} alt="Logo" />
                 <HeaderTitle>
                     SimplePhoto

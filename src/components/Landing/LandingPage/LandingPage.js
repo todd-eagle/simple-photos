@@ -19,7 +19,7 @@ const LandingPage = (props) => {
         <>
         <Hero>
             <HeroSearchBox>
-                <HeroSearchButton onClick={handleSubmitFn}></HeroSearchButton>
+                <HeroSearchButton onClick={()=>handleSubmitFn()}></HeroSearchButton>
                     <HeroSearchInput onChange={(e) => setSearchFn(e.target.value)} placeholder="Search Images" id="search" name="search"/>
             </HeroSearchBox>
         </Hero>
