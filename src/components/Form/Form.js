@@ -1,6 +1,5 @@
 import React from 'react'
 import {StyledForm, StyledInput, ValidationText, Heading2, FormWrapper} from '../../styles/Components/Forms'
-import uniqid from 'uniqid'
 
 const Form = (props) => {
     const {inputData, onChange, heading="Heading Goes Here", width, errors } = props

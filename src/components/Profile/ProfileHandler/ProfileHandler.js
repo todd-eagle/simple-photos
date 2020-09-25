@@ -6,7 +6,6 @@ import UploadFile from '../UploadFile/UploadFile'
 import {ProfileImage} from '../../../styles/Pages/Profile'
 // import genericImage from '../../../assets/images/default-profiles/edgar-nKC772R_qog-unsplash.jpg'
 
-
 const Avatar = (props) => {
 
     const [imageData, setImageData] = useState()

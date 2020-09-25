@@ -10,11 +10,7 @@ const ProfileHead = (props) => {
         return profileBackground
     }
 
-    // const getProfileText = () => {
-    //     return 'Good morning, Sharnie'
-    // }
-
-    const{avatar_link, background_link} = props.profile.profileInfo
+       let {avatar_link, background_link} = props.profile.profileInfo
 
     return (
         <>

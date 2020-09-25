@@ -30,9 +30,10 @@ const Login = (props) => {
         try {
             const loginInfo = await axios.post(path, {email, password})
             props.login(loginInfo.data)
+            const body = defaultProfile(loginInfo.data.id)
+            await axios.post(`/api/profile/`, body)
            try {
                 const profileInfo = await axios.get(`/api/profileData/${loginInfo.data.id}`)
-                // console.log("Profile Info:", profileInfo.data)
                 props.getProfile(profileInfo.data[0])
             } catch (error) {console.log("Profile error: ", error)}
             auth.isLoggedIn(true)
@@ -53,6 +54,15 @@ const Login = (props) => {
         e.persist()
         setValues(values => ({ ...values, [e.target.name]: e.target.value.trim()}))        
     }
+    
+    const defaultProfile = (login) => {
+        return {
+            user_id: login,
+            avatar_link: '/assets/images/default-profiles/avatar/avatar.jpeg',
+            background_link: '/assets/images/default-profiles/background/starry_night.jpeg'
+        }
+    }
+
     const validate = useCallback((values) => {
         let errors = {}
         let valid = {}
@@ -132,8 +142,6 @@ const mapDispatchToProps = {
     login,
     getProfile
 }
-
-// const mapStateToProps =  reduxState => reduxState
 const mapStateToProps =  reduxState => reduxState
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login))
