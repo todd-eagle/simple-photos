@@ -1,12 +1,15 @@
 require('dotenv').config();
 const cors = require('cors')
-const fileUpload = require('express-fileupload');
-const express = require('express');
-const session = require('express-session');
+const path = require('path')
+const fileUpload = require('express-fileupload')
+const express = require('express')
+const session = require('express-session')
 const helmet = require('helmet')
-const massive = require('massive');
+const massive = require('massive')
+const nodemailer = require("nodemailer")
 const authCrtl = require('./controllers/auth-controller')
 const dataCrtl = require('./controllers/data-controller')
+const mailCtrl = require('./controllers/mail-controller')
 
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
@@ -17,6 +20,7 @@ app.use(helmet())
 app.use(cors())
 app.use(express.json());
 app.use(fileUpload());
+app.use('/public', express.static(path.join(__dirname, 'public')))
 
 app.use(
     session({
@@ -26,6 +30,24 @@ app.use(
         secret: SESSION_SECRET        
     })
 )
+
+let transporter = nodemailer.createTransport({
+    host: "mail.YOURDOMAIN.com", 
+      port: 587,
+      secure: false,
+    auth: {
+      user: "YOURUSERNAME",
+      pass: "YOURPASSWORD" 
+    }
+})
+
+transporter.verify(function(error, success) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Server is ready to take our messages!");
+    }
+  })
 
 massive({
     connectionString: CONNECTION_STRING,
@@ -37,6 +59,8 @@ massive({
     console.log('Connected to db')
     app.listen( SERVER_PORT, () => console.log(`Connected to port ${SERVER_PORT}`))
 }).catch(err=>console.log(err))
+
+app.post('/api/mail', mailCtrl.sendMail)
 
 app.post('/api/auth/user', authCrtl.login)
 app.get('/api/auth/user', authCrtl.grabUserSession)
@@ -54,7 +78,6 @@ app.post('/api/users', dataCrtl.insertUserData)
 app.get('/api/users/:user_id', dataCrtl.getUserData)
 app.put('/api/users/:user_id', dataCrtl.updateUserData)
 
-// app.post('/api/upload', dataCrtl.uploadFile)
 app.post('/api/upload/:id/:folder_id', dataCrtl.uploadFile)
 
 app.post('/api/profile', dataCrtl.insertProfileData)

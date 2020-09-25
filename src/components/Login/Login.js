@@ -30,8 +30,11 @@ const Login = (props) => {
         try {
             const loginInfo = await axios.post(path, {email, password})
             props.login(loginInfo.data)
-            const body = defaultProfile(loginInfo.data.id)
-            await axios.post(`/api/profile/`, body)
+            if ( pathname.includes('register')){
+                const body = defaultProfile(loginInfo.data.id)
+                await axios.post(`/api/profile/`, body)
+            }
+        //    if ( pathname.includes('register')) {await axios.post(`/api/mail`, values.email)}
            try {
                 const profileInfo = await axios.get(`/api/profileData/${loginInfo.data.id}`)
                 props.getProfile(profileInfo.data[0])

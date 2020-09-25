@@ -1,7 +1,5 @@
 const path = require('path')
 const deleteFile = require('./../upload/deleteFile')
-const { rest } = require('lodash')
-const { resourceUsage } = require('process')
 
 module.exports = {
     insertPhotoData: async(req, res) => {
