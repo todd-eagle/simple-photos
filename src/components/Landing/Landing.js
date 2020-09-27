@@ -10,7 +10,7 @@ const Landing = (props) => {
     const [search, setSearch] = useState('')
     const [searchResults, setSearchresults] = useState('')
     const [redirect, setRedirect] = useState(false)
-    console.log("search: ", search)
+    // console.log("search: ", search)
    
    
     useEffect(() => {
@@ -26,7 +26,7 @@ const Landing = (props) => {
 
     const handleSubmit = async() => {
         let query = search.split(' ').join(' & ')
-        console.log("search", search)
+        // console.log("search", search)
         try {
             const results = await axios.post('/api/search', {query} )
             setSearchresults(results)

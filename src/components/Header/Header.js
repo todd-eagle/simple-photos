@@ -13,7 +13,7 @@ import {StyledHeader, HeaderTitle,
 import useCurrentWidth from '../../Hooks/WindowListener'
 
 const Header = (props) => {
-    console.log("header props: ", props)
+    // console.log("header props: ", props)
     let width = useCurrentWidth()
     
     let links = 'menus'
@@ -45,7 +45,7 @@ const Header = (props) => {
     }
 
     const menuManipulation = (dropDowm=null) => {
-        console.log("menu Manipulation: ", dropDowm)
+        // console.log("menu Manipulation: ", dropDowm)
         toggleMenu(); 
         setMenuDropDown(dropDowm);
     }
@@ -53,7 +53,7 @@ const Header = (props) => {
     useEffect(() => {
 
         const resetMenus = () => {
-            console.log("reset menus")
+            // console.log("reset menus")
             setToggleMenuOpen(true)
             setMenuDropDown('-30rem')
         }

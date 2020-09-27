@@ -6,12 +6,12 @@ const express = require('express')
 const session = require('express-session')
 const helmet = require('helmet')
 const massive = require('massive')
-const nodemailer = require("nodemailer")
 const authCrtl = require('./controllers/auth-controller')
 const dataCrtl = require('./controllers/data-controller')
 const mailCtrl = require('./controllers/mail-controller')
 
-const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
+const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, 
+      EMAIL_PORT, SMTP_SERVER, USERNAME, PASSWORD} = process.env;
 
 const app = express();
 
@@ -31,23 +31,7 @@ app.use(
     })
 )
 
-let transporter = nodemailer.createTransport({
-    host: "mail.YOURDOMAIN.com", 
-      port: 587,
-      secure: false,
-    auth: {
-      user: "YOURUSERNAME",
-      pass: "YOURPASSWORD" 
-    }
-})
 
-transporter.verify(function(error, success) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Server is ready to take our messages!");
-    }
-  })
 
 massive({
     connectionString: CONNECTION_STRING,
@@ -81,7 +65,7 @@ app.put('/api/users/:user_id', dataCrtl.updateUserData)
 app.post('/api/upload/:id/:folder_id', dataCrtl.uploadFile)
 
 app.post('/api/profile', dataCrtl.insertProfileData)
-app.put('/api/profile/', dataCrtl.updateProfileData)
+app.put('/api/profile', dataCrtl.updateProfileData)
 
 app.get('/api/profileData/:user_id', dataCrtl.getProfileImage)
 app.post('/api/profileData/:user_id', dataCrtl.uploadProfileImage)
