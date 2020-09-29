@@ -14,7 +14,6 @@ const ImageList = (props) => {
                     <CloseBox onClick={()=> {toggleFn(); setImageInfoFn([el.id, el.link,])}}></CloseBox>
                     <EditBox onClick={()=> {toggleEditFn();setImageInfoFn([el.id, el.link, el.title, el.tags])}}></EditBox>
                         <CardImages loading="lazy"  src={el.link} alt={el.title}/>
-                    {/* <div><div>{el.title}</div><div>{el.tags}</div></div> */}
                 </PhotoCard>           
     })
 

@@ -63,6 +63,7 @@ app.get('/api/users/:user_id', dataCrtl.getUserData)
 app.put('/api/users/:user_id', dataCrtl.updateUserData)
 
 app.post('/api/upload/:id/:folder_id', dataCrtl.uploadFile)
+app.post('/api/download', dataCrtl.downloadFile)
 
 app.post('/api/profile', dataCrtl.insertProfileData)
 app.put('/api/profile', dataCrtl.updateProfileData)

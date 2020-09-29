@@ -3,13 +3,15 @@ import axios from 'axios'
 import LandingPage from './LandingPage/LandingPage.js'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
-
+import ModalImage from '../ModalImage/ModalImage'
 
 const Landing = (props) => {
     const [imageData, setImageData] = useState([])
     const [search, setSearch] = useState('')
     const [searchResults, setSearchresults] = useState('')
     const [redirect, setRedirect] = useState(false)
+    const [isOpenImageWindow, setIsOpenImageWindow] = useState(false)
+    const [imageValues, setImageValues] = useState(null)
     // console.log("search: ", search)
    
    
@@ -17,10 +19,24 @@ const Landing = (props) => {
         getAllImages()
     },[])
 
+    useEffect(() => {
+        const handleEsc = (event) => {
+           if (event.keyCode === 27) {
+            setIsOpenImageWindow(false)
+          }
+        }
+        window.addEventListener('keydown', handleEsc);
+    
+        return () => {
+          window.removeEventListener('keydown', handleEsc);
+        }
+      }, [])
+
     const getAllImages = async() => {
         try {
             const info = await axios('/api/allphotos')
             setImageData(info.data)
+            // console.log("img data ", info.data)
         } catch (error) {console.log(error)}
     }
 
@@ -36,10 +52,18 @@ const Landing = (props) => {
         }
     }
 
+    const handleSelectImage = (imgValues) => {
+        setImageValues(imgValues)
+        setIsOpenImageWindow(!isOpenImageWindow)   
+    }
+
     return <>
             <LandingPage imageData={imageData} handleSubmitFn={handleSubmit} 
-            setSearchFn={setSearch} search={search}
+            setSearchFn={setSearch} search={search} handleSelectImageFn={handleSelectImage}
             />
+
+            {isOpenImageWindow ? <ModalImage imageValues={imageValues} handleSelectImageFn={handleSelectImage}/> : null}
+
             {redirect ? <Redirect to={{
                 pathname: '/search',  
                 searchResults, 

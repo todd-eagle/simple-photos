@@ -24,7 +24,7 @@ const UploadForm = (props) => {
 
     const handleSubmit = async(e) => {
         e.preventDefault()
-        console.log("props for uploadform", props)
+        // console.log("props for uploadform", props)
         const config = { headers: { 'Content-Type': 'multipart/form-data' } }
         try{
             const imageInfo = await axios.post(`/api/photos/${props.auth.user.id}`, values)

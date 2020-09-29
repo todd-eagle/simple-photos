@@ -7,10 +7,10 @@ import {Hero, HeroSearchBox, HeroSearchInput,
 import {CardImages} from '../../../styles/Components/Cards'
 
 const LandingPage = (props) => {
-    const {imageData, setSearchFn, handleSubmitFn} = props
+    const {imageData, setSearchFn, handleSubmitFn, handleSelectImageFn} = props
 
     let images = imageData.map( el =>{
-        return <LandingImageCard key={el.title}>
+        return <LandingImageCard key={el.title} onClick={()=>handleSelectImageFn({el})}>
                         <CardImages loading="lazy" src={el.link} alt={el.title}/>
                 </LandingImageCard>           
     })

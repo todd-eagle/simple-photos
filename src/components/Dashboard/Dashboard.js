@@ -21,8 +21,7 @@ const Dashboard = (props) => {
     }
 
     return (
-    <>
-       
+    <>      
         <ProfileHead />
         <UploadForm imgData={imgData} getImagesFn={getImages} />
         <ImageContainer imgData={imgData} getImagesFn={getImages} />

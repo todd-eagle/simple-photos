@@ -93,6 +93,13 @@ module.exports = {
             err ? res.status(500).send(err) : res.status(200).send('Image uploaded')
         })        
     },
+    downloadFile: async(req, res) => {
+        console.log("req.body: ", req.body)
+        const {filePath} = req.body
+        let file = path.join(__dirname, '../../', `src/${filePath}`)
+
+        res.download(file)
+    },
     uploadProfileImage: async(req, res) => {
         const db = req.app.get('db')
         const {user_id} = req.params
