@@ -31,7 +31,7 @@ const Avatar = (props) => {
             preview: URL.createObjectURL(selectedFile)
           })
         )
-      }, [])
+    }, [])
 
     const handleSubmit = async() => {
       const path =`/assets/images/${props.auth.user.folder_id}/${fileInfo.name}`

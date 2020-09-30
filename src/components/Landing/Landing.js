@@ -36,7 +36,7 @@ const Landing = (props) => {
         try {
             const info = await axios('/api/allphotos')
             setImageData(info.data)
-            // console.log("img data ", info.data)
+            console.log("img data ", info.data)
         } catch (error) {console.log(error)}
     }
 

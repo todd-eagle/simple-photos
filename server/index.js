@@ -67,6 +67,7 @@ app.post('/api/download', dataCrtl.downloadFile)
 
 app.post('/api/profile', dataCrtl.insertProfileData)
 app.put('/api/profile', dataCrtl.updateProfileData)
+app.get('/api/profile/:user_id', dataCrtl.getPublicProfile)
 
 app.get('/api/profileData/:user_id', dataCrtl.getProfileImage)
 app.post('/api/profileData/:user_id', dataCrtl.uploadProfileImage)

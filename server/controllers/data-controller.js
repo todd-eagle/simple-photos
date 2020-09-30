@@ -19,8 +19,17 @@ module.exports = {
     },
     getAllPhotoData: async(req, res) => {
         const db = req.app.get('db')
-        const data = await db.photos.find()
+        // const data = await db.photos.find()
+
+        const data = await db.query('select u.id, u.email, photo.* from p_users u join photos photo on u.id=photo.user_id')
         // console.log(data)
+        // const data = await db.photos.join({
+        //     p_users: {
+        //         type: 'INNER',
+        //         fields: ['email'],
+        //         on: {id: 'user_id'}
+        //     }
+        //  }).find()
         data ? res.status(200).send(data) :
         res.status(500).send(err)
     },
@@ -94,7 +103,7 @@ module.exports = {
         })        
     },
     downloadFile: async(req, res) => {
-        console.log("req.body: ", req.body)
+        // console.log("req.body: ", req.body)
         const {filePath} = req.body
         let file = path.join(__dirname, '../../', `src/${filePath}`)
 
@@ -149,6 +158,10 @@ module.exports = {
         const retrievedProfile = await db.profile.find({user_id})
         console.log("retrievedProfile ", retrievedProfile)
         retrievedProfile ? res.status(200).send(retrievedProfile) : res.status(404).send('Could not find image')
+    },
+    getPublicProfile: async(req, res) => {
+        const db = req.app.get('db')
+
     },
     searchImages: async(req, res) => {
         const db = req.app.get('db')
