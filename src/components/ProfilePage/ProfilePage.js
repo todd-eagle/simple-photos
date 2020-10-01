@@ -1,37 +1,34 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
 import ProfileHead from '../Dashboard/ProfileHead/ProfileHead'
-import LandingPage from '../Landing/LandingPage/LandingPage'
+import ImagesContainer from '../ImagesContainer/ImagesContainer'
+// import TestContainer from '../ImagesContainer/TestContainer'
+import ModalImage from '../ModalImage/ModalImage'
+
 
 
 const ProfilePage = (props) => {
-    const {user_id, email, avatar, background, profile_id} = props.location
-    const [data, setData] = useState(null)
+    const {avatar, background, imageData} = props.location
+    const [isOpenImageWindow, setIsOpenImageWindow] = useState(false)
+    const [imageValues, setImageValues] = useState(null)
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    },[])
+
+    const handleSelectImage = (imgValues) => {
+        console.log("imgValues ", imgValues)
+        setImageValues(imgValues)
+        setIsOpenImageWindow(!isOpenImageWindow)   
+    }
     
-    // useEffect(() => {
-    //     getProfileImages(user_id)
-    // },[user_id])
-
-    const getProfileInfo = (user_id) => {
-
-    }
-
-    const getProfileImages = (id) => {
-        axios.get(`/api/photos/${id}`) 
-        .then(res=>{
-           setData(res.data)
-           console.log( console.log("res data in profile page: ",res.data));
-        }).catch(error =>{console.log(error)})
-    }
-
-    console.log("data in profile page: ",data);
-
-    return(
-        <>
+    return   <>
         <ProfileHead avatar_link={avatar} background_link={background} onPublicPage={true} />
-        {/* <LandingPage imageData={data} /> */}
+        <ImagesContainer imageData={imageData} handleSelectImageFn={handleSelectImage} />
+        {/* <TestContainer imageData={imageData} handleSelectImageFn={handleSelectImage}/> */}
+        {isOpenImageWindow ? <ModalImage imageValues={imageValues} handleSelectImageFn={handleSelectImage}/> : null}
+
         </>
-    )
+
 }
 
 export default ProfilePage

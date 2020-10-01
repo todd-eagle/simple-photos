@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Modal} from '../../styles/Components/Modals'
 import {ImagePlate, Image, ImageInfo, TagText} from '../../styles/Components/Images'
 import {saveAs} from 'file-saver'
@@ -8,15 +8,26 @@ import {Redirect} from 'react-router-dom'
 const ModalImage = (props) => {
 
     const {imageValues, handleSelectImageFn} = props
-
     const [redirect, setRedirect] = useState(false)
-    const [imagesById, setImagesById] = useState(null)
+    const [imageData, setData] = useState(null)
 
+
+    useEffect(() => {
+        getProfileImages(imageValues.el.user_id)
+    },[imageValues.el.user_id])
     
     const download = async() => {
         const file = await axios.post('/api/download', {filePath: imageValues.el.link}, {responseType: 'blob'})
         let fileName = imageValues.el.link.substr(imageValues.el.link.lastIndexOf("/") + 1)
         saveAs(new Blob([file.data], {type:'image/*'}), fileName);
+    }
+
+    const getProfileImages = (id) => {
+        axios.get(`/api/photos/${id}`) 
+        .then(res=>{
+           setData(res.data)
+         console.log("res data in profile page: ",res.data);
+        }).catch(error =>{console.log(error)})
     }
 
     const goToProfile = () => {
@@ -46,7 +57,8 @@ const ModalImage = (props) => {
                 email: imageValues.el.email,
                 avatar:  imageValues.el.avatar_link,
                 background: imageValues.el.background_link,
-                profile_id: imageValues.el.id
+                profile_id: imageValues.el.id,
+                imageData: imageData
             }
                 } />
         : null}
