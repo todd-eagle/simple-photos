@@ -21,7 +21,10 @@ module.exports = {
         const db = req.app.get('db')
         // const data = await db.photos.find()
 
-        const data = await db.query('select u.id, u.email, photo.* from p_users u join photos photo on u.id=photo.user_id')
+        const data = await db.query('select u.id, u.email, photo.*, ' + 
+                                    'pf.* from p_users u left join photos photo ' +
+                                    'on u.id=photo.user_id ' +
+                                    'left join profile pf on photo.user_id=pf.user_id')
         // console.log(data)
         // const data = await db.photos.join({
         //     p_users: {

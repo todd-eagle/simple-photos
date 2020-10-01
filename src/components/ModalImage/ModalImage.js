@@ -10,12 +10,13 @@ const ModalImage = (props) => {
     const {imageValues, handleSelectImageFn} = props
 
     const [redirect, setRedirect] = useState(false)
+    const [imagesById, setImagesById] = useState(null)
 
     
     const download = async() => {
         const file = await axios.post('/api/download', {filePath: imageValues.el.link}, {responseType: 'blob'})
         let fileName = imageValues.el.link.substr(imageValues.el.link.lastIndexOf("/") + 1)
-        saveAs(new Blob([file.data], {type:'image/*'}),fileName);
+        saveAs(new Blob([file.data], {type:'image/*'}), fileName);
     }
 
     const goToProfile = () => {
@@ -41,8 +42,11 @@ const ModalImage = (props) => {
         {redirect ? 
             <Redirect to={{
                 pathname: '/profiles',  
-                user_id: imageValues.el.id,
-                email: imageValues.el.email
+                user_id: imageValues.el.user_id,
+                email: imageValues.el.email,
+                avatar:  imageValues.el.avatar_link,
+                background: imageValues.el.background_link,
+                profile_id: imageValues.el.id
             }
                 } />
         : null}

@@ -9,6 +9,8 @@ import {CardImages} from '../../../styles/Components/Cards'
 const LandingPage = (props) => {
     const {imageData, setSearchFn, handleSubmitFn, handleSelectImageFn} = props
 
+    console.log( console.log("img data in Landing page: ",imageData));
+
     let images = imageData.map( el =>{
         return <LandingImageCard key={el.title} onClick={()=>handleSelectImageFn({el})}>
                         <CardImages loading="lazy" src={el.link} alt={el.title}/>

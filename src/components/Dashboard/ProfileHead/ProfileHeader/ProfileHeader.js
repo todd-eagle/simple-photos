@@ -3,11 +3,11 @@ import {ProfileHeaderImage} from '../../../../styles/Layout/StyledProfileHeader'
 import Theme from '../../../../styles/Theme/Theme'     
 
 const ProfileHeader = (props) => {
-    const {avatar} = props
+    const {avatar, background} = props
     
     return (
         <>
-        <Theme>
+        <Theme background={background}>
             <ProfileHeaderImage src={avatar} />
         </Theme>
         </>

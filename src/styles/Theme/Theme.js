@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import {connect} from 'react-redux'
 
 const Theme = (props) => {
-    const {children=''} = props
+    const {children='', background} = props
     const StyledProfileHeader1 = styled.div`
         position: relative;
         display: flex;
@@ -13,7 +13,7 @@ const Theme = (props) => {
         height: 50rem;
         background-color: #fff;
         border-bottom: #a3a3a3 solid 2px;
-        background-image:  url(${props.profile.profileInfo.background_link});
+        background-image:  url(${background});
         background-position: center;
         background-size: cover;
 

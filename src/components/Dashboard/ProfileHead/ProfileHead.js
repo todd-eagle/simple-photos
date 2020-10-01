@@ -1,21 +1,18 @@
 import React from 'react'
 import {connect} from 'react-redux'
-
 import ProfileHeader from './ProfileHeader/ProfileHeader'
-import profileBackground from '../../../assets/images/cityscape.jpg'
 
 const ProfileHead = (props) => {
 
-    const getBackground = () => {
-        return profileBackground
-    }
+    const {onPublicPage=false} = props
+    let {avatar_link, background_link} = props.profile.profileInfo
 
-       let {avatar_link, background_link} = props.profile.profileInfo
-
+    Object.keys(props.profile.profileInfo).length === 0 || onPublicPage  ? {avatar_link, background_link} = props  : console.log("Show private page") 
+    
     return (
         <>
-            <ProfileHeader getBackgroundFn={getBackground} avatar={avatar_link}
-                           getBackground={background_link}
+            <ProfileHeader avatar={avatar_link}
+                           background={background_link}
             />
 
         </>
