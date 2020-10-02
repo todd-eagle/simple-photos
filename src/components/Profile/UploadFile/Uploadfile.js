@@ -15,7 +15,6 @@ const UploadFile  = ({onDrop, accept, children, preview=null, handleSubmitFn, re
                             Save
                         </SaveButton>
                       </SaveButtonContainer> : null
-    // const inputs = !preview ?  <input {...getInputProps()} /> : null;                  
  
 //    console.log("preview ", preview)
     return (

@@ -1,15 +1,18 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import {ImageContainer, ListContainer,PhotoCard} from '../../styles/Pages/DashboardComponents'
-import {CardImages} from '../../styles/Components/Cards'
 import {UploadBarWrapper} from '../../styles/Pages/DashboardComponents'
 import {MainSearchBox, MainSearchInput, MainSearchButton, SearchBar} from '../../styles/Components/SearchBox'
+import ImagesContainer from '../ImagesContainer/ImagesContainer'
+import ModalImage from '../ModalImage/ModalImage'
 
 
 const SearchResults = (props) => {
     const {searchResults, searchText} = props.location
     const [searchTextValue, setSearchTextValue] = useState(searchText)
     const [pageResults, setPageResults] = useState(null)
+    const [imageValues, setImageValues] = useState(null)
+    const [isOpenImageWindow, setIsOpenImageWindow] = useState(false)
+
    
     useEffect(() => {
         if(!pageResults){setPageResults(searchResults)}
@@ -26,16 +29,12 @@ const SearchResults = (props) => {
         }
     }
 
-    let images = null
-
-    if(pageResults){
-        images = pageResults.data.map(el => {
-            return <PhotoCard key={el.title}>
-                        <CardImages loading="lazy"  src={el.link} alt={el.title}/>
-                    </PhotoCard>  
-        })
+    const handleSelectImage = (imgValues) => {
+        console.log("imgValues ", imgValues)
+        setImageValues(imgValues)
+        setIsOpenImageWindow(!isOpenImageWindow)   
     }
-
+    console.log("")
     return (
         <>
         <UploadBarWrapper>
@@ -47,11 +46,10 @@ const SearchResults = (props) => {
                     </MainSearchBox>
                 </SearchBar>  
             </UploadBarWrapper>      
-        <ListContainer>
-            <ImageContainer>
-                {images}
-            </ImageContainer>
-        </ListContainer>
+      
+        <ImagesContainer imageData={searchResults.data} handleSelectImageFn={handleSelectImage} />
+        {isOpenImageWindow ? <ModalImage imageValues={imageValues} handleSelectImageFn={handleSelectImage}/> : null}
+
         </>
     )
 }

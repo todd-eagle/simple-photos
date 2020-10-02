@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import ProfileHead from '../Dashboard/ProfileHead/ProfileHead'
 import ImagesContainer from '../ImagesContainer/ImagesContainer'
-// import TestContainer from '../ImagesContainer/TestContainer'
 import ModalImage from '../ModalImage/ModalImage'
 
 
@@ -24,7 +23,6 @@ const ProfilePage = (props) => {
     return   <>
         <ProfileHead avatar_link={avatar} background_link={background} onPublicPage={true} />
         <ImagesContainer imageData={imageData} handleSelectImageFn={handleSelectImage} />
-        {/* <TestContainer imageData={imageData} handleSelectImageFn={handleSelectImage}/> */}
         {isOpenImageWindow ? <ModalImage imageValues={imageValues} handleSelectImageFn={handleSelectImage}/> : null}
 
         </>

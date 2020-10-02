@@ -1,4 +1,4 @@
-import React from 'react' 
+import React, {useEffect} from 'react' 
 import {connect} from 'react-redux'
 import ImagesContainer from '../../ImagesContainer/ImagesContainer'
 import {Hero, HeroSearchBox, HeroSearchInput, 
@@ -6,6 +6,10 @@ import {Hero, HeroSearchBox, HeroSearchInput,
 
 const LandingPage = (props) => {
     const {imageData, setSearchFn, handleSubmitFn, handleSelectImageFn} = props
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    },[])
 
     return(
         <>
