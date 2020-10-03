@@ -13,17 +13,18 @@ const SearchResults = (props) => {
     const [imageValues, setImageValues] = useState(null)
     const [isOpenImageWindow, setIsOpenImageWindow] = useState(false)
 
-   
     useEffect(() => {
-        if(!pageResults){setPageResults(searchResults)}
-    },[pageResults, searchResults])
+        window.scrollTo(0, 0)
+    },[])
 
+    if(!pageResults){setPageResults(searchResults.data)}
+    
     const handleSubmit = async() => {
         let query = searchTextValue.split(' ').join(' & ')
         try {
             const results = await axios.post('/api/search', {query} )
-            setPageResults(results)
-            console.log("searchResults: ", searchResults)
+            setPageResults(results.data)
+            // console.log("page Results: ", results)
         } catch (error) {
             console.log("Search Error: ", error);
         }
@@ -34,9 +35,9 @@ const SearchResults = (props) => {
         setImageValues(imgValues)
         setIsOpenImageWindow(!isOpenImageWindow)   
     }
-    console.log("")
     return (
         <>
+        {console.log("pageResults: ",pageResults)}
         <UploadBarWrapper>
                 <SearchBar>
                     <MainSearchBox>
@@ -47,7 +48,7 @@ const SearchResults = (props) => {
                 </SearchBar>  
             </UploadBarWrapper>      
       
-        <ImagesContainer imageData={searchResults.data} handleSelectImageFn={handleSelectImage} />
+        <ImagesContainer imageData={pageResults} handleSelectImageFn={handleSelectImage} />
         {isOpenImageWindow ? <ModalImage imageValues={imageValues} handleSelectImageFn={handleSelectImage}/> : null}
 
         </>
