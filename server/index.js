@@ -22,6 +22,15 @@ app.use(express.json());
 app.use(fileUpload());
 app.use('/public', express.static(path.join(__dirname, 'public')))
 
+
+// production server
+app.use(express.static(__dirname + '/../build'))
+
+// app.get('*', (req, res)=>{
+//     res.sendFile(path.join(__dirname, '../build/index.html'))
+// })
+
+
 app.use(
     session({
         resave: false,
@@ -30,8 +39,6 @@ app.use(
         secret: SESSION_SECRET        
     })
 )
-
-
 
 massive({
     connectionString: CONNECTION_STRING,
