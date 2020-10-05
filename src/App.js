@@ -9,7 +9,7 @@ import Footer from './components/Footer/Footer'
 
 function App(props) {
 
-  console.log("App props: ", props)
+  // console.log("App props: ", props)
  const {getUserSession} = props
   useEffect(() =>{
       getUserSession().then().catch(error=>{return error})

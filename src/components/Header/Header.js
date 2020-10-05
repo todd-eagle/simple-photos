@@ -24,6 +24,19 @@ const Header = (props) => {
     const [dropDownValue, setDropDownValue] = useState('-18rem')
 
     let menuDropDown =  props.auth.isLoggedIn ? '30rem' : '18rem'
+    
+    useEffect(() => {
+        const handleEsc = (event) => {
+           if (event.keyCode === 27) {
+            setIsLoginOpen(false)
+          }
+        }
+        window.addEventListener('keydown', handleEsc);
+    
+        return () => {
+          window.removeEventListener('keydown', handleEsc);
+        }
+      }, [])
 
     //console.log("current width: ", width)
 

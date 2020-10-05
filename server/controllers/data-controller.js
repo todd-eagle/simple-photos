@@ -160,7 +160,7 @@ module.exports = {
         const {user_id} = req.params
         // console.log("req.params ", req.params)
         const retrievedProfile = await db.profile.find({user_id})
-        console.log("retrievedProfile ", retrievedProfile)
+        // console.log("retrievedProfile ", retrievedProfile)
         retrievedProfile ? res.status(200).send(retrievedProfile) : res.status(404).send('Could not find image')
     },
     getPublicProfile: async(req, res) => {

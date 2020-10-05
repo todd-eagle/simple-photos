@@ -17,8 +17,21 @@ const SearchResults = (props) => {
         window.scrollTo(0, 0)
     },[])
 
-    if(!pageResults){setPageResults(searchResults.data)}
+    useEffect(() => {
+        const handleEsc = (event) => {
+           if (event.keyCode === 27) {
+            setIsOpenImageWindow(false)
+          }
+        }
+        window.addEventListener('keydown', handleEsc);
     
+        return () => {
+          window.removeEventListener('keydown', handleEsc);
+        }
+      }, [])
+
+    if(!pageResults){setPageResults(searchResults.data)}
+
     const handleSubmit = async() => {
         let query = searchTextValue.split(' ').join(' & ')
         try {
@@ -35,22 +48,21 @@ const SearchResults = (props) => {
         setImageValues(imgValues)
         setIsOpenImageWindow(!isOpenImageWindow)   
     }
+
     return (
         <>
-        {console.log("pageResults: ",pageResults)}
+        {console.log("pageResults: ", pageResults)}
         <UploadBarWrapper>
-                <SearchBar>
-                    <MainSearchBox>
-                    <MainSearchButton onClick={()=>handleSubmit()}></MainSearchButton>
-                        <MainSearchInput onChange={(e) => setSearchTextValue(e.target.value)} placeholder="Search Images" 
-                                         id="search" name="search" value={searchTextValue}/>
-                    </MainSearchBox>
-                </SearchBar>  
-            </UploadBarWrapper>      
-      
+            <SearchBar>
+                <MainSearchBox>
+                <MainSearchButton onClick={()=>handleSubmit()}></MainSearchButton>
+                    <MainSearchInput onChange={(e) => setSearchTextValue(e.target.value)} placeholder="Search Images" 
+                                     id="search" name="search" value={searchTextValue}/>
+                </MainSearchBox>
+            </SearchBar>  
+        </UploadBarWrapper>  
         <ImagesContainer imageData={pageResults} handleSelectImageFn={handleSelectImage} />
         {isOpenImageWindow ? <ModalImage imageValues={imageValues} handleSelectImageFn={handleSelectImage}/> : null}
-
         </>
     )
 }

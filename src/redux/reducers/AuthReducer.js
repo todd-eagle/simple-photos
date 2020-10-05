@@ -27,7 +27,7 @@ export const logout = () => {
 
 export const getUserSession = () => {
     const user = axios.get('/api/auth/user')
-    console.log("user session: ", user)
+    // console.log("user session: ", user)
     return {
         type: GET_SESS_USER,
         payload: user

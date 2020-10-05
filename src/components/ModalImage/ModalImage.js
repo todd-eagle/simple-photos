@@ -26,7 +26,7 @@ const ModalImage = (props) => {
         axios.get(`/api/photos/${id}`) 
         .then(res=>{
            setData(res.data)
-         console.log("res data in profile page: ",res.data);
+        //  console.log("res data in profile page: ",res.data);
         }).catch(error =>{console.log(error)})
     }
 
