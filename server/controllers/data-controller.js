@@ -1,5 +1,5 @@
 const path = require('path')
-const deleteFile = require('./../upload/deleteFile')
+const deleteFile = require('./../Upload/deleteFile')
 
 module.exports = {
     insertPhotoData: async(req, res) => {

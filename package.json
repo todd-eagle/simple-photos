@@ -33,7 +33,8 @@
     "redux-devtools": "^3.6.0",
     "redux-promise-middleware": "^6.1.2",
     "styled-components": "^5.1.1",
-    "styled-normalize": "^8.0.7"
+    "styled-normalize": "^8.0.7",
+    "yarn": "^1.22.10"
   },
   "scripts": {
     "start": "react-scripts start",
