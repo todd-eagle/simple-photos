@@ -7,9 +7,17 @@ module.exports = {
     sendMail: async(req, res) => {
         const {email} = req.body
 
+        // const transporter = nodemailer.createTransport({
+        //     host: SMTP_SERVER, 
+        //     port: EMAIL_PORT,
+        //     auth: {
+        //       user: `${USERNAME}`,
+        //       pass: `${PASSWORD}` 
+        //     }
+        //   })
+
         const transporter = nodemailer.createTransport({
-            host: SMTP_SERVER, 
-            port: EMAIL_PORT,
+            service: "SendinBlue",
             auth: {
               user: `${USERNAME}`,
               pass: `${PASSWORD}` 
