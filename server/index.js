@@ -20,8 +20,7 @@ app.use(helmet())
 app.use(cors())
 app.use(express.json());
 app.use(fileUpload());
-app.use('/public', express.static(path.join(__dirname, 'public')))
-
+app.use( express.static( `${__dirname}/../build` ) )
 
 // production server
 app.use(express.static(__dirname + '/../build'))
