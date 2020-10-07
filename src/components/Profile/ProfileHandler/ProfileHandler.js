@@ -60,7 +60,7 @@ const Avatar = (props) => {
     
     let image = null
     props.profileImages === 'avatar' ? image=avatar_link : image=background_link   
-    console.log("Profile Handler Props: ", props)
+    // console.log("Profile Handler Props: ", props)
     return(
         <UploadFile onDrop={onDrop} preview={previewImage} handleSubmitFn={handleSubmit}
                     currentImage={image} resetDragNDropFn={resetDragNDrop} toggle={toggle}
