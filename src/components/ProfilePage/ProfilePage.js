@@ -7,13 +7,19 @@ import SearchBox from '../SearchBox/SearchBox'
 import axios from 'axios'
 
 const ProfilePage = (props) => {
-    const {avatar, background, imageData} = props.location
+    let {avatar_link, background_link, imageData} = props.location
     const [isOpenImageWindow, setIsOpenImageWindow] = useState(false)
     const [imageValues, setImageValues] = useState(null)
     const [search, setSearch] = useState('')
     const [searchResults, setSearchresults] = useState('')
     const [redirect, setRedirect] = useState(false)
 
+
+    let  imgValues = JSON.parse(localStorage.getItem("imgValues"))
+     props.location.imageData ===undefined ? {avatar_link, background_link} = imgValues.el : console.log('null')
+
+
+     
     useEffect(() => {
         window.scrollTo(0, 0)
     },[])
@@ -51,7 +57,7 @@ const ProfilePage = (props) => {
     
     return  ( 
         <>
-        <ProfileHead avatar_link={avatar} background_link={background} onPublicPage={true} />
+        <ProfileHead avatar_link={avatar_link} background_link={background_link} onPublicPage={true} />
         <SearchBox handleSubmitFn={handleSubmit} setSearchFn={setSearch} />
         <ImagesContainer imageData={imageData} handleSelectImageFn={handleSelectImage} />
         {isOpenImageWindow ? <ModalImage imageValues={imageValues} handleSelectImageFn={handleSelectImage}/> : null}

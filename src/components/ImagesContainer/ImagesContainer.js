@@ -6,10 +6,15 @@ import { Redirect, withRouter } from 'react-router-dom'
 
 const ImagesContainer = (props) => {
 //  console.log(" props.location: ", props.location)
-    const {imageData, handleSelectImageFn} = props
+    let {imageData, handleSelectImageFn} = props
 
     let images=null
-    console.log("imageData ", imageData)
+
+    if(imageData===undefined)
+        imageData = JSON.parse(localStorage.getItem("data"))
+
+    console.log("IMAGE DATA: ", imageData)
+
     if(imageData!==undefined){
         images = imageData.map( el =>{
             return <LandingImageCard key={el.title} onClick={()=>handleSelectImageFn({el})}>

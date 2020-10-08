@@ -26,11 +26,13 @@ const ModalImage = (props) => {
         axios.get(`/api/photos/${id}`) 
         .then(res=>{
            setData(res.data)
+           localStorage.setItem('data', JSON.stringify(res.data))
         //  console.log("res data in profile page: ",res.data);
         }).catch(error =>{console.log(error)})
     }
 
     const goToProfile = () => {
+        localStorage.setItem('imgValues', JSON.stringify(imageValues))
         setRedirect(true)
     }
 
@@ -55,8 +57,8 @@ const ModalImage = (props) => {
                 pathname: '/profiles',  
                 user_id: imageValues.el.user_id,
                 email: imageValues.el.email,
-                avatar:  imageValues.el.avatar_link,
-                background: imageValues.el.background_link,
+                avatar_link:  imageValues.el.avatar_link,
+                background_link: imageValues.el.background_link,
                 profile_id: imageValues.el.id,
                 imageData: imageData
             }
