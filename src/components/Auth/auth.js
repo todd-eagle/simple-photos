@@ -1,6 +1,6 @@
 class Auth {
     constructor(){
-        this.authenticated = false;
+        this.authenticated = localStorage.getItem("localAuth");
     }
 
     checkAuth(authVal){
@@ -14,7 +14,6 @@ class Auth {
     }
   
     isLoggedIn(boolVal) {
-       
         this.authenticated = boolVal
     }
 }

@@ -14,12 +14,9 @@ const ProfilePage = (props) => {
     const [searchResults, setSearchresults] = useState('')
     const [redirect, setRedirect] = useState(false)
 
-
     let  imgValues = JSON.parse(localStorage.getItem("imgValues"))
-     props.location.imageData ===undefined ? {avatar_link, background_link} = imgValues.el : console.log('null')
+        props.location.imageData ===undefined ? {avatar_link, background_link} = imgValues.el : console.log('null')
 
-
-     
     useEffect(() => {
         window.scrollTo(0, 0)
     },[])

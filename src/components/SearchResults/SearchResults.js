@@ -7,9 +7,9 @@ import ModalImage from '../ModalImage/ModalImage'
 
 
 const SearchResults = (props) => {
-    const {searchResults, searchText} = props.location
+    const { searchText} = props.location
     const [searchTextValue, setSearchTextValue] = useState(searchText)
-    const [pageResults, setPageResults] = useState(null)
+    let [pageResults, setPageResults] = useState(null)
     const [imageValues, setImageValues] = useState(null)
     const [isOpenImageWindow, setIsOpenImageWindow] = useState(false)
 
@@ -30,13 +30,15 @@ const SearchResults = (props) => {
         }
       }, [])
 
-    if(!pageResults){setPageResults(searchResults.data)}
+   
+    if(!pageResults){ let localSearchResults = JSON.parse(localStorage.getItem("localResults"));   pageResults = localSearchResults.data}
 
     const handleSubmit = async() => {
         let query = searchTextValue.split(' ').join(' & ')
         try {
             const results = await axios.post('/api/search', {query} )
             setPageResults(results.data)
+            localStorage.setItem('localResults', JSON.stringify(results))
             // console.log("page Results: ", results)
         } catch (error) {
             console.log("Search Error: ", error);
@@ -51,7 +53,7 @@ const SearchResults = (props) => {
 
     return (
         <>
-        {console.log("pageResults: ", pageResults)}
+        {/* {console.log("pageResults: ", pageResults)} */}
         <UploadBarWrapper>
             <SearchBar>
                 <MainSearchBox>

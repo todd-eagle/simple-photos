@@ -63,6 +63,13 @@ const Header = (props) => {
         setMenuDropDown(dropDowm);
     }
 
+    const logout = () =>{
+        props.deleteProfile()
+        auth.isLoggedIn(false)
+        localStorage.setItem('localAuth', false)
+        localStorage.removeItem('profileData')
+    }
+
     useEffect(() => {
 
         const resetMenus = () => {
@@ -84,7 +91,7 @@ const Header = (props) => {
             {link3: '/profile', name3: 'Profile'},
             {link4: '', name4: 'Sign out'}
         ]
-    }else {
+    } else {
          links = [
             {link1: props.location, name1: 'Sign in', signIn: (val) =>{logginToggle(); setPathName(val)}},
             {link2: props.location, name2: 'Register', register: (val) =>{logginToggle()}}
@@ -116,7 +123,7 @@ const Header = (props) => {
                     <HeaderLinks><Link onClick={() => menuManipulation()}
                      to={linkTo3.link3}>{linkTo3.name3}</Link></HeaderLinks>
                     <HeaderLinks>
-                        <Link onClick={()=>{props.logout(); menuManipulation(); props.deleteProfile(); auth.isLoggedIn(false)}} 
+                        <Link onClick={()=>{props.logout(); menuManipulation(); logout()}} 
                             to={linkTo4.link4}>{linkTo4.name4}
                         </Link>
                     </HeaderLinks>

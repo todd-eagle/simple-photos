@@ -7,8 +7,8 @@ const ProfileHead = (props) => {
     const {onPublicPage=false} = props
     let {avatar_link, background_link} = props.profile.profileInfo
 
-    Object.keys(props.profile.profileInfo).length === 0 || onPublicPage  ? {avatar_link, background_link} = props  : {avatar_link, background_link} = props.profile.profileInfo 
-    
+    onPublicPage  ? {avatar_link, background_link} = props  : {avatar_link, background_link} = JSON.parse(localStorage.getItem('profileData'))   
+
     return (
         <>
             <ProfileHeader avatar={avatar_link}

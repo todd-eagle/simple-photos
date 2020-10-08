@@ -46,6 +46,7 @@ const Landing = (props) => {
         try {
             const results = await axios.post('/api/search', {query} )
             setSearchresults(results)
+            localStorage.setItem('localResults', JSON.stringify(results))
             setRedirect(true)
         } catch (error) {
             console.log("Search Error: ", error);

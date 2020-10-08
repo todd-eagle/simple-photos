@@ -43,8 +43,10 @@ const Login = (props) => {
            try {
                 const profileInfo = await axios.get(`/api/profileData/${loginInfo.data.id}`)
                 props.getProfile(profileInfo.data[0])
+                localStorage.setItem('profileData',  JSON.stringify(profileInfo.data[0]))
             } catch (error) {console.log("Profile error: ", error)}
             auth.isLoggedIn(true)
+            localStorage.setItem('localAuth', true)
             props.logginToggleFn()
             props.history.push('/dashboard')   
         } catch(err) {
