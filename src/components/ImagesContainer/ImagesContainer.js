@@ -9,7 +9,7 @@ const ImagesContainer = (props) => {
     const {imageData, handleSelectImageFn} = props
 
     let images=null
-
+    console.log("imageData ", imageData)
     if(imageData!==undefined){
         images = imageData.map( el =>{
             return <LandingImageCard key={el.title} onClick={()=>handleSelectImageFn({el})}>
