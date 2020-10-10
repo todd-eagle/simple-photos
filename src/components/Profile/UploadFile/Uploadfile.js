@@ -9,7 +9,7 @@ const UploadFile  = ({onDrop, accept, children, preview=null, handleSubmitFn, re
     onDrop,
     accept
     })
-
+// console.log("children :", children)
    const saveButton = preview ? <SaveButtonContainer>
                         <SaveButton onClick={()=>{handleSubmitFn(); resetDragNDropFn()}}>
                             Save
