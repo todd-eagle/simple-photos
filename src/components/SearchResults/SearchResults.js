@@ -39,7 +39,7 @@ const SearchResults = (props) => {
             const results = await axios.post('/api/search', {query} )
             setPageResults(results.data)
             localStorage.setItem('localResults', JSON.stringify(results))
-            // console.log("page Results: ", results)
+            console.log("page Results: ", results)
         } catch (error) {
             console.log("Search Error: ", error);
         }
@@ -53,7 +53,7 @@ const SearchResults = (props) => {
 
     return (
         <>
-        {/* {console.log("pageResults: ", pageResults)} */}
+        {console.log("pageResults: ", pageResults)}
         <UploadBarWrapper>
             <SearchBar>
                 <MainSearchBox>

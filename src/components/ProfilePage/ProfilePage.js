@@ -36,10 +36,12 @@ const ProfilePage = (props) => {
 
     const handleSubmit = async() => {
         let query = search.split(' ').join(' & ')
-        // console.log("search", search)
+         console.log("search", search)
         try {
             const results = await axios.post('/api/search', {query} )
             setSearchresults(results)
+            console.log("setSearchresults(results): ", results)
+            localStorage.setItem('localResults', JSON.stringify(results))
             setRedirect(true)
         } catch (error) {
             console.log("Search Error: ", error);
@@ -51,6 +53,7 @@ const ProfilePage = (props) => {
         setImageValues(imgValues)
         setIsOpenImageWindow(!isOpenImageWindow)   
     }
+    console.log("searchResults", searchResults)
     
     return  ( 
         <>

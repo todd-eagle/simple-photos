@@ -10,10 +10,12 @@ const ImagesContainer = (props) => {
 
     let images=null
 
+    console.log("imageData: ", imageData)
+
     if(imageData===undefined)
         imageData = JSON.parse(localStorage.getItem("data"))
 
-    // console.log("IMAGE DATA: ", imageData)
+    console.log("IMAGE DATA: ", imageData)
 
     if(imageData!==undefined){
         images = imageData.map( el =>{

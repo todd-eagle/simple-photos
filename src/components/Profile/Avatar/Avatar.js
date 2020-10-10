@@ -50,6 +50,8 @@ const Avatar = (props) => {
                   const updatedData = await axios.put(`/api/profile/`, body)
                   console.log("updatedData ", updatedData.data[0])
                   props.updateProfile(updatedData.data[0])
+                   localStorage.setItem('profileData',  JSON.stringify(updatedData.data[0]))
+
               } catch (error) {console.log(error)}
         }
       } catch (error) {console.log(error)}

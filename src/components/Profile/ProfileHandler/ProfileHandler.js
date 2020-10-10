@@ -56,7 +56,13 @@ const Avatar = (props) => {
       // setFiles(delete files.preview)
     }
 
-    const {avatar_link, background_link} = props.profile.profileInfo
+    // const {avatar_link, background_link} = props.profile.profileInfo
+
+
+    let {avatar_link, background_link} = props.profile.profileInfo
+    props.profile.profileInfo ?  {avatar_link, background_link} = props.profile.profileInfo : {avatar_link, background_link} = JSON.parse(localStorage.getItem("profileData"))
+    // const {avatar_link, background_link} = JSON.parse(localStorage.getItem("profileData"))
+    console.log("props.profile.profileInfo ", props.profile.profileInfo)
     
     let image = null
     props.profileImages === 'avatar' ? image=avatar_link : image=background_link   
