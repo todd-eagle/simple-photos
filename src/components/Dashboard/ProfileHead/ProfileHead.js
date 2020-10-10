@@ -13,17 +13,17 @@ const ProfileHead = (props) => {
     // console.log("JSON.parse(localStorage.getItem('profileData')) on profilehead: ", JSON.parse(localStorage.getItem('profileData')))
 
     // onPublicPage  ? {avatar_link, background_link} = props  : {avatar_link, background_link} = JSON.parse(localStorage.getItem('profileData'))   
-    console.log("props.profile.profileInfo = ", props.profile.profileInfo)
-    if(!onPublicPage){
-        console.log("We are on a private page")
+    // console.log("props.profile.profileInfo = ", props.profile.profileInfo)
+    // if(!onPublicPage){
+    //     console.log("We are on a private page")
        
-        if( Object.keys(props.profile.profileInfo).length !== 0 && props.profile.profileInfo.constructor === Object){
-            console.log("props.profile.profileInfo EXISTS!!!")
-            console.log("{avatar_link, background_link} = props.profile.profileInfo: ", {avatar_link, background_link} = props.profile.profileInfo )
-        }else{
-           console.log(" {avatar_link, background_link} = JSON.parse(localStorage.getItem('profileData'))")
-        }
-    }else {console.log(" {avatar_link, background_link} = props")}
+    //     if( Object.keys(props.profile.profileInfo).length !== 0 && props.profile.profileInfo.constructor === Object){
+    //         console.log("props.profile.profileInfo EXISTS!!!")
+    //         console.log("{avatar_link, background_link} = props.profile.profileInfo: ", {avatar_link, background_link} = props.profile.profileInfo )
+    //     }else{
+    //        console.log(" {avatar_link, background_link} = JSON.parse(localStorage.getItem('profileData'))")
+    //     }
+    // }else {console.log(" {avatar_link, background_link} = props")}
     
     !onPublicPage ? 
     Object.keys(props.profile.profileInfo).length !== 0 && props.profile.profileInfo.constructor === Object
