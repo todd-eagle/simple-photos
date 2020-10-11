@@ -6,9 +6,10 @@ import {MainSearchBox, MainSearchInput, MainSearchButton, SearchBar} from '../..
 const SearchBox = (props) => {
 
     const {setSearchFn, handleSubmitFn} = props    
-    
+    console.log("props ", props)
     return (
         <UploadBarWrapper>
+
         <SearchBar>
             <MainSearchBox>
             <MainSearchButton onClick={()=>handleSubmitFn()}></MainSearchButton>

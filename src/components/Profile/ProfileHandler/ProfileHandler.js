@@ -44,7 +44,7 @@ const Avatar = (props) => {
         } catch (error) {
               try {
                   const updatedData = await axios.put(`/api/profile/`, body)
-                  console.log("updatedData ", updatedData.data[0])
+                  // console.log("updatedData ", updatedData.data[0])
                   props.updateProfile(updatedData.data[0])
                   localStorage.setItem('profileData', JSON.stringify(updatedData.data[0]))
               } catch (error) {console.log(error)}
@@ -63,12 +63,12 @@ const Avatar = (props) => {
     let {avatar_link, background_link} = props.profile.profileInfo
     props.profile ===undefined ?  {avatar_link, background_link} = props.profile.profileInfo : {avatar_link, background_link} = JSON.parse(localStorage.getItem("profileData"))
     // const {avatar_link, background_link} = JSON.parse(localStorage.getItem("profileData"))
-    console.log("props.profile.profileInfo ", props.profile.profileInfo)
-    console.log(" JSON.parse(localStorage.getItem('profileData')): ",  JSON.parse(localStorage.getItem("profileData")))
+    // console.log("props.profile.profileInfo ", props.profile.profileInfo)
+    // console.log(" JSON.parse(localStorage.getItem('profileData')): ",  JSON.parse(localStorage.getItem("profileData")))
     
     let image = null
     props.profileImages === 'avatar' ? image=avatar_link : image=background_link   
-    console.log("props.profileImage: ", props.profileImage)
+    // console.log("props.profileImage: ", props.profileImage)
     return(
         <UploadFile onDrop={onDrop} preview={previewImage} handleSubmitFn={handleSubmit}
                     currentImage={image} resetDragNDropFn={resetDragNDrop} toggle={toggle}

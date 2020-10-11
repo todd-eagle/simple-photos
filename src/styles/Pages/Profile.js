@@ -8,7 +8,7 @@ export const PageWrapper = styled.div`
 `
 export const ProfileImage = styled.img`
     width: 30rem;
-    height: 30rem;
+    height: 90rem;
     border-radius: 50%;
     cursor: pointer;
 
