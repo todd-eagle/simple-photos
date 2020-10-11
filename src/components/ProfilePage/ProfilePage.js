@@ -7,7 +7,7 @@ import SearchBox from '../SearchBox/SearchBox'
 import axios from 'axios'
 
 const ProfilePage = (props) => {
-    let {avatar_link, background_link, imageData} = props.location
+    let {email, avatar_link, background_link, imageData} = props.location
     const [isOpenImageWindow, setIsOpenImageWindow] = useState(false)
     const [imageValues, setImageValues] = useState(null)
     const [search, setSearch] = useState('')
@@ -58,7 +58,7 @@ const ProfilePage = (props) => {
     return  ( 
         <>
         <ProfileHead avatar_link={avatar_link} background_link={background_link} onPublicPage={true} />
-        <SearchBox handleSubmitFn={handleSubmit} setSearchFn={setSearch} />
+        <SearchBox handleSubmitFn={handleSubmit} setSearchFn={setSearch} email={email} count={imageData.length}/>
         <ImagesContainer imageData={imageData} handleSelectImageFn={handleSelectImage} />
         {isOpenImageWindow ? <ModalImage imageValues={imageValues} handleSelectImageFn={handleSelectImage}/> : null}
 

@@ -2,10 +2,14 @@ import styled from 'styled-components'
 import {HeroSearchBox, HeroSearchInput, 
         HeroSearchButton} from '../Pages/StyledLandingPage'
 import {UploadBar} from '../Pages/DashboardComponents'
+import {UploadBarWrapper} from '../../styles/Pages/DashboardComponents'
 
+export const SearchBarWrapper = styled(UploadBarWrapper)`
+    display: flex;
+    justify-content:space-around;
+`
 export const MainSearchBox = styled(HeroSearchBox)`
-    width: 30%;
-    
+    width: 30%; 
 `        
 export const MainSearchInput = styled(HeroSearchInput)`
     font-size: 1.5rem;
@@ -22,4 +26,8 @@ export const MainSearchButton = styled(HeroSearchButton)`
 `
 export const SearchBar = styled(UploadBar)`
     justify-content: center;
+`
+export const Email = styled.div`
+    font-size: 1.8rem;
+    font-weight: 600;
 `  

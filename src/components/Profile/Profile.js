@@ -5,8 +5,6 @@ import ProfileHandler from './ProfileHandler/ProfileHandler'
 import ProfileHead from '../Dashboard/ProfileHead/ProfileHead'
 import {PageWrapper, ProfileContainer, ProfileText} from '../../styles/Pages/Profile'
 
-
-
 const Profile = (props) => {
 
     const ACCEPTED_FILES = "image/jpeg, image/jpg, image/png"
