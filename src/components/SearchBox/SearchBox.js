@@ -4,9 +4,9 @@ import {SearchBarWrapper, MainSearchBox, MainSearchInput, MainSearchButton, Sear
 import {PhotoCount} from '../../styles/Pages/DashboardComponents'
 
 const SearchBox = (props) => {
+    const {setSearchFn, handleSubmitFn, email} = props 
 
-    const {setSearchFn, handleSubmitFn, email, count} = props    
-    console.log("props ", props)
+    const count = JSON.parse(localStorage.getItem("imageData")).length
     return (
         <SearchBarWrapper>
             <Email>{email}</Email>

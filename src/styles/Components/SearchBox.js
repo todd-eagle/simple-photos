@@ -7,6 +7,7 @@ import {UploadBarWrapper} from '../../styles/Pages/DashboardComponents'
 export const SearchBarWrapper = styled(UploadBarWrapper)`
     display: flex;
     justify-content:space-around;
+    padding: 0 6rem;
 `
 export const MainSearchBox = styled(HeroSearchBox)`
     width: 30%; 

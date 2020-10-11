@@ -6,7 +6,7 @@ import styled from 'styled-components'
 export const ProfileHeaderImage = styled.img`
     position: absolute;
     left: 5rem;
-    top: 30rem;
+    top: 29rem;
     border-radius: 50%;
     height: 22rem;
     width: 22rem;

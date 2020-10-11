@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Modal} from '../../styles/Components/Modals'
+import {Modal, CloseModal, GoToProfile, Download} from '../../styles/Components/Modals'
 import {ImagePlate, Image, ImageInfo, TagText} from '../../styles/Components/Images'
 import {saveAs} from 'file-saver'
 import axios from 'axios'
@@ -41,14 +41,14 @@ const ModalImage = (props) => {
         <Modal>
             <ImagePlate>
             <ImageInfo>
-                    <div onClick={()=> handleSelectImageFn(imageValues)}>X</div>
-                    <div onClick={()=>goToProfile()}>{imageValues.el.email}</div>
-                    <TagText> Title: {imageValues.el.title}</TagText>
+                    <CloseModal onClick={()=> handleSelectImageFn(imageValues)}></CloseModal>
+                    <GoToProfile onClick={()=>goToProfile()}>{imageValues.el.email}</GoToProfile>
+                    {/* <TagText> Title: {imageValues.el.title}</TagText> */}
                 </ImageInfo>
                 <Image src={imageValues.el.link} />
                 <ImageInfo>
                    <TagText> Tags: {imageValues.el.tags}</TagText>
-                   <div onClick={()=> download()}>DOWNLOAD</div>
+                   <Download onClick={()=> download()}></Download>
                 </ImageInfo>   
             </ImagePlate>
         </Modal>

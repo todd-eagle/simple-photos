@@ -15,7 +15,7 @@ const ProfilePage = (props) => {
     const [redirect, setRedirect] = useState(false)
 
     let  imgValues = JSON.parse(localStorage.getItem("imgValues"))
-        props.location.imageData ===undefined ? {avatar_link, background_link} = imgValues.el : console.log('null')
+        props.location.imageData ===undefined ? {avatar_link, background_link} = imgValues.el : localStorage.setItem('imageData', JSON.stringify(imageData))
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -58,7 +58,7 @@ const ProfilePage = (props) => {
     return  ( 
         <>
         <ProfileHead avatar_link={avatar_link} background_link={background_link} onPublicPage={true} />
-        <SearchBox handleSubmitFn={handleSubmit} setSearchFn={setSearch} email={email} count={imageData.length}/>
+        <SearchBox handleSubmitFn={handleSubmit} setSearchFn={setSearch} email={email} />
         <ImagesContainer imageData={imageData} handleSelectImageFn={handleSelectImage} />
         {isOpenImageWindow ? <ModalImage imageValues={imageValues} handleSelectImageFn={handleSelectImage}/> : null}
 
