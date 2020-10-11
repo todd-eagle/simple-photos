@@ -8,7 +8,7 @@ export const PageWrapper = styled.div`
 `
 export const ProfileImage = styled.img`
     width: 30rem;
-    height: 90rem;
+    height: 30rem;
     border-radius: 50%;
     cursor: pointer;
 
@@ -35,7 +35,7 @@ export const ProfileImage = styled.img`
 export const ProfileContainer = styled.div`
     display: flex;
     margin-top: 4rem;
-    max-width: 130rem;
+    max-width: 100rem;
     @media only screen and (max-width: 50rem) {
         flex-wrap: wrap;
         justify-content: center;
