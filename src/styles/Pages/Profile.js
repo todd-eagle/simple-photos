@@ -3,7 +3,7 @@ import styled, {css}  from 'styled-components'
 export const PageWrapper = styled.div`
     display: flex;
     justify-content: center;
-    padding-top: 10rem;
+    padding: 5rem;
     flex-wrap: wrap;
 `
 export const ProfileImage = styled.img`

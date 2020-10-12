@@ -67,6 +67,7 @@ export const UploadBarWrapper = styled.div`
     background-color: rgb(250, 250, 250);
     border-bottom: 1.5px solid rgb(199, 199, 199);
     z-index: 85;
+    padding: 5rem;
 `
 export const UploadBar = styled.div`
     display: flex;
