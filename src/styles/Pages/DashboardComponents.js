@@ -9,7 +9,7 @@ export const ImageContainer = styled.div`
     max-width: 130rem;
     column-count: 3;
     column-gap: 2rem;
-    padding: 5rem;
+    padding: 5rem 5rem 0;
     flex: 1;
 
     @media only screen and (max-width: 60rem) {
