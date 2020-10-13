@@ -1,6 +1,5 @@
 require('dotenv').config();
 const cors = require('cors')
-const path = require('path')
 const fileUpload = require('express-fileupload')
 const express = require('express')
 const session = require('express-session')
@@ -21,14 +20,6 @@ app.use(cors())
 app.use(express.json());
 app.use(fileUpload());
 app.use( express.static( `${__dirname}/../build` ) )
-
-// production server
-// app.use(express.static(__dirname + '/../build'))
-
-// app.get('*', (req, res)=>{
-//     res.sendFile(path.join(__dirname, '../build/index.html'))
-// })
-
 
 app.use(
     session({
