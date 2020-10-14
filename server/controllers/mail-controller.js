@@ -4,7 +4,7 @@ const templateID = 'd-3519d20db21847249db89e02de170122'
 const fromEmail = 'no-reply@thecrackle.us'
 
 module.exports = {
-    sendMail: async(req, res) => {
+    sendMail: (req, res) => {
         const {email} = req.body
         
         sgMail.setApiKey(process.env.SENDGRID_API_KEY)
