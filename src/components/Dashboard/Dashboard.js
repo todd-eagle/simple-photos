@@ -11,6 +11,7 @@ const Dashboard = (props) => {
 
     useEffect(() => {
         getImages(props.auth.user.id)
+        window.scrollTo(0, 0)
     },[props.auth.user.id])
 
     const getImages = (id) => {

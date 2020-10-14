@@ -15,7 +15,9 @@ const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET,
 const app = express();
 
 app.use(express.static("src"))
-app.use(helmet())
+app.use(helmet({
+    contentSecurityPolicy: false,
+  }))
 app.use(cors())
 app.use(express.json());
 app.use(fileUpload());
