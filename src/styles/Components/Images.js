@@ -11,7 +11,7 @@ export const ImagePlate = styled.div`
    
     @media only screen and (max-width: 70rem) {
         height: auto;
-        width: 45%;
+        width: 42%;
     }
     @media only screen and (max-width: 50rem) {
         height: auto;
