@@ -1,3 +1,4 @@
+require('dotenv').config();
 const sgMail = require('@sendgrid/mail')
 const templateID = 'd-3519d20db21847249db89e02de170122' 
 const fromEmail = 'no-reply@thecrackle.us'
