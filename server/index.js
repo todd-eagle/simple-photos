@@ -18,7 +18,9 @@ app.use(express.static("src"))
 app.use(
     helmet.contentSecurityPolicy({
       directives: {
-        "default-src": ["'self'", "data:", "blob:"]
+        "default-src": ["'self'"],
+        "img-src": ["'self'", "data:", "blob:"],
+        
       },}))
 app.use(cors())
 app.use(express.json());
