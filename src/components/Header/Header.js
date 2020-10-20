@@ -11,6 +11,7 @@ import {HeaderMenu, HeaderLinks, MenuIcon, MenuIconWrapper ,CloseIcon} from '../
 import {StyledHeader, HeaderTitle,
         HeaderLogo, BrandingArea} from '../../styles/Layout/StyledHeaders'
 import useCurrentWidth from '../../Hooks/WindowListener'
+import useKeyPress from '../../Hooks/useKeyPress'
 
 const Header = (props) => {
     // console.log("header props: ", props)
@@ -18,27 +19,14 @@ const Header = (props) => {
     
     let links = 'menus'
 
-    const [isLoginOpen, setIsLoginOpen] = useState(false)
+    const {isWindowOpen, windowToggle} = useKeyPress()
+
+    // const [isLoginOpen, setIsLoginOpen] = useState(false)
     const [pathName, setPathName] = useState('register')
     const [isToggleMenuOpen, setToggleMenuOpen] = useState(true)
     const [dropDownValue, setDropDownValue] = useState('-18rem')
 
     let menuDropDown =  props.auth.isLoggedIn ? '30rem' : '18rem'
-    
-    useEffect(() => {
-        const handleEsc = (event) => {
-           if (event.keyCode === 27) {
-            setIsLoginOpen(false)
-          }
-        }
-        window.addEventListener('keydown', handleEsc);
-    
-        return () => {
-          window.removeEventListener('keydown', handleEsc);
-        }
-      }, [])
-
-    //console.log("current width: ", width)
 
     const setMenuDropDown = useCallback((dropDowm=null)=> {
         const minus = '-'
@@ -48,10 +36,6 @@ const Header = (props) => {
         setDropDownValue(minus.concat('', menuDropDown))
         // console.log("drop down value: ", dropDownValue)
     },[isToggleMenuOpen, menuDropDown])
-
-    const logginToggle = () => {
-        setIsLoginOpen(!isLoginOpen)
-    }
 
     const toggleMenu = () => {
         setToggleMenuOpen(!isToggleMenuOpen)
@@ -93,8 +77,8 @@ const Header = (props) => {
         ]
     } else {
          links = [
-            {link1: props.location, name1: 'Sign in', signIn: (val) =>{logginToggle(); setPathName(val)}},
-            {link2: props.location, name2: 'Register', register: (val) =>{logginToggle()}}
+            {link1: props.location, name1: 'Sign in', signIn: (val) =>{windowToggle(); setPathName(val)}},
+            {link2: props.location, name2: 'Register', register: (val) =>{windowToggle()}}
         ]
     }
 
@@ -132,8 +116,8 @@ const Header = (props) => {
             }
         </HeaderMenu>
     </StyledHeader>
-        {isLoginOpen ?
-        <Login pathName={pathName} logginToggleFn={logginToggle}/> : null}
+        {isWindowOpen ?
+        <Login pathName={pathName} logginToggleFn={windowToggle}/> : null}
     </>
     )
 }

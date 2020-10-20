@@ -4,14 +4,15 @@ import LandingPage from './LandingPage/LandingPage.js'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import ModalImage from '../ModalImage/ModalImage'
+import useKeyPress from '../../Hooks/useKeyPress'
 
 const Landing = (props) => {
     const [imageData, setImageData] = useState([])
     const [search, setSearch] = useState('')
     const [searchResults, setSearchresults] = useState('')
     const [redirect, setRedirect] = useState(false)
-    const [isOpenImageWindow, setIsOpenImageWindow] = useState(false)
     const [imageValues, setImageValues] = useState(null)
+    const {isWindowOpen, windowToggle} = useKeyPress()
     // console.log("search: ", search)
    
    
@@ -19,18 +20,6 @@ const Landing = (props) => {
         getAllImages()
     },[])
 
-    useEffect(() => {
-        const handleEsc = (event) => {
-           if (event.keyCode === 27) {
-            setIsOpenImageWindow(false)
-          }
-        }
-        window.addEventListener('keydown', handleEsc);
-    
-        return () => {
-          window.removeEventListener('keydown', handleEsc);
-        }
-      }, [])
 
     const getAllImages = async() => {
         try {
@@ -57,7 +46,7 @@ const Landing = (props) => {
 
     const handleSelectImage = (imgValues) => {
         setImageValues(imgValues)
-        setIsOpenImageWindow(!isOpenImageWindow)   
+        windowToggle()   
     }
 
     return <>
@@ -65,7 +54,7 @@ const Landing = (props) => {
             setSearchFn={setSearch} search={search} handleSelectImageFn={handleSelectImage}
             />
 
-            {isOpenImageWindow ? <ModalImage imageValues={imageValues} handleSelectImageFn={handleSelectImage}/> : null}
+            {isWindowOpen ? <ModalImage imageValues={imageValues} handleSelectImageFn={handleSelectImage}/> : null}
 
             {redirect ? <Redirect to={{
                 pathname: '/search',  
